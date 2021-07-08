@@ -15,23 +15,44 @@ const OAUTH_QS = new URLSearchParams({
   scope,
 }).toString();
 
+// eslint-disable-next-line no-console
+console.log('1')
+
 const OAUTH_URI = `https://discord.com/api/oauth2/authorize?${OAUTH_QS}`;
+
+// eslint-disable-next-line no-console
+console.log('2')
 
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void | NextApiResponse<any>> => {
+    
+  // eslint-disable-next-line no-console
+  console.log('3')
   await dbConnect();
+    
+  // eslint-disable-next-line no-console
+  console.log('4')
   if (req.method !== `GET`) return res.redirect(`/`);
 
+    
+  // eslint-disable-next-line no-console
+  console.log('5')
   const { code = null, error = null } = req.query;
 
+    
+  // eslint-disable-next-line no-console
+  console.log('6')
   if (error) {
     return res.redirect(`/?error=${req.query.error}`);
   }
 
   if (!code || typeof code !== `string`) return res.redirect(OAUTH_URI);
-
+    
+  // eslint-disable-next-line no-console
+  console.log('7')
+  
   const body = new URLSearchParams({
     client_id: process.env.CLIENT_ID,
     client_secret: process.env.CLIENT_SECRET,
@@ -40,6 +61,10 @@ const handler = async (
     code,
     scope,
   }).toString();
+    
+  // eslint-disable-next-line no-console
+  console.log('8')
+  
 
   const { access_token = null, token_type = `Bearer` } = await fetch(
     `https://discord.com/api/oauth2/token`,
@@ -64,7 +89,10 @@ const handler = async (
   if (!(`id` in me)) {
     return res.redirect(OAUTH_URI);
   }
-
+    
+  // eslint-disable-next-line no-console
+  console.log('9')
+  
   const count: UserType = await User.findOne({ id: me.id });
 
   let newUser: UserType;
