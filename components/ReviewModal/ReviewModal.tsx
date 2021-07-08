@@ -80,7 +80,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean }> = ({
   const handleSubmit = async (e, onClose) => {
     e.preventDefault();
     if (!movie) {
-      return setMovieError(`Please select a valid movie.`);
+      return setMovieError(`Please select a valid film.`);
     }
 
     const data: ReviewEndpointBodyType = {
@@ -143,14 +143,14 @@ export const ReviewModal: React.FC<{ isAdmin: boolean }> = ({
               </FormLabel>
               <Select
                 bg={useColorModeValue('white', 'gray.700')}
-                placeholder={movie?.name || 'No Movie Selected'}
+                placeholder={movie?.name || 'No Film Selected'}
                 onChange={(e) => {
                   e.preventDefault();
                   const movieFound = movies.filter(
                     (mv) => mv?.name === e.target.value
                   )[0];
                   if (!movieFound) {
-                    return setMovieError(`Please select a valid movie!`);
+                    return setMovieError(`Please select a valid film!`);
                   }
                   setMovieError(``);
                   return setMovie(movieFound);
