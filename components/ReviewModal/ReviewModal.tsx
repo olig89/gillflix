@@ -241,7 +241,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean }> = ({
                   }
                   return setComment(e.target.value);
                 }}
-                placeholder="This movie was great because it was..."
+                placeholder="This film was great because it was..."
                 resize="vertical"
               />
               {commentError && (
