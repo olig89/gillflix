@@ -10,6 +10,7 @@ import {
 
 export const LandingPage: React.FC = (): React.ReactElement => {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
+  const movieTerm = process.env.MOVIE_TERM || 'movie';
   return (
     <Flex
       minH="100vh"
@@ -49,7 +50,7 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           fontSize={{ base: `lg`, md: `xl` }}
           color={useColorModeValue(`gray.600`, `gray.300`)}
         >
-          The website where cool kids write movie reviews :).
+          The website where cool kids write{' ' + movieTerm} reviews :).
         </chakra.p>
         <Button
           as="a"
