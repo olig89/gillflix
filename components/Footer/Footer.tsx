@@ -9,7 +9,7 @@ import {
   VisuallyHidden,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
 
 const SocialIcons = ({ children, href, label }) => {
   return (
@@ -58,29 +58,24 @@ export const Footer: React.FC = (): React.ReactElement => {
           Made by Mikerophone 🤠
         </Text>
 
-        <Stack
-          direction="row"
-          spacing={6}
-          ml="auto"
-          mr={{ base: `auto`, md: 5 }}
+        <Stack direction="row" spacing={6} ml="auto" mr={{ base: `auto`, md: 5 }}>
+        <SocialIcons label="GitHub" href="https://github.com/gillflix/">
+          <FaGithub />
+        </SocialIcons>
+        <SocialIcons
+          label="Twitter"
+          href="https://twitter.com/gillflix"
         >
-          <SocialIcons label="GitHub" href="https://github.com/mah51/">
-            <FaGithub />
-          </SocialIcons>
-          <SocialIcons
-            label="LinkedIn"
-            href="https://www.linkedin.com/in/michael-hall-86616b17b/"
-          >
-            <FaLinkedin />
-          </SocialIcons>
+          <FaTwitter />
+        </SocialIcons>
 
-          <SocialIcons
-            label="Instagram"
-            href="https://www.instagram.com/michael.__.hall/"
-          >
-            <FaInstagram />
-          </SocialIcons>
-        </Stack>
+        <SocialIcons
+          label="Discord"
+          href="https://discord.com/invite/T8SUMA2tgf"
+        >
+          <FaDiscord />
+        </SocialIcons>
+      </Stack>
       </Flex>
     </Box>
   );
