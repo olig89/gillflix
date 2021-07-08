@@ -59,7 +59,7 @@ export const Footer: React.FC = (): React.ReactElement => {
         </Text>
 
         <Stack direction="row" spacing={6} ml="auto" mr={{ base: `auto`, md: 5 }}>
-        <SocialIcons label="GitHub" href="https://github.com/gillflix/">
+        <SocialIcons label="GitHub" href="https://github.com/olig89/">
           <FaGithub />
         </SocialIcons>
         <SocialIcons
