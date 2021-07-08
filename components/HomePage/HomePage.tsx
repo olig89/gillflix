@@ -25,8 +25,8 @@ export const HomePage: React.FC<HomePageProps> = ({
       variant: `subtle`,
       position: `top`,
       title: `Read only mode`,
-      description: `You do not have permissions to add or remove reviews.`,
-      status: `error`,
+      description: `Join our discord server and say hi to start reviewing.`,
+      status: `info`,
       isClosable: true,
     });
   }, [colorMode, toast]);
@@ -37,8 +37,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         variant: `subtle`,
         position: `top`,
         title: `Read only mode`,
-        description: `You do not have permissions to add or remove reviews.`,
-        status: `error`,
+        description: `Join our discord server and say hi to start reviewing.`,
+        status: `info`,
         isClosable: true,
       });
     }
