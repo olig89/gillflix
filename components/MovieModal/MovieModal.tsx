@@ -92,7 +92,6 @@ export const MovieModal: React.FC = (): React.ReactElement => {
     }
   };
 
-  const movieTerm = process.env.MOVIE_TERM || 'movie';
   return (
     <>
       <Button
@@ -102,18 +101,18 @@ export const MovieModal: React.FC = (): React.ReactElement => {
         leftIcon={<AddIcon />}
         onClick={onOpen}
       >
-        Add{' ' + movieTerm}
+        Add film
       </Button>
 
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add a{' '+ movieTerm}</ModalHeader>
+          <ModalHeader>Add a film</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <form onSubmit={handleSubmit}>
               <FormControl>
-                <FormLabel>Find{' ' + movieTerm}</FormLabel>
+                <FormLabel>Find film</FormLabel>
                 <Flex>
                   <InputGroup>
                     <InputLeftElement pointerEvents="none">

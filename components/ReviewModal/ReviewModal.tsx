@@ -109,7 +109,6 @@ export const ReviewModal: React.FC<{ isAdmin: boolean }> = ({
     setRating(x);
   };
 
-  const movieTerm = process.env.MOVIE_TERM || 'movie';
   return (
     <>
       <Button
@@ -140,7 +139,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean }> = ({
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel mb={3} fontSize="1.1em" fontWeight="semibold">
-                Select{' ' + movieTerm}
+                Select film
               </FormLabel>
               <Select
                 bg={useColorModeValue('white', 'gray.700')}

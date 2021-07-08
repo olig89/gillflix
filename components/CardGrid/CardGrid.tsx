@@ -108,7 +108,6 @@ export const CardGrid: React.FC<CardGridProps> = ({
   }
 
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
-  const movieTerm = process.env.MOVIE_TERM || 'movie';
 
   return (
     <>
@@ -149,7 +148,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
             <chakra.span color={useColorModeValue('purple.500', 'purple.300')}>
               {unSortedMovies?.data?.length}
             </chakra.span>
-          }{' ' + movieTerm}s
+          }{' '}films
         </Heading>
         <Flex
           width="full"

@@ -64,7 +64,6 @@ export const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
   const [loading, setLoading] = useState(false);
   const avatarSize = useBreakpointValue({ base: 'sm', md: 'xl' });
 
-  const movieTerm = process.env.MOVIE_TERM || 'movie';
   const open = () => setIsPopoverOpen(!isPopoverOpen);
   const close = () => setIsPopoverOpen(false);
   const initialRef = React.useRef();
@@ -317,7 +316,7 @@ export const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
                 >
                   <PopoverTrigger>
                     <Button colorScheme="red" isLoading={loading}>
-                      Delete{' '+ movieTerm}
+                      Delete film
                     </Button>
                   </PopoverTrigger>
 
