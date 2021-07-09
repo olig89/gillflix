@@ -7,6 +7,7 @@ import {
   Icon,
   Flex,
 } from '@chakra-ui/react';
+import { NextSeo } from 'next-seo';
 
 export const LandingPage: React.FC = (): React.ReactElement => {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
@@ -73,6 +74,8 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           </Icon>
         </Button>
       </Box>
+      <NextSeo title="siteName" />
     </Flex>
+    
   );
 };
