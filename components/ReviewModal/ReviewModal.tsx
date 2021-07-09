@@ -35,7 +35,7 @@ import { useBetween } from 'use-between';
 
 import { useQuery, useQueryClient } from 'react-query';
 
-import { AiFillStar } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { getMovies } from '../../utils/queries';
 import { MovieType } from '../../models/movie';
 import { ReviewEndpointBodyType } from '../../types/APITypes';
@@ -232,7 +232,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
                         color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillStar}
+                        as={AiFillHeart}
                       />
                     </SliderThumb>
                   </Slider>
@@ -283,7 +283,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
                         color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillStar}
+                        as={AiFillHeart}
                       />
                     </SliderThumb>
                   </Slider>
@@ -334,7 +334,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
                         color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillStar}
+                        as={AiFillHeart}
                       />
                     </SliderThumb>
                   </Slider>
@@ -385,7 +385,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
                         color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillStar}
+                        as={AiFillHeart}
                       />
                     </SliderThumb>
                   </Slider>
