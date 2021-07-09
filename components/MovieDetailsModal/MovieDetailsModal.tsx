@@ -90,7 +90,7 @@ export const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
       onClose();
       if (response.status !== 200) {
         return toast({
-          variant: `subtle`,
+          variant: `solid`,
           title: `There was an error`,
           description: data.message,
           status: `error`,
@@ -101,8 +101,8 @@ export const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
       await queryClient.invalidateQueries(`movies`);
 
       toast({
-        variant: `subtle`,
-        title: `Movie Deleted`,
+        variant: `solid`,
+        title: `Film Deleted`,
         description: `${data.name} was deleted successfully :)`,
         status: `success`,
         duration: 5000,
@@ -111,7 +111,7 @@ export const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
     } catch (err) {
       setLoading(false);
       toast({
-        variant: `subtle`,
+        variant: `solid`,
         title: `There was an error`,
         description: err.message,
         status: `error`,
@@ -281,7 +281,7 @@ export const MovieDetailsModal: React.FC<MovieDetailsModalProps> = ({
                 leftIcon={<CopyIcon />}
                 onClick={() => {
                   toast({
-                    variant: 'subtle',
+                    variant: 'solid',
                     title: 'Copied to clipboard',
                     description: `${movie?.name} copied to clipboard`,
                     isClosable: true,

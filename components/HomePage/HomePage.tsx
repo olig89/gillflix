@@ -22,7 +22,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   // Fix for https://github.com/chakra-ui/chakra-ui/issues/3076
   useEffect(() => {
     toast.update(`test`, {
-      variant: `subtle`,
+      variant: `solid`,
       position: `top`,
       title: `Read only mode`,
       description: `Join our discord server and say hi to start reviewing.`,
@@ -34,7 +34,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     if (!user.isAdmin && !user.isReviewer) {
       toast({
         id: `test`,
-        variant: `subtle`,
+        variant: `solid`,
         position: `top`,
         title: `Read only mode`,
         description: `Join our discord server and say hi to start reviewing.`,

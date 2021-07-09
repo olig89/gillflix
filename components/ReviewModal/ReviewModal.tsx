@@ -60,7 +60,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean }> = ({
     if (success) {
       queryClient.invalidateQueries(`movies`).catch(console.error);
       toast({
-        variant: `subtle`,
+        variant: `solid`,
         title: success === `addition` ? `Review Added` : `Review Modified`,
         description:
           success === `addition`
