@@ -49,6 +49,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
   const { movie, setMovie } = useBetween(useMovie);
   const { isOpen, onOpen, onClose } = useContext(ReviewModalContext);
   const [rating, setRating] = useState(0);
+  const [cinema, setCinema] = useState(0);
+  const [concept, setConcept] = useState(0);
+  const [perform, setPerform] = useState(0);
   const [comment, setComment] = useState(``);
   const [commentError, setCommentError] = useState(``);
   const [movieError, setMovieError] = useState(``);
@@ -89,6 +92,10 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
       movieID: movie._id,
       comment,
       rating,
+      cinema,
+      concept,
+      perform
+
     };
     const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URI}/api/review`, {
       method: `post`,
@@ -106,6 +113,15 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
     return setCommentError(`There was an error...`);
   };
 
+  const handleConceptChange = (x) => {
+    setConcept(x);
+  };
+  const handleCinemaChange = (x) => {
+    setCinema(x);
+  };
+  const handlePerformChange = (x) => {
+    setPerform(x);
+  };
   const handleRatingChange = (x) => {
     setRating(x);
   };
@@ -174,10 +190,10 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
-                    Rating
+                    Concept
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
-                    {rating}/10
+                    {concept}/10
                   </Text>
                 </Flex>
               </FormLabel>
@@ -190,8 +206,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     step={0.1}
                     maxW="100px"
                     mr="2rem"
-                    value={rating}
-                    onChange={handleRatingChange}
+                    value={concept}
+                    onChange={handleConceptChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -205,8 +221,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     step={0.5}
                     flex="1"
                     focusThumbOnChange={false}
-                    value={rating}
-                    onChange={handleRatingChange}
+                    value={concept}
+                    onChange={handleConceptChange}
                   >
                     <SliderTrack>
                       <SliderFilledTrack
@@ -225,10 +241,10 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
-                    Rating
+                    Cinematography
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
-                    {rating}/10
+                    {cinema}/10
                   </Text>
                 </Flex>
               </FormLabel>
@@ -241,8 +257,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     step={0.1}
                     maxW="100px"
                     mr="2rem"
-                    value={rating}
-                    onChange={handleRatingChange}
+                    value={cinema}
+                    onChange={handleCinemaChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -256,8 +272,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     step={0.5}
                     flex="1"
                     focusThumbOnChange={false}
-                    value={rating}
-                    onChange={handleRatingChange}
+                    value={cinema}
+                    onChange={handleCinemaChange}
                   >
                     <SliderTrack>
                       <SliderFilledTrack
@@ -276,10 +292,10 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
-                    Rating
+                    Performance
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
-                    {rating}/10
+                    {perform}/10
                   </Text>
                 </Flex>
               </FormLabel>
@@ -292,8 +308,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     step={0.1}
                     maxW="100px"
                     mr="2rem"
-                    value={rating}
-                    onChange={handleRatingChange}
+                    value={perform}
+                    onChange={handlePerformChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -307,8 +323,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     step={0.5}
                     flex="1"
                     focusThumbOnChange={false}
-                    value={rating}
-                    onChange={handleRatingChange}
+                    value={perform}
+                    onChange={handlePerformChange}
                   >
                     <SliderTrack>
                       <SliderFilledTrack
