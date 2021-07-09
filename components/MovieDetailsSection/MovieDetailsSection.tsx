@@ -212,7 +212,7 @@ export default function MovieDetailsSection({
                   <Text fontSize="lg" fontWeight="bold">
                     {movie.runtime}{' '}
                     <chakra.span
-                      color={'gray.500'}
+                      color={'purple.500'}
                       fontWeight="normal"
                       fontSize="sm"
                     >
@@ -224,7 +224,7 @@ export default function MovieDetailsSection({
                   <Text color={'gray.500'} fontSize="sm">
                     Budget
                   </Text>
-                  <Text color={'gray.500'} fontSize="sm">
+                  <Text color={'purple.500'} fontSize="sm">
                     $
                     <chakra.span
                       fontSize="lg"
@@ -239,7 +239,7 @@ export default function MovieDetailsSection({
                   <Text color={'gray.500'} fontSize="sm">
                     Revenue
                   </Text>
-                  <Text color={'gray.500'} fontSize="sm">
+                  <Text color={'purple.500'} fontSize="sm">
                     $
                     <chakra.span
                       fontSize="lg"
