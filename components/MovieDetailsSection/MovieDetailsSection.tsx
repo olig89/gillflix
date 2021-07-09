@@ -212,7 +212,7 @@ export default function MovieDetailsSection({
                   <Text fontSize="lg" fontWeight="bold">
                     {movie.runtime}{' '}
                     <chakra.span
-                      color={'purple.500'}
+                      color={'gray.500'}
                       fontWeight="normal"
                       fontSize="sm"
                     >
@@ -224,7 +224,7 @@ export default function MovieDetailsSection({
                   <Text color={'gray.500'} fontSize="sm">
                     Budget
                   </Text>
-                  <Text color={'purple.500'} fontSize="sm">
+                  <Text color={'gray.500'} fontSize="sm">
                     $
                     <chakra.span
                       fontSize="lg"
@@ -239,7 +239,7 @@ export default function MovieDetailsSection({
                   <Text color={'gray.500'} fontSize="sm">
                     Revenue
                   </Text>
-                  <Text color={'purple.500'} fontSize="sm">
+                  <Text color={'gray.500'} fontSize="sm">
                     $
                     <chakra.span
                       fontSize="lg"
@@ -271,7 +271,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Your Rating
                 </StatLabel>
-                <StatNumber fontSize="5xl" fontWeight="bold" color={'purple.500'}>
+                <StatNumber fontSize="5xl" fontWeight="bold">
                   {userReview ? (
                     <>
                       {userReview.rating}
@@ -304,7 +304,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   {shortSiteName + ' '}Rating
                 </StatLabel>
-                <StatNumber fontSize={'5xl'} fontWeight="bold" color={'purple.500'}>
+                <StatNumber fontSize={'5xl'} fontWeight="bold">
                   {averageReview ? (
                     <>
                       {averageReview}
