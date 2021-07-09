@@ -211,7 +211,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   <Spacer />
                     <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {concept}/10
-                    </Text>   
+                    </Text>
+                    <Spacer />
                     <AccordionIcon />
                     </HStack>
                 </Flex>
@@ -270,14 +271,14 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <AccordionItem>
             <AccordionButton>
               <FormLabel my={3}>
-                <Flex justifyContent="space-between">
+                <HStack justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
                     Cinematography
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {cinema}/10
                   </Text>
-                </Flex>
+                </HStack>
               </FormLabel>
               <AccordionIcon />
             </AccordionButton>
@@ -330,14 +331,14 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <AccordionButton>
 
               <FormLabel my={3}>
-                <Flex justifyContent="space-between">
+                <HStack justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
                     Performance
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {perform}/10
                   </Text>
-                </Flex>
+                </HStack>
               </FormLabel>
               <AccordionIcon />
               </AccordionButton>
@@ -390,14 +391,14 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
 
 
               <FormLabel my={3}>
-                <Flex justifyContent="space-between">
+                <HStack justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
                     Overall Rating
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {rating}/10
                   </Text>
-                </Flex>
+                </HStack>
               </FormLabel>
               <AccordionIcon />
               </AccordionButton>
