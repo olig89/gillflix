@@ -35,6 +35,7 @@ import {
 import { format } from 'date-fns';
 import millify from 'millify';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 
 import Image from 'next/image';
 import React, { ReactElement, useContext } from 'react';
@@ -388,6 +389,7 @@ export default function MovieDetailsSection({
           </Flex>
         </Box>
       </Flex>
+      <NextSeo title= {movie.name} />
     </Box>
   );
 }
