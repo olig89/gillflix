@@ -64,6 +64,24 @@ const handler = async (
             movie.reviews.length) *
             10
         ) / 10;
+      movie.concept =
+      Math.round(
+        (movie.reviews.reduce<number>((a, b) => a + b.concept, 0) /
+          movie.reviews.length) *
+          10
+      ) / 10;
+      movie.cinema =
+      Math.round(
+        (movie.reviews.reduce<number>((a, b) => a + b.cinema, 0) /
+          movie.reviews.length) *
+          10
+      ) / 10;
+      movie.perform =
+      Math.round(
+        (movie.reviews.reduce<number>((a, b) => a + b.perform, 0) /
+          movie.reviews.length) *
+          10
+      ) / 10;
       movie.markModified(`reviews`);
       await movie.save();
       return res
