@@ -21,6 +21,7 @@ import {
   Flex,
   Spacer,
   Text,
+  HStack,
   Textarea,
   NumberInput,
   NumberInputField,
@@ -203,21 +204,16 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
             <AccordionButton>
               <FormLabel my={3}>
                 <Flex>
-                  <Box>
+                <HStack justifyContent='space-between'>
                     <Text fontSize="1.1em" fontWeight="semibold">
                     Concept
                     </Text>
-                  </Box>
                   <Spacer />
-                  <Box>
                     <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {concept}/10
-                    </Text>
-                  </Box>
-                  <Spacer />
-                  <Box>
+                    </Text>   
                     <AccordionIcon />
-                  </Box>
+                    </HStack>
                 </Flex>
               </FormLabel>
             </AccordionButton>
