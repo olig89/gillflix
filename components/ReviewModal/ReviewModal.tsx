@@ -200,12 +200,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
 
 
 
-
-
-
-
-
-        <Accordion allowToggle>
+        <Accordion defaultIndex={0} allowToggle>
           <AccordionItem>
             <AccordionButton>
               <FormLabel my={3}>
@@ -264,10 +259,12 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </Box>
             </AccordionPanel>
           </AccordionItem>
-        </Accordion>
+
+        
 
 
-
+        <AccordionItem>
+            <AccordionButton>
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
@@ -278,6 +275,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   </Text>
                 </Flex>
               </FormLabel>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -319,6 +319,12 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   </Slider>
                 </Flex>
               </Box>
+              </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+              <AccordionButton>
+
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
@@ -329,6 +335,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   </Text>
                 </Flex>
               </FormLabel>
+              <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -370,6 +379,11 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   </Slider>
                 </Flex>
               </Box>
+              </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+
+
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
@@ -421,7 +435,6 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   </Slider>
                 </Flex>
               </Box>
-
 
 
               <Text my={3}>Enter a comment!</Text>
