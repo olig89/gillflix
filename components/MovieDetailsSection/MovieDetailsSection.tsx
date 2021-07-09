@@ -271,14 +271,14 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Your Rating
                 </StatLabel>
-                <StatNumber fontSize="5xl" fontWeight="bold">
+                <StatNumber fontSize="5xl" fontWeight="bold" color={'purple.500'}>
                   {userReview ? (
                     <>
                       {userReview.rating}
                       <chakra.span
                         fontWeight="normal"
                         fontSize="xl"
-                        color={'purple.700'}
+                        color={'gray.500'}
                       >
                         {' '}
                         /10
@@ -301,10 +301,10 @@ export default function MovieDetailsSection({
               </Stat>
 
               <Stat>
-                <StatLabel color={'purple.500'} fontSize="lg">
+                <StatLabel color={'gray.500'} fontSize="lg">
                   {shortSiteName + ' '}Rating
                 </StatLabel>
-                <StatNumber fontSize={'5xl'} fontWeight="bold">
+                <StatNumber fontSize={'5xl'} fontWeight="bold" color={'purple.500'}>
                   {averageReview ? (
                     <>
                       {averageReview}
@@ -336,12 +336,15 @@ export default function MovieDetailsSection({
                     {' '}
                     /10
                   </chakra.span>{' '}
+                  <chakra.span fontSize="xl">
+                    {millify(movie.voteCount)}
+                  </chakra.span>
                   <chakra.span
                     fontSize="xl"
                     fontWeight="normal"
                     color={'gray.500'}
                   >
-                    {millify(movie.voteCount) + ' '}
+                    {' '}
                     votes
                   </chakra.span>
                 </StatNumber>
