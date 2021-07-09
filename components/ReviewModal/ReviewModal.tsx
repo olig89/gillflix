@@ -347,7 +347,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <FormLabel my={3}>
                 <Flex justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
-                    Rating
+                    Overall Rating
                   </Text>
                   <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {rating}/10
@@ -436,7 +436,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               onClick={(e) => handleSubmit(e, onClose)}
               isDisabled={!!(commentError || movieError)}
             >
-              Add Review
+              Submit Review
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
