@@ -38,7 +38,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { AiFillHeart } from 'react-icons/ai';
 import { AiFillBulb } from 'react-icons/ai';
 import { AiFillVideoCamera } from 'react-icons/ai';
-import { AiFillSmile } from 'react-icons/ai';
+import { FaTheaterMasks } from 'react-icons/fa';
 
 import { getMovies } from '../../utils/queries';
 import { MovieType } from '../../models/movie';
@@ -338,7 +338,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
                         color={useColorModeValue(`red.500`, `red.500`)}
-                        as={AiFillSmile}
+                        as={GiDualityMask}
                       />
                     </SliderThumb>
                   </Slider>
