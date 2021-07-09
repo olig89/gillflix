@@ -201,17 +201,25 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <Accordion defaultIndex={0} allowToggle>
           <AccordionItem>
             <AccordionButton>
-              <FormLabel my={3}>
+
                 <Flex>
-                  <Box><Text fontSize="1.1em" fontWeight="semibold">
+                  <Box>
+                    <Text fontSize="1.1em" fontWeight="semibold">
                     Concept
-                  </Text></Box><Spacer />
-                  <Box><Text color={useColorModeValue(`gray.600`, `gray.400`)}>
+                    </Text>
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {concept}/10
-                  </Text></Box><Spacer />
-                  <Box><AccordionIcon /></Box>
+                    </Text>
+                  </Box>
+                  <Spacer />
+                  <Box>
+                    <AccordionIcon />
+                  </Box>
                 </Flex>
-              </FormLabel>
+
             </AccordionButton>
             <AccordionPanel pb={4}>
               <Box>
@@ -441,7 +449,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </AccordionItem>
             </Accordion>
 
-              <Text my={3}>Enter a comment!</Text>
+              <Text my={3} fontSize="1.1em" >Enter a comment!</Text>
               <Textarea
                 value={comment}
                 onChange={(e) => {
