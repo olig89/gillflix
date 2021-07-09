@@ -11,6 +11,15 @@ import { NextSeo } from 'next-seo';
 
 export const LandingPage: React.FC = (): React.ReactElement => {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
+  const seanQuotes = [
+    "The premier user generated judgment service",
+    "High quality reviews by low quality people",    
+    "Pretentious films reviewed by peasants",    
+    "The curated film review site for common folk",
+    "#1 Unofficial Jeff Goldblum fan site portal"
+  ];  
+  const randomQuote = seanQuotes[Math.floor(Math.random()*seanQuotes.length)];
+
   return (
     <Flex
       minH="100vh"
@@ -50,7 +59,7 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           fontSize={{ base: `lg`, md: `xl` }}
           color={useColorModeValue(`gray.600`, `gray.300`)}
         >
-          The website where cool kids write{' '}film reviews :)
+          {randomQuote}
         </chakra.p>
         <Button
           as="a"
