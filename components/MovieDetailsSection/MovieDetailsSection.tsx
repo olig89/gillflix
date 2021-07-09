@@ -276,8 +276,8 @@ export default function MovieDetailsSection({
                     <>
                       {userReview.rating}
                       <chakra.span
-                        fontWeight="normal"
                         fontSize="xl"
+                        fontWeight="normal"
                         color={'gray.500'}
                       >
                         {' '}
@@ -324,7 +324,7 @@ export default function MovieDetailsSection({
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
-                  World Wide Rating
+                  TMDB Rating
                 </StatLabel>
                 <StatNumber fontSize="5xl" fontWeight="bold">
                   {movie.voteAverage}
