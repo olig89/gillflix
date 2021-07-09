@@ -1,5 +1,5 @@
 import { HStack, Text } from '@chakra-ui/react';
-import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
+import { BsHeartFill, BsHeartHalf, BsHeart } from 'react-icons/bs';
 import React from 'react';
 
 export const Rating = ({
@@ -16,11 +16,11 @@ export const Rating = ({
   const roundedRating = Math.round(rating) / 2;
   for (let i = 0; i < 5; i++) {
     if (i + 0.5 === roundedRating) {
-      stars.push(<BsStarHalf key={`${i}-half-star`} />);
+      stars.push(<BsHeartHalf key={`${i}-half-star`} />);
     } else if (i < roundedRating) {
-      stars.push(<BsStarFill key={`${i}-full-star`} />);
+      stars.push(<BsHeartFill key={`${i}-full-star`} />);
     } else {
-      stars.push(<BsStar key={`${i}-empty-star`} />);
+      stars.push(<BsHeart key={`${i}-empty-star`} />);
     }
   }
 
