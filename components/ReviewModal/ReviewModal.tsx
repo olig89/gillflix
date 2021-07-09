@@ -202,7 +202,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
           <AccordionItem>
             <AccordionButton>
               <FormLabel my={3}>
-                <Flex justifyContent="space-between">
+                <Flex>
                   <Box><Text fontSize="1.1em" fontWeight="semibold">
                     Concept
                   </Text></Box><Spacer />
