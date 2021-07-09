@@ -199,7 +199,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </Text>
               )}
 
-        <Accordion defaultIndex={0} allowToggle focusBorderColor='black.0'>
+        <Accordion defaultIndex={0} allowToggle>
           <AccordionItem>
             <AccordionButton>
               <FormLabel my={3}>
