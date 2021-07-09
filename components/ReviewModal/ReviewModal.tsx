@@ -36,7 +36,7 @@ import { useBetween } from 'use-between';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { AiFillHeart } from 'react-icons/ai';
-import { AiFillBug } from 'react-icons/ai';
+import { AiFillBulb } from 'react-icons/ai';
 import { AiFillVideoCamera } from 'react-icons/ai';
 import { AiFillCrown } from 'react-icons/ai';
 
@@ -236,7 +236,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
                         color={useColorModeValue(`cyan.500`, `cyan.500`)}
-                        as={AiFillBug}
+                        as={AiFillBulb}
                       />
                     </SliderThumb>
                   </Slider>
