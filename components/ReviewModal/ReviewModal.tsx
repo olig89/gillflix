@@ -222,9 +222,10 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </FormLabel>
             </AccordionButton>
             <AccordionPanel pb={4}>
-              <Box>
+              
               <Box>(premise, plot, structure)</Box>
-                <Flex>
+                <Box>
+                  <Flex>
                   <NumberInput
                     max={10}
                     min={0}
