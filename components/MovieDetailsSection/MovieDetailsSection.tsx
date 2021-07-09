@@ -77,6 +77,10 @@ export default function MovieDetailsSection({
 
   const { setMovie: setModalMovie } = useBetween(useMovie);
   const { onOpen: reviewOnOpen } = useContext(ReviewModalContext);
+  const shortSiteName =
+    process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
+    process.env.NEXT_PUBLIC_SITE_NAME ||
+    'SMDB';
 
   return (
     <Box maxWidth="7xl" mx={'auto'}>
@@ -297,7 +301,7 @@ export default function MovieDetailsSection({
 
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
-                  Group Rating
+                  {shortSiteName + ' '}Rating
                 </StatLabel>
                 <StatNumber fontSize={'5xl'} fontWeight="bold">
                   {averageReview ? (
