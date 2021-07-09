@@ -22,7 +22,7 @@ const handler = async (
       return null;
     }
 
-    const { comment, rating, movieID }: ReviewEndpointBodyType = JSON.parse(
+    const { comment, rating, movieID, concept, cinema, perform }: ReviewEndpointBodyType = JSON.parse(
       req.body
     );
     try {
@@ -39,6 +39,9 @@ const handler = async (
         user: discUser._id,
         comment,
         rating,
+        concept,
+        cinema,
+        perform
       };
 
       const movie: MovieType = await Movie.findOne({ _id: movieID });

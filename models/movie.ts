@@ -9,6 +9,9 @@ const reviewSchema = new mongoose.Schema(
     },
     comment: { type: String },
     rating: { type: Number, required: true },
+    concept: { type: Number, required: true },
+    cinema: { type: Number, required: true },
+    perform: { type: Number, required: true },
   },
   {
     timestamps: true,
@@ -32,6 +35,9 @@ const movieSchema = new mongoose.Schema(
     description: { type: String },
     tagLine: { type: String },
     rating: { type: Number, required: true },
+    concept: { type: Number, required: true },
+    cinema: { type: Number, required: true },
+    perform: { type: Number, required: true },
     numReviews: { type: Number, default: 0 },
     reviews: [reviewSchema],
   },
@@ -45,6 +51,9 @@ export interface ReviewType<T = string> {
   user: T;
   comment?: string;
   rating: number;
+  concept: number;
+  cinema: number;
+  perform: number;
 }
 
 export interface MovieType<T = ReviewType[]> extends Document {
@@ -63,6 +72,9 @@ export interface MovieType<T = ReviewType[]> extends Document {
   description?: string;
   tagLine?: string;
   rating: number;
+  concept: number;
+  cinema: number;
+  perform: number;
   numReviews?: number;
   reviews: T;
   createdAt?: Date;
