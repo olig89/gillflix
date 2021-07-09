@@ -235,7 +235,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     </SliderTrack>
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
-                        color={useColorModeValue(`cyan.500`, `cyan.300`)}
+                        color={useColorModeValue(`cyan.500`, `cyan.500`)}
                         as={AiFillBug}
                       />
                     </SliderThumb>
@@ -286,7 +286,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     </SliderTrack>
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
-                        color={useColorModeValue(`yellow.500`, `yellow.300`)}
+                        color={useColorModeValue(`yellow.500`, `yellow.500`)}
                         as={AiFillVideoCamera}
                       />
                     </SliderThumb>
@@ -337,7 +337,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     </SliderTrack>
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
-                        color={useColorModeValue(`red.500`, `red.300`)}
+                        color={useColorModeValue(`red.500`, `red.500`)}
                         as={AiFillCrown}
                       />
                     </SliderThumb>
