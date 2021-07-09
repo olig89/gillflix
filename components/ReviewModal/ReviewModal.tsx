@@ -45,7 +45,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { AiFillHeart } from 'react-icons/ai';
 import { AiFillBulb } from 'react-icons/ai';
 import { BsFillCameraVideoFill } from 'react-icons/bs';
-import { FaTheaterMasks } from 'react-icons/fa';
+import { FaBlackberry, FaTheaterMasks } from 'react-icons/fa';
 
 import { getMovies } from '../../utils/queries';
 import { MovieType } from '../../models/movie';
@@ -199,7 +199,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </Text>
               )}
 
-        <Accordion defaultIndex={0} allowToggle>
+        <Accordion defaultIndex={0} allowToggle focusBorderColor='black.0'>
           <AccordionItem>
             <AccordionButton>
               <FormLabel my={3}>
