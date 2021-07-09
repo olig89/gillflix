@@ -201,7 +201,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <Accordion defaultIndex={0} allowToggle>
           <AccordionItem>
             <AccordionButton>
-
+              <FormLabel my={3}>
                 <Flex>
                   <Box>
                     <Text fontSize="1.1em" fontWeight="semibold">
@@ -219,10 +219,11 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <AccordionIcon />
                   </Box>
                 </Flex>
-
+              </FormLabel>
             </AccordionButton>
             <AccordionPanel pb={4}>
               <Box>
+              <Box>(premise, plot, structure)</Box>
                 <Flex>
                   <NumberInput
                     max={10}
@@ -449,7 +450,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </AccordionItem>
             </Accordion>
 
-              <Text my={3} fontSize="1.1em" >Enter a comment!</Text>
+              <Text my={3} fontSize="1.1em" fontWeight="semibold">Enter a comment!</Text>
               <Textarea
                 value={comment}
                 onChange={(e) => {
