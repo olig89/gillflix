@@ -68,6 +68,9 @@ const MovieAPI = async (
         description: movieData.overview,
         tagLine: movieData.tagline,
         rating: 0,
+        concept: 0,
+        cinema: 0,
+        perform: 0,
         numReviews: 0,
         reviews: [],
       });
