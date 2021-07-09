@@ -105,7 +105,7 @@ export default function MovieDetailsSection({
             opacity={scrollPosition ? 0 : 1}
             transition={'all 0.25s'}
           >
-            <Text fontWeight="semibold">Scroll to see reviews</Text>
+            <Text fontWeight="semibold">Scroll to see comments</Text>
             <Icon
               className="bouncing-arrow"
               as={(props) => <IoChevronDown strokeWidth="20" {...props} />}
@@ -278,7 +278,7 @@ export default function MovieDetailsSection({
                       <chakra.span
                         fontWeight="normal"
                         fontSize="xl"
-                        color={'gray.500'}
+                        color={'purple.700'}
                       >
                         {' '}
                         /10
@@ -301,7 +301,7 @@ export default function MovieDetailsSection({
               </Stat>
 
               <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
+                <StatLabel color={'purple.500'} fontSize="lg">
                   {shortSiteName + ' '}Rating
                 </StatLabel>
                 <StatNumber fontSize={'5xl'} fontWeight="bold">
@@ -336,15 +336,12 @@ export default function MovieDetailsSection({
                     {' '}
                     /10
                   </chakra.span>{' '}
-                  <chakra.span fontSize="xl">
-                    {millify(movie.voteCount)}
-                  </chakra.span>
                   <chakra.span
                     fontSize="xl"
                     fontWeight="normal"
                     color={'gray.500'}
                   >
-                    {' '}
+                    {millify(movie.voteCount) + ' '}
                     votes
                   </chakra.span>
                 </StatNumber>
