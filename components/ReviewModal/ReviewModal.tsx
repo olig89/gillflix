@@ -19,7 +19,6 @@ import {
   SliderThumb,
   useColorModeValue,
   Flex,
-  Spacer,
   Text,
   Textarea,
   NumberInput,
@@ -201,17 +200,15 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <Accordion defaultIndex={0} allowToggle>
           <AccordionItem>
             <AccordionButton>
-              <FormLabel>
+              <FormLabel my={3}>
                 <Flex justifyContent="space-between">
-                  <Text fontSize="1.1em" fontWeight="semibold">
+                  <Box><Text fontSize="1.1em" fontWeight="semibold">
                     Concept
-                  </Text>
-                  <Spacer />
-                  <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
+                  </Text></Box>
+                  <Box><Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {concept}/10
-                  </Text>
-                  <Spacer />
-                  <AccordionIcon />
+                  </Text></Box>
+                  <Box><AccordionIcon /></Box>
                 </Flex>
               </FormLabel>
             </AccordionButton>
