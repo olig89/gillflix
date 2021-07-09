@@ -74,7 +74,7 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           </Icon>
         </Button>
       </Box>
-      <NextSeo title="siteName" />
+      <NextSeo title={siteName} />
     </Flex>
     
   );
