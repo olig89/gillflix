@@ -36,6 +36,10 @@ import { useBetween } from 'use-between';
 import { useQuery, useQueryClient } from 'react-query';
 
 import { AiFillHeart } from 'react-icons/ai';
+import { AiFillBug } from 'react-icons/ai';
+import { AiFillVideoCamera } from 'react-icons/ai';
+import { AiFillCrown } from 'react-icons/ai';
+
 import { getMovies } from '../../utils/queries';
 import { MovieType } from '../../models/movie';
 import { ReviewEndpointBodyType } from '../../types/APITypes';
@@ -226,13 +230,13 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   >
                     <SliderTrack>
                       <SliderFilledTrack
-                        bg={useColorModeValue(`purple.500`, `purple.300`)}
+                        bg={useColorModeValue(`cyan.500`, `cyan.300`)}
                       />
                     </SliderTrack>
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
-                        color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillHeart}
+                        color={useColorModeValue(`cyan.500`, `cyan.300`)}
+                        as={AiFillBug}
                       />
                     </SliderThumb>
                   </Slider>
@@ -277,13 +281,13 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   >
                     <SliderTrack>
                       <SliderFilledTrack
-                        bg={useColorModeValue(`purple.500`, `purple.300`)}
+                        bg={useColorModeValue(`yellow.500`, `yellow.300`)}
                       />
                     </SliderTrack>
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
-                        color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillHeart}
+                        color={useColorModeValue(`yellow.500`, `yellow.300`)}
+                        as={AiFillVideoCamera}
                       />
                     </SliderThumb>
                   </Slider>
@@ -328,13 +332,13 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   >
                     <SliderTrack>
                       <SliderFilledTrack
-                        bg={useColorModeValue(`purple.500`, `purple.300`)}
+                        bg={useColorModeValue(`red.500`, `red.300`)}
                       />
                     </SliderTrack>
                     <SliderThumb fontSize="sm" boxSize={6}>
                       <Box
-                        color={useColorModeValue(`purple.500`, `purple.300`)}
-                        as={AiFillHeart}
+                        color={useColorModeValue(`red.500`, `red.300`)}
+                        as={AiFillCrown}
                       />
                     </SliderThumb>
                   </Slider>
