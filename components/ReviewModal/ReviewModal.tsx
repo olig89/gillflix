@@ -222,6 +222,159 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   </Slider>
                 </Flex>
               </Box>
+              <FormLabel my={3}>
+                <Flex justifyContent="space-between">
+                  <Text fontSize="1.1em" fontWeight="semibold">
+                    Rating
+                  </Text>
+                  <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
+                    {rating}/10
+                  </Text>
+                </Flex>
+              </FormLabel>
+              <Box>
+                <Flex>
+                  <NumberInput
+                    max={10}
+                    min={0}
+                    inputMode="decimal"
+                    step={0.1}
+                    maxW="100px"
+                    mr="2rem"
+                    value={rating}
+                    onChange={handleRatingChange}
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                  <Slider
+                    min={0}
+                    max={10}
+                    step={0.5}
+                    flex="1"
+                    focusThumbOnChange={false}
+                    value={rating}
+                    onChange={handleRatingChange}
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack
+                        bg={useColorModeValue(`purple.500`, `purple.300`)}
+                      />
+                    </SliderTrack>
+                    <SliderThumb fontSize="sm" boxSize={6}>
+                      <Box
+                        color={useColorModeValue(`purple.500`, `purple.300`)}
+                        as={AiFillStar}
+                      />
+                    </SliderThumb>
+                  </Slider>
+                </Flex>
+              </Box>
+              <FormLabel my={3}>
+                <Flex justifyContent="space-between">
+                  <Text fontSize="1.1em" fontWeight="semibold">
+                    Rating
+                  </Text>
+                  <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
+                    {rating}/10
+                  </Text>
+                </Flex>
+              </FormLabel>
+              <Box>
+                <Flex>
+                  <NumberInput
+                    max={10}
+                    min={0}
+                    inputMode="decimal"
+                    step={0.1}
+                    maxW="100px"
+                    mr="2rem"
+                    value={rating}
+                    onChange={handleRatingChange}
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                  <Slider
+                    min={0}
+                    max={10}
+                    step={0.5}
+                    flex="1"
+                    focusThumbOnChange={false}
+                    value={rating}
+                    onChange={handleRatingChange}
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack
+                        bg={useColorModeValue(`purple.500`, `purple.300`)}
+                      />
+                    </SliderTrack>
+                    <SliderThumb fontSize="sm" boxSize={6}>
+                      <Box
+                        color={useColorModeValue(`purple.500`, `purple.300`)}
+                        as={AiFillStar}
+                      />
+                    </SliderThumb>
+                  </Slider>
+                </Flex>
+              </Box>
+              <FormLabel my={3}>
+                <Flex justifyContent="space-between">
+                  <Text fontSize="1.1em" fontWeight="semibold">
+                    Rating
+                  </Text>
+                  <Text color={useColorModeValue(`gray.600`, `gray.400`)}>
+                    {rating}/10
+                  </Text>
+                </Flex>
+              </FormLabel>
+              <Box>
+                <Flex>
+                  <NumberInput
+                    max={10}
+                    min={0}
+                    inputMode="decimal"
+                    step={0.1}
+                    maxW="100px"
+                    mr="2rem"
+                    value={rating}
+                    onChange={handleRatingChange}
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                  <Slider
+                    min={0}
+                    max={10}
+                    step={0.5}
+                    flex="1"
+                    focusThumbOnChange={false}
+                    value={rating}
+                    onChange={handleRatingChange}
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack
+                        bg={useColorModeValue(`purple.500`, `purple.300`)}
+                      />
+                    </SliderTrack>
+                    <SliderThumb fontSize="sm" boxSize={6}>
+                      <Box
+                        color={useColorModeValue(`purple.500`, `purple.300`)}
+                        as={AiFillStar}
+                      />
+                    </SliderThumb>
+                  </Slider>
+                </Flex>
+              </Box>
 
               <Text my={3}>Enter a comment!</Text>
               <Textarea
