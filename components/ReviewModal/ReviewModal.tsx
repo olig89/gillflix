@@ -19,6 +19,7 @@ import {
   SliderThumb,
   useColorModeValue,
   Flex,
+  Spacer,
   Text,
   Textarea,
   NumberInput,
