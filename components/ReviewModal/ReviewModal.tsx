@@ -204,10 +204,10 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 <Flex justifyContent="space-between">
                   <Box><Text fontSize="1.1em" fontWeight="semibold">
                     Concept
-                  </Text></Box>
+                  </Text></Box><Spacer />
                   <Box><Text color={useColorModeValue(`gray.600`, `gray.400`)}>
                     {concept}/10
-                  </Text></Box>
+                  </Text></Box><Spacer />
                   <Box><AccordionIcon /></Box>
                 </Flex>
               </FormLabel>
