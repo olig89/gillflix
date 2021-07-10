@@ -203,7 +203,6 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
           <AccordionItem>
             <AccordionButton>
               <FormLabel my={3}>
-                <Flex>
                 <HStack justifyContent='space-between'>
                     <Text fontSize="1.1em" fontWeight="semibold">
                     Concept
@@ -215,7 +214,6 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <Spacer />
                     <AccordionIcon />
                     </HStack>
-                </Flex>
               </FormLabel>
             </AccordionButton>
             <AccordionPanel pb={4}>
@@ -264,8 +262,8 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
           </AccordionItem>
         <AccordionItem>
             <AccordionButton>
-              <FormLabel my={3}>
-                <HStack justifyContent="space-between">
+
+                <HStack my={3} justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
                     Cinematography
                   </Text>
@@ -273,7 +271,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     {cinema}/10
                   </Text>
                 </HStack>
-              </FormLabel>
+
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pb={4}>
