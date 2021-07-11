@@ -7,19 +7,16 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void | NextApiResponse<any>> => {
   await dbConnect();
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-
   try {
     const { isLean, id } = req.query;
 
     const movie: any = isLean
       ? await Movie.findById(id)
-          .populate(`reviews.user`, `avatar username id discriminator`)
+          .populate(`reviews.user`, `username discord_id image discriminator`)
           .lean()
       : await Movie.findById(id).populate(
           `reviews.user`,
-          `avatar username id discriminator`
+          `username discord_id image discriminator`
         );
 
     return res.status(200).json(movie);

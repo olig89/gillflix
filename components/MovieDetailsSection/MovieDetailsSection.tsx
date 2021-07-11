@@ -53,10 +53,11 @@ import { ExternalLinkIcon, EditIcon } from '@chakra-ui/icons';
 import { useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { SettingsIcon } from '@chakra-ui/icons';
+import { UserAuthType } from '../../types/next-auth';
 
 interface Props {
   movie: MovieType<ReviewType<UserType>[]>;
-  user: UserType;
+  user: UserAuthType;
 }
 
 //TODO: Add SEO here
@@ -141,6 +142,7 @@ export default function MovieDetailsSection({
                   className={'borderRadius-xl'}
                   src={movie.image}
                   alt={`${movie.name} poster`}
+                  sizes={'50vw'}
                   layout="fill"
                 ></Image>
               </AspectRatio>

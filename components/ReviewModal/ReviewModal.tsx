@@ -48,9 +48,10 @@ import { BsFillCameraVideoFill } from 'react-icons/bs';
 import { FaTheaterMasks } from 'react-icons/fa';
 
 import { getMovies } from '../../utils/queries';
-import { MovieType } from '../../models/movie';
+import { MovieType, ReviewType } from '../../models/movie';
 import { ReviewEndpointBodyType } from '../../types/APITypes';
 import { ReviewModalContext, useMovie } from '../../utils/ModalContext';
+import { UserType } from '../../models/user';
 
 export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
   isAdmin,
@@ -74,6 +75,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
   useEffect(() => {
     if (success) {
       queryClient.invalidateQueries(`movies`).catch(console.error);
+      queryClient.invalidateQueries('movie').catch(console.error);
       toast({
         variant: `solid`,
         title: success === `addition` ? `Review Added` : `Review Modified`,
@@ -185,7 +187,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 }}
               >
                 {movies &&
-                  movies?.map((_: MovieType) =>
+                  movies?.map((_: MovieType<ReviewType<UserType>[]>) =>
                     movie?.name !== _.name ? (
                       <option key={_.name}>{_.name}</option>
                     ) : (

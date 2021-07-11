@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import { ChakraProvider, extendTheme, useDisclosure } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider as NextAuthProvider } from 'next-auth/client';
 import { DefaultSeo } from 'next-seo';
 import { ReviewModalContext } from '../utils/ModalContext';
 import React from 'react';
@@ -43,7 +44,13 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
           ],
         }}
       />
-
+      <NextAuthProvider
+        session={pageProps.session}
+        options={{
+          clientMaxAge: 60, // Re-fetch session if cache is older than 60 seconds
+          keepAlive: 5 * 60, // Send keepAlive message every 5 minutes
+        }}
+      >
         <QueryClientProvider client={queryClient}>
           <ChakraProvider theme={theme}>
             <ReviewModalContext.Provider value={{ isOpen, onOpen, onClose }}>
@@ -51,6 +58,7 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
             </ReviewModalContext.Provider>
           </ChakraProvider>
         </QueryClientProvider>
+      </NextAuthProvider>
     </>
   );
 }
