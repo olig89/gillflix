@@ -2,7 +2,7 @@
  "name": "Gillflix",
  "start_url": ".",
  "display": "standalone",
- "background_color": "#fff",
+ "background_color": "#1a202c",
  "theme_color": "purple",
  "icons": [
   {
