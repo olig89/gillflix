@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Spacer,
   chakra,
   Stack,
   Text,
