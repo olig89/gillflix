@@ -81,6 +81,8 @@ export const CardGrid: React.FC<CardGridProps> = ({
   }
 
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
+  const siteURI =
+    process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
 
   return (
     <>
@@ -93,7 +95,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
             {
               width: 2542,
               height: 1312,
-              url: `https://www.movie.michael-hall.me/sitePicture.png`,
+              url: `${siteURI}/sitePicture.png`,
               alt: siteName + ' webpage',
             },
           ],
