@@ -39,14 +39,20 @@
    "src": "\/android-icon-192x192.png",
    "sizes": "192x192",
    "type": "image\/png",
-   "density": "4.0",
-   "purpose": "any maskable"
+   "density": "4.0"
   },
   {
    "src": "\/G-554.png",
    "sizes": "554x554",
    "type": "image\/png",
    "density": "4.0"
+  },
+  {
+   "src": "\/Gillflix-Maskable.png",
+   "sizes": "554x554",
+   "type": "image\/png",
+   "density": "4.0",
+   "purpose": "any maskable"
   }
  ]
 }
