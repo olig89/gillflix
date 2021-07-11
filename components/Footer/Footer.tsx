@@ -54,11 +54,9 @@ export const Footer: React.FC = (): React.ReactElement => {
             <h1>{siteName}</h1>
           </a>
         </Link>
-        <Spacer />
         <Text marginStart={{ md: `auto` }} justifySelf="middle">
           Made by Mikerophone 🤠
         </Text>
-        <Spacer />
         <Stack direction="row" spacing={6} ml="auto" mr={{ base: `auto`, md: 5 }}>
         <SocialIcons label="GitHub" href="https://github.com/olig89/">
           <FaGithub />

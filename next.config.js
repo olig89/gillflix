@@ -1,3 +1,4 @@
+const withPWA = require('next-pwa')
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' *.michael-hall.me;
@@ -47,7 +48,11 @@ const securityHeaders = [
   },
 ];
 
-module.exports = {
+module.exports = withPWA({
+  
+  pwa: {
+      dest: 'public'
+  },
   webpack5: true,
   images: {
     domains: ['image.tmdb.org'],
@@ -69,4 +74,4 @@ module.exports = {
       },
     ];
   },
-};
+});
