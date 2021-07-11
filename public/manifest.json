@@ -1,5 +1,9 @@
 {
  "name": "Gillflix",
+ "start_url": ".",
+ "display": "standalone",
+ "background_color": "#fff",
+ "theme_color": "purple",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
