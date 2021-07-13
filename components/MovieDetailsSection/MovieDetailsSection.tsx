@@ -60,13 +60,14 @@ interface Props {
   user: UserAuthType;
 }
 
+
 export default function MovieDetailsSection({
   movie,
   user,
 }: Props): ReactElement {
   const bp = useBreakpoint();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
-  const userReview = movie.reviews.find((rating) => rating.user === user.id);
+  const userReview = movie.reviews.find((rating) => rating.user.id === user.id);
 
   const averageReview =
     movie.reviews.length > 0
@@ -261,6 +262,7 @@ export default function MovieDetailsSection({
             mt={'28'}
             textAlign={{ base: 'center', lg: 'left' }}
           >
+
             <StatGroup
               flexDirection={{ base: 'column', lg: 'row' }}
               alignItems="center"
@@ -384,6 +386,80 @@ export default function MovieDetailsSection({
                       variant="ghost"
                     />
                   </Link>
+                </StatNumber>
+              </Stat>
+            </StatGroup>
+            <StatGroup
+              flexDirection={{ base: 'column', lg: 'row' }}
+              alignItems="center"
+              justifyContent="space-between"
+              width="full"
+              textAlign="center"
+            >
+              <Stat>
+                <StatLabel color={'gray.500'} fontSize="lg">
+                  Concept
+                </StatLabel>
+                <StatNumber fontSize={'5xl'} fontWeight="bold">
+                  {averageReview ? (
+                    <>
+                      {averageReview}
+                      <chakra.span
+                        fontSize="xl"
+                        fontWeight="normal"
+                        color={'gray.500'}
+                      >
+                        {' '}
+                        /10
+                      </chakra.span>
+                    </>
+                  ) : (
+                    'No reviews'
+                  )}
+                </StatNumber>
+              </Stat>
+              <Stat>
+                <StatLabel color={'gray.500'} fontSize="lg">
+                  Cinematography
+                </StatLabel>
+                <StatNumber fontSize={'5xl'} fontWeight="bold">
+                  {averageReview ? (
+                    <>
+                      {averageReview}
+                      <chakra.span
+                        fontSize="xl"
+                        fontWeight="normal"
+                        color={'gray.500'}
+                      >
+                        {' '}
+                        /10
+                      </chakra.span>
+                    </>
+                  ) : (
+                    'No reviews'
+                  )}
+                </StatNumber>
+              </Stat>
+              <Stat>
+                <StatLabel color={'gray.500'} fontSize="lg">
+                  Performance
+                </StatLabel>
+                <StatNumber fontSize={'5xl'} fontWeight="bold">
+                  {averageReview ? (
+                    <>
+                      {averageReview}
+                      <chakra.span
+                        fontSize="xl"
+                        fontWeight="normal"
+                        color={'gray.500'}
+                      >
+                        {' '}
+                        /10
+                      </chakra.span>
+                    </>
+                  ) : (
+                    'No reviews'
+                  )}
                 </StatNumber>
               </Stat>
             </StatGroup>
