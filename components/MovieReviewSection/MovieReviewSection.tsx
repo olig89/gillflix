@@ -58,7 +58,6 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
               </chakra.span>
             </Text>
           </chakra.div>
-
       </Flex>
       <Text fontSize="lg">{review.comment || 'No comment'}</Text>
     </VStack>
