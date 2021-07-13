@@ -82,14 +82,6 @@ export const Nav: React.FC<NavProps> = ({
                 )
               }
             />
-
-            <Stack isInline>
-              {user.isReviewer && showReview && (
-                <ReviewModal isAdmin={user.isAdmin} inNav />
-              )}
-              {user.isAdmin && showMovies && <MovieModal />}
-            </Stack>
-
             <Menu>
               <MenuButton
                 mr={5}
@@ -111,6 +103,16 @@ export const Nav: React.FC<NavProps> = ({
                     </Link>
                   );
                 })}
+                <MenuDivider />
+                <MenuItem>
+                {user.isReviewer && showReview && (
+                  <ReviewModal isAdmin={user.isAdmin} inNav />
+                )}
+                </MenuItem>
+                <MenuItem>
+                {user.isAdmin && showMovies && <MovieModal />}
+                </MenuItem>
+
                 <MenuDivider />
                 <MenuItem
                   onClick={() => {
