@@ -37,7 +37,6 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
             </chakra.span>
           </Heading>
         </chakra.div>
-        <HStack mt={8} alignItems="flex-start" spacing={3} px={4}>
         <chakra.div
             display="flex"
             ml={{ base: 0, lg: 'auto' }}
@@ -66,7 +65,7 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
               </chakra.span>
             </Text>
           </chakra.div>
-        </HStack>
+
       </Flex>
       <Text fontSize="lg">{review.comment || 'No comment'}</Text>
     </VStack>
