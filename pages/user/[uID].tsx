@@ -12,6 +12,7 @@ import dbConnect from '../../utils/dbConnect';
 import { getSession, useSession } from 'next-auth/client';
 import type { Session } from 'next-auth';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 
 interface EditUserProps {
   session?: Session;
@@ -57,6 +58,8 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
         <UserReviewSection reviews={allRatings} />
         {/* <UserStatsSection /> */}
       </Flex>
+      
+      <NextSeo title= {user.username} />
     </AppLayout>
   );
 }
