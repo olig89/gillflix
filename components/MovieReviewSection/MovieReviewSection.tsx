@@ -38,15 +38,21 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
           </Heading>
         </chakra.div>
         <HStack mt={8} alignItems="flex-start" spacing={3} px={4}>
-          <CircularProgress value={review.concept} min={0} max={10} color="cyan.400" size="30px" >
+        <chakra.div
+            display="flex"
+            ml={{ base: 0, lg: 'auto' }}
+            alignItems="center"
+          >
+            <CircularProgress value={review.concept} min={0} max={10} color="cyan.400" size="30px" thickness="5px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.concept}</CircularProgressLabel>
             </CircularProgress>
-            <CircularProgress value={review.cinema} min={0} max={10} color="yellow.400" size="30px" >
+            <CircularProgress value={review.cinema} min={0} max={10} color="yellow.400" size="30px" thickness="7px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.cinema}</CircularProgressLabel>
             </CircularProgress>
-            <CircularProgress value={review.perform} min={0} max={10} color="red.400" size="30px" >
+            <CircularProgress value={review.perform} min={0} max={10} color="red.400" size="30px" thickness="10px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.perform}</CircularProgressLabel>
             </CircularProgress>
+          </chakra.div>
           <chakra.div
             display="flex"
             ml={{ base: 0, lg: 'auto' }}
