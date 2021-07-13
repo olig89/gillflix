@@ -60,14 +60,13 @@ interface Props {
   user: UserAuthType;
 }
 
-//TODO: Add SEO here
 export default function MovieDetailsSection({
   movie,
   user,
 }: Props): ReactElement {
   const bp = useBreakpoint();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
-  const userReview = movie.reviews.find((rating) => rating.user.id === user.id);
+  const userReview = movie.reviews.find((rating) => rating.user === user.id);
 
   const averageReview =
     movie.reviews.length > 0
