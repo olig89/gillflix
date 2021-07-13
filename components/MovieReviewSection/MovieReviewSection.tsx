@@ -1,5 +1,6 @@
 import {
   VStack,
+  HStack,
   Heading,
   Box,
   Flex,
@@ -36,22 +37,24 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
             </chakra.span>
           </Heading>
         </chakra.div>
-        <chakra.div
-          display="flex"
-          ml={{ base: 0, lg: 'auto' }}
-          alignItems="center"
-        >
-          <CircularProgress value={4.0} min={0} max={10} color="green.400">
-            <CircularProgressLabel>4.0</CircularProgressLabel>
-          </CircularProgress>
-          <Text fontSize="4xl" fontWeight="bold">
-            {review.rating}
-            <chakra.span color={'gray.500'} fontWeight="semibold" fontSize="lg">
-              {' '}
-              /10
-            </chakra.span>
-          </Text>
-        </chakra.div>
+        <HStack mt={8} alignItems="flex-start" spacing={3} px={4}>
+          <CircularProgress value={review.concept} min={0} max={10} color="cyan.400">
+              <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.concept}</CircularProgressLabel>
+            </CircularProgress>
+          <chakra.div
+            display="flex"
+            ml={{ base: 0, lg: 'auto' }}
+            alignItems="center"
+          >
+            <Text fontSize="4xl" fontWeight="bold">
+              {review.rating}
+              <chakra.span color={'gray.500'} fontWeight="semibold" fontSize="lg">
+                {' '}
+                /10
+              </chakra.span>
+            </Text>
+          </chakra.div>
+        </HStack>
       </Flex>
       <Text fontSize="lg">{review.comment || 'No comment'}</Text>
     </VStack>
