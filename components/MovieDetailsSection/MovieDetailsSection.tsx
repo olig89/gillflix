@@ -262,7 +262,6 @@ export default function MovieDetailsSection({
             mt={'28'}
             textAlign={{ base: 'center', lg: 'left' }}
           >
-
             <StatGroup
               flexDirection={{ base: 'column', lg: 'row' }}
               alignItems="center"
@@ -389,6 +388,14 @@ export default function MovieDetailsSection({
                 </StatNumber>
               </Stat>
             </StatGroup>
+            </Flex>
+            <Flex
+            direction={{ base: 'column', lg: 'row' }}
+            justifyContent="space-between"
+            width="full"
+            mt={'28'}
+            textAlign={{ base: 'center', lg: 'left' }}
+          >
             <StatGroup
               flexDirection={{ base: 'column', lg: 'row' }}
               alignItems="center"
