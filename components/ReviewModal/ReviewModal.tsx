@@ -139,6 +139,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
     setRating(x);
   };
 
+  const movieReviewName = 'Review: '+ movie.name || 'Add a review';
   return (
     <>
       <Button
@@ -149,7 +150,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         leftIcon={<AddIcon />}
         onClick={() => onOpen()}
       >
-        Add reviewTEST
+        Add review
       </Button>
 
       <Modal
@@ -162,7 +163,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <ModalContent>
           <ModalHeader>
             <Heading fontSize="2xl" fontWeight="semibold">
-              Add a review
+              {movieReviewName}
             </Heading>
           </ModalHeader>
           <ModalCloseButton />
