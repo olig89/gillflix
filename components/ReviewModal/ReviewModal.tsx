@@ -162,7 +162,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <ModalContent>
           <ModalHeader>
             <Heading fontSize="2xl" fontWeight="semibold">
-              {'Review: '+ movie.name || 'Add a review'}
+              {'Review: '+ movie?.name || 'Add a review'}
             </Heading>
           </ModalHeader>
           <ModalCloseButton />
