@@ -42,18 +42,18 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
             ml={{ base: 0, lg: 'auto' }}
             alignItems="center"
           >
-            <Tooltip hasArrow label="Concept">
-            <CircularProgress value={review.concept} min={0} max={10} mr={5} mt={1} color="cyan.400" size="30px" thickness="14px">
-              <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.concept}</CircularProgressLabel>
-            </CircularProgress>
-            </Tooltip><Tooltip hasArrow label="Cinematography">
-            <CircularProgress value={review.cinema} min={0} max={10} mr={5} mt={1} color="yellow.500" size="30px" thickness="14px">
-              <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.cinema}</CircularProgressLabel>
-            </CircularProgress>
-            </Tooltip><Tooltip hasArrow label="Performance">
-            <CircularProgress value={review.perform} min={0} max={10} mr={5} mt={1} color="red.400" size="30px" thickness="14px">
-              <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.perform}</CircularProgressLabel>
-            </CircularProgress>
+            <Tooltip hasArrow placement="bottom" closeDelay={500} label="Concept">
+              <CircularProgress value={review.concept} min={0} max={10} mr={5} mt={1} color="cyan.400" size="30px" thickness="14px">
+                <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.concept}</CircularProgressLabel>
+              </CircularProgress>
+            </Tooltip><Tooltip placement="bottom" closeDelay={500} hasArrow label="Cinematography">
+              <CircularProgress value={review.cinema} min={0} max={10} mr={5} mt={1} color="yellow.500" size="30px" thickness="14px">
+                <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.cinema}</CircularProgressLabel>
+              </CircularProgress>
+            </Tooltip><Tooltip placement="bottom" closeDelay={500} hasArrow label="Performance">
+              <CircularProgress value={review.perform} min={0} max={10} mr={5} mt={1} color="red.400" size="30px" thickness="14px">
+                <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.perform}</CircularProgressLabel>
+              </CircularProgress>
             </Tooltip>
             <Text fontSize="4xl" fontWeight="bold">
               {review.rating}
