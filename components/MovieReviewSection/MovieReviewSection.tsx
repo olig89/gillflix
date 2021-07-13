@@ -25,8 +25,8 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
         alignItems="center"
       >
         <Avatar size="lg" src={review.user.image} />
-        <chakra.div display="flex" alignItems="center">
-          <Heading size="2xl" ml={5} mb={5} maxWidth="full" isTruncated>
+        <chakra.div display="flex" alignItems="center" mb={5}>
+          <Heading size="2xl" ml={5} maxWidth="full" isTruncated>
             {review.user.username}
             <chakra.span color={'gray.500'} fontWeight="semibold" fontSize="lg">
               {' '}
