@@ -149,7 +149,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         leftIcon={<AddIcon />}
         onClick={() => onOpen()}
       >
-        Add review
+        Add reviewTEST
       </Button>
 
       <Modal

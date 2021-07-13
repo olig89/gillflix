@@ -101,7 +101,7 @@ export const MovieModal: React.FC = (): React.ReactElement => {
         leftIcon={<AddIcon />}
         onClick={onOpen}
       >
-        Add film
+        Add filmTEST
       </Button>
 
       <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
