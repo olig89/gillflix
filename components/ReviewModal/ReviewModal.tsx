@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-//import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -141,7 +141,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
 
   return (
     <>
-      {/*<Button
+      <Button
         variant="ghost"
         width={inNav ? '' : 'full'}
         colorScheme="purple"
@@ -150,7 +150,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         onClick={() => onOpen()}
       >
         Add review
-      </Button>*/}
+      </Button>
 
       <Modal
         initialFocusRef={initialRef}
