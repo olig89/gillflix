@@ -6,6 +6,8 @@ import {
   Avatar,
   chakra,
   Text,
+  CircularProgress,
+  CircularProgressLabel,
 } from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
 import { MovieType, ReviewType } from '../../models/movie';
@@ -25,7 +27,7 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
         alignItems="center"
       >
         <Avatar size="lg" src={review.user.image} />
-        <chakra.div display="flex" alignItems="center" mb={5}>
+        <chakra.div display="flex" alignItems="center">
           <Heading size="2xl" ml={5} maxWidth="full" isTruncated>
             {review.user.username}
             <chakra.span color={'gray.500'} fontWeight="semibold" fontSize="lg">
@@ -39,6 +41,9 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
           ml={{ base: 0, lg: 'auto' }}
           alignItems="center"
         >
+          <CircularProgress value={4.0} min={0} max={10} color="green.400">
+            <CircularProgressLabel>4.0</CircularProgressLabel>
+          </CircularProgress>
           <Text fontSize="4xl" fontWeight="bold">
             {review.rating}
             <chakra.span color={'gray.500'} fontWeight="semibold" fontSize="lg">
