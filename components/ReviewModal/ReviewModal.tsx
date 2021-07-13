@@ -141,7 +141,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
 
   return (
     <>
-      <Button
+      {/*<Button
         variant="ghost"
         width={inNav ? '' : 'full'}
         colorScheme="purple"
@@ -150,7 +150,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         onClick={() => onOpen()}
       >
         Add review
-      </Button>
+      </Button>*/}
 
       <Modal
         initialFocusRef={initialRef}
@@ -162,7 +162,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <ModalContent>
           <ModalHeader>
             <Heading fontSize="2xl" fontWeight="semibold">
-              {'Review: '+ movie?.name || 'Add a review'}
+              Add a review
             </Heading>
           </ModalHeader>
           <ModalCloseButton />
