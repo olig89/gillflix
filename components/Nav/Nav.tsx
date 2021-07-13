@@ -20,6 +20,7 @@ import { IoMoon, IoSunny } from 'react-icons/io5';
 import Link from 'next/link';
 import MovieModal from '../MovieModal';
 import { UserAuthType } from '../../types/next-auth';
+import ReviewModal from '../ReviewModal';
 import { signout } from 'next-auth/client';
 
 const links = [
@@ -37,6 +38,7 @@ interface NavProps {
 export const Nav: React.FC<NavProps> = ({
   user,
   showMovies,
+  showReview,
 }): React.ReactElement => {
   const { colorMode, toggleColorMode } = useColorMode();
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
@@ -102,6 +104,10 @@ export const Nav: React.FC<NavProps> = ({
                   );
                 })}
                 
+                {user.isReviewer && showReview && (<MenuItem>
+                  <ReviewModal isAdmin={user.isAdmin} inNav />
+                   </MenuItem>)}
+             
                 {user.isAdmin && showMovies && <MenuItem><MovieModal /></MenuItem>}
                 <MenuDivider />
                 <MenuItem
