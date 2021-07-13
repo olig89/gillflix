@@ -50,12 +50,6 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
             <CircularProgress value={review.perform} min={0} max={10} color="red.400" size="30px" thickness="14px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.perform}</CircularProgressLabel>
             </CircularProgress>
-          </chakra.div>
-          <chakra.div
-            display="flex"
-            ml={{ base: 0, lg: 'auto' }}
-            alignItems="center"
-          >
             <Text fontSize="4xl" fontWeight="bold">
               {review.rating}
               <chakra.span color={'gray.500'} fontWeight="semibold" fontSize="lg">
