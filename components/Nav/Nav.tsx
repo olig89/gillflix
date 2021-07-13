@@ -101,9 +101,8 @@ export const Nav: React.FC<NavProps> = ({
                     </Link>
                   );
                 })}
-                <MenuItem>
-                {user.isAdmin && showMovies && <MovieModal />}
-                </MenuItem>
+                
+                {user.isAdmin && showMovies && <MenuItem><MovieModal /></MenuItem>}
                 <MenuDivider />
                 <MenuItem
                   onClick={() => {
