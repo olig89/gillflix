@@ -43,13 +43,13 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
             ml={{ base: 0, lg: 'auto' }}
             alignItems="center"
           >
-            <CircularProgress value={review.concept} min={0} max={10} color="cyan.400" size="30px" thickness="5px">
+            <CircularProgress value={review.concept} min={0} max={10} color="cyan.400" size="30px" thickness="10px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.concept}</CircularProgressLabel>
             </CircularProgress>
-            <CircularProgress value={review.cinema} min={0} max={10} color="yellow.400" size="30px" thickness="7px">
+            <CircularProgress value={review.cinema} min={0} max={10} color="yellow.400" size="30px" thickness="12px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.cinema}</CircularProgressLabel>
             </CircularProgress>
-            <CircularProgress value={review.perform} min={0} max={10} color="red.400" size="30px" thickness="10px">
+            <CircularProgress value={review.perform} min={0} max={10} color="red.400" size="30px" thickness="14px">
               <CircularProgressLabel color={'gray.500'} fontWeight="semibold">{review.perform}</CircularProgressLabel>
             </CircularProgress>
           </chakra.div>
