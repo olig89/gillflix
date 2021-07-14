@@ -41,14 +41,14 @@ const Review = ({ review }: { review: ReviewType<UserType> }) => {
             ml={{ base: 0, lg: 'auto' }}
             alignItems="center"
           >  
-              <CircularProgress value={review.concept} min={0} max={10} mr={5} mt={[0,0,1,1]} color="cyan.400" trackColor="gray.300" size="30px" thickness="14px">
-                <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.concept}</CircularProgressLabel>
+              <CircularProgress value={review.concept} min={0} max={10} mr={5} mt={[0,0,1,1]} color="cyan.400" trackColor="gray.500" size="30px" thickness="14px">
+                <CircularProgressLabel fontWeight="semibold" fontSize="xs" mt={[0,0,-0.5,-0.5]}>{review.concept}</CircularProgressLabel>
               </CircularProgress>
-              <CircularProgress value={review.cinema} min={0} max={10} mr={5} mt={[0,0,1,1]} color="yellow.400" trackColor="gray.300" size="30px" thickness="14px">
-                <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.cinema}</CircularProgressLabel>
+              <CircularProgress value={review.cinema} min={0} max={10} mr={5} mt={[0,0,1,1]} color="yellow.400" trackColor="gray.500" size="30px" thickness="14px">
+                <CircularProgressLabel fontWeight="semibold" fontSize="xs" mt={[0,0,-0.5,-0.5]}>{review.cinema}</CircularProgressLabel>
               </CircularProgress>
-              <CircularProgress value={review.perform} min={0} max={10} mr={5} mt={[0,0,1,1]} color="red.400" trackColor="gray.300" size="30px" thickness="14px">
-                <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="xs">{review.perform}</CircularProgressLabel>
+              <CircularProgress value={review.perform} min={0} max={10} mr={5} mt={[0,0,1,1]} color="red.400" trackColor="gray.500" size="30px" thickness="14px">
+                <CircularProgressLabel fontWeight="semibold" fontSize="xs" mt={[0,0,-0.5,-0.5]}>{review.perform}</CircularProgressLabel>
               </CircularProgress>
             <Text fontSize="4xl" fontWeight="bold">
               {review.rating}
