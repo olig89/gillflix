@@ -15,7 +15,6 @@ import {
   StatLabel,
   StatNumber,
   Button,
-  Icon,
   useBreakpoint,
   IconButton,
   Menu,
@@ -45,9 +44,7 @@ import { FaImdb } from 'react-icons/fa';
 import { MovieType, ReviewType } from '../../models/movie';
 import { UserType } from '../../models/user';
 import { getTotalCharCode } from '../../utils/utils';
-import { IoChevronDown } from 'react-icons/io5';
 
-import useScrollPosition from '../../hooks/useScrollPosition.hook';
 import { AddIcon } from '@chakra-ui/icons';
 import { useBetween } from 'use-between';
 import { ReviewModalContext, useMovie } from '../../utils/ModalContext';
@@ -77,7 +74,6 @@ export default function MovieDetailsSection({
           movie.reviews.reduce((a, c) => a + c.rating, 0) / movie.reviews.length
         ).toFixed(1)
       : false;
-  const { scrollPosition } = useScrollPosition();
 
   const { setMovie: setModalMovie } = useBetween(useMovie);
   const { onOpen: reviewOnOpen } = useContext(ReviewModalContext);
@@ -94,30 +90,6 @@ export default function MovieDetailsSection({
         width="full"
         justifyContent="flex-start"
       >
-        {/* Scroll down section */}
-        {!['base', 'sm', 'md'].includes(bp) && (
-          <Flex
-            direction="column"
-            alignItems="center"
-            position="absolute"
-            bottom={'60px'}
-            left={'50%'}
-            transform={'translateX(-50%)'}
-            color={'gray.500'}
-            visibility={scrollPosition ? 'hidden' : 'visible'}
-            opacity={scrollPosition ? 0 : 1}
-            transition={'all 0.25s'}
-          >
-            <Text fontWeight="semibold">Scroll to see comments</Text>
-            <Icon
-              className="bouncing-arrow"
-              as={(props) => <IoChevronDown strokeWidth="20" {...props} />}
-              height={6}
-              mt={2}
-              width={6}
-            />
-          </Flex>
-        )}
         <Box
           mt={{
             base: '5',
