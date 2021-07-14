@@ -417,45 +417,17 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Cinematography
                 </StatLabel>
-                <StatNumber fontSize={'5xl'} fontWeight="bold">
-                  {averageReview ? (
-                    <>
-                      {averageReview}
-                      <chakra.span
-                        fontSize="xl"
-                        fontWeight="normal"
-                        color={'gray.500'}
-                      >
-                        {' '}
-                        /10
-                      </chakra.span>
-                    </>
-                  ) : (
-                    'No reviews'
-                  )}
-                </StatNumber>
+                <CircularProgress value={5} min={0} max={10} color="yellow.500" size="100px" thickness="16px" my={5}>
+                  <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="lg">{5}</CircularProgressLabel>
+                </CircularProgress>
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Performance
                 </StatLabel>
-                <StatNumber fontSize={'5xl'} fontWeight="bold">
-                  {averageReview ? (
-                    <>
-                      {averageReview}
-                      <chakra.span
-                        fontSize="xl"
-                        fontWeight="normal"
-                        color={'gray.500'}
-                      >
-                        {' '}
-                        /10
-                      </chakra.span>
-                    </>
-                  ) : (
-                    'No reviews'
-                  )}
-                </StatNumber>
+                <CircularProgress value={7} min={0} max={10} color="red.400" size="100px" thickness="16px" my={5}>
+                  <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="lg">{7}</CircularProgressLabel>
+                </CircularProgress>
               </Stat>
             </StatGroup>
           </Flex>
