@@ -379,7 +379,7 @@ export default function MovieDetailsSection({
               mb={10}
             >
               <Stat>
-                <StatLabel color={'gray.500'} mt={[0,0,5,5]} fontSize="lg">
+                <StatLabel color={'gray.500'} mt={[5,5,5,5]} fontSize="lg">
                   Concept
                 </StatLabel>
                 <StatHelpText>Premise, plot, structure</StatHelpText>
@@ -388,7 +388,7 @@ export default function MovieDetailsSection({
                 </CircularProgress>
               </Stat>
               <Stat>
-                <StatLabel color={'gray.500'} mt={[0,0,5,5]} fontSize="lg">
+                <StatLabel color={'gray.500'} mt={[5,5,5,5]} fontSize="lg">
                   Cinematography
                 </StatLabel>
                 <StatHelpText>visuals, sound, direction, and design</StatHelpText>
@@ -397,7 +397,7 @@ export default function MovieDetailsSection({
                 </CircularProgress>
               </Stat>
               <Stat>
-                <StatLabel color={'gray.500'} mt={[0,0,5,5]} fontSize="lg">
+                <StatLabel color={'gray.500'} mt={[5,5,5,5]} fontSize="lg">
                   Performance
                 </StatLabel>
                 <StatHelpText> acting, narration, technique</StatHelpText>
