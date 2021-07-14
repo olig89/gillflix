@@ -31,6 +31,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
+  CircularProgress,
+  CircularProgressLabel,
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import millify from 'millify';
@@ -407,23 +409,9 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Concept
                 </StatLabel>
-                <StatNumber fontSize={'5xl'} fontWeight="bold">
-                  {averageReview ? (
-                    <>
-                      {averageReview}
-                      <chakra.span
-                        fontSize="xl"
-                        fontWeight="normal"
-                        color={'gray.500'}
-                      >
-                        {' '}
-                        /10
-                      </chakra.span>
-                    </>
-                  ) : (
-                    'No reviews'
-                  )}
-                </StatNumber>
+                <CircularProgress value={7} min={0} max={10} color="cyan.400"/* size="30px" thickness="14px"*/>
+                  <CircularProgressLabel color={'gray.500'} fontWeight="semibold" /*fontSize="xs"*/>{7}</CircularProgressLabel>
+                </CircularProgress>
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
