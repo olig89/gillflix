@@ -59,7 +59,7 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
         {/* <UserStatsSection /> */}
       </Flex>
       
-      <NextSeo title= {user.username} />
+      <NextSeo title= {desiredUser.username} />
     </AppLayout>
   );
 }
