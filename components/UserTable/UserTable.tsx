@@ -246,11 +246,11 @@ export const UserTable: React.FC<{ data: any }> = ({
             </Flex>
           </Tooltip>
         ),
-      },
+      }/*,
       {
         Header: `Last Login`,
         accessor: `updatedAt`,
-      },
+      }*/,
       {
         Header: `Actions`,
         Cell: ({ row }) => (
