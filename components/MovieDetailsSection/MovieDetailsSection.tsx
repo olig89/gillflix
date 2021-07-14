@@ -15,7 +15,6 @@ import {
   StatLabel,
   StatNumber,
   Button,
-  useBreakpoint,
   IconButton,
   Menu,
   MenuButton,
@@ -380,7 +379,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Concept
                 </StatLabel>
-                <CircularProgress value={7} min={0} max={10} color="cyan.400" size="100px" thickness="16px" my={5}>
+                <CircularProgress value={7} min={0} max={10} color="cyan.400" trackColor="gray.300" size="100px" thickness="16px" my={5}>
                   <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{7.5}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
@@ -388,7 +387,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Cinematography
                 </StatLabel>
-                <CircularProgress value={5} min={0} max={10} color="yellow.500" size="100px" thickness="16px" my={5}>
+                <CircularProgress value={5} min={0} max={10} color="yellow.400" trackColor="gray.300" size="100px" thickness="16px" my={5}>
                   <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{5.5}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
@@ -396,7 +395,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Performance
                 </StatLabel>
-                <CircularProgress value={3.5} min={0} max={10} color="red.400" size="100px" thickness="16px" my={5}>
+                <CircularProgress value={3.5} min={0} max={10} color="red.400" trackColor="gray.300" size="100px" thickness="16px" my={5}>
                   <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{3.5}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
