@@ -378,7 +378,7 @@ export default function MovieDetailsSection({
               textAlign="center"
               mb={10}
             >
-              <Stat>
+              <Stat mb={5}>
                 <CircularProgress value={movie.concept} min={0} max={10} color="cyan.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px">
                   <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{movie.concept}</CircularProgressLabel>
                 </CircularProgress>
@@ -387,7 +387,7 @@ export default function MovieDetailsSection({
                 </StatLabel>
                 <StatHelpText>Premise, plot, and structure</StatHelpText>
               </Stat>
-              <Stat>
+              <Stat mb={5}>
                 <CircularProgress value={movie.cinema} min={0} max={10} color="yellow.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px">
                   <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{movie.cinema}</CircularProgressLabel>
                 </CircularProgress>
@@ -396,7 +396,7 @@ export default function MovieDetailsSection({
                 </StatLabel>
                 <StatHelpText>Visuals, sound, direction, and design</StatHelpText>
               </Stat>
-              <Stat>
+              <Stat mb={5}>
                 <CircularProgress value={movie.perform} min={0} max={10} color="red.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px">
                   <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{movie.perform}</CircularProgressLabel>
                 </CircularProgress>
