@@ -248,10 +248,6 @@ export const UserTable: React.FC<{ data: any }> = ({
         ),
       },
       {
-        Header: `Joined`,
-        accessor: `createdAt`,
-      },
-      {
         Header: `Last Login`,
         accessor: `updatedAt`,
       },

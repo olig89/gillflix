@@ -99,7 +99,7 @@ export const UserSchema = {
     },
     isReviewer: {
       type: 'boolean',
-      default: false,
+      default: true,
     },
     isAdmin: {
       type: 'boolean',
