@@ -377,7 +377,7 @@ export default function MovieDetailsSection({
               textAlign="center"
             >
               <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
+                <StatLabel color={'gray.500'} mt={[0,0,5,5]} fontSize="lg">
                   Concept
                 </StatLabel>
                 <CircularProgress value={7} min={0} max={10} color="cyan.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px" mt={5}>
@@ -385,7 +385,7 @@ export default function MovieDetailsSection({
                 </CircularProgress>
               </Stat>
               <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
+                <StatLabel color={'gray.500'} mt={[0,0,5,5]} fontSize="lg">
                   Cinematography
                 </StatLabel>
                 <CircularProgress value={5} min={0} max={10} color="yellow.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px" mt={5}>
@@ -393,7 +393,7 @@ export default function MovieDetailsSection({
                 </CircularProgress>
               </Stat>
               <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
+                <StatLabel color={'gray.500'} mt={[0,0,5,5]} fontSize="lg">
                   Performance
                 </StatLabel>
                 <CircularProgress value={3.5} min={0} max={10} color="red.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px" mt={5}>
