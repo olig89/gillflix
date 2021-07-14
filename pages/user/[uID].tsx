@@ -54,6 +54,14 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
     <AppLayout user={user}>
       <Flex direction="column" pt={16} maxW="6xl" mx="auto">
         <AboutUserSection user={desiredUser} reviews={allRatings} />
+        
+        
+        {
+        // eslint-disable-next-line no-console
+        console.log(desiredUser)
+        }
+
+
         <Divider mt={10} />
         <UserReviewSection reviews={allRatings} />
         {/* <UserStatsSection /> */}
