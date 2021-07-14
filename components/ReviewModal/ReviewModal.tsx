@@ -216,7 +216,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <AccordionIcon />
                 </HStack>
             </AccordionButton>
-            <AccordionPanel pb={4}>
+            <AccordionPanel ml={-3}  pb={4}>
                 <Box>
                   <Flex>
                   <NumberInput
@@ -272,7 +272,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </HStack>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel pb={4}>
+            <AccordionPanel ml={-3}  pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -328,7 +328,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </HStack>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel pb={4}>
+            <AccordionPanel ml={-3}  pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -384,7 +384,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </HStack>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel pb={4}>
+            <AccordionPanel ml={-3} pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -429,7 +429,6 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
-
               <Text my={3} fontSize="1.1em" fontWeight="semibold">Enter a comment!</Text>
               <Textarea
                 value={comment}
