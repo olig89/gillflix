@@ -202,7 +202,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               )}
 
         <Accordion defaultIndex={0} allowToggle >
-          <AccordionItem>
+          <AccordionItem ml={-3}>
             <AccordionButton>
                 <HStack my={3} justifyContent='space-between'>
                     <Text fontSize="1.1em" fontWeight="semibold">
@@ -216,7 +216,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <AccordionIcon />
                 </HStack>
             </AccordionButton>
-            <AccordionPanel ml={-3}  pb={4}>
+            <AccordionPanel pb={4}>
                 <Box>
                   <Flex>
                   <NumberInput
@@ -260,7 +260,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </Box>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem ml={-3} >
             <AccordionButton>
                 <HStack my={3} justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
@@ -272,7 +272,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </HStack>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel ml={-3}  pb={4}>
+            <AccordionPanel pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -316,7 +316,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </Box>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem ml={-3} >
             <AccordionButton>
               <HStack my={3} justifyContent="space-between">
                 <Text fontSize="1.1em" fontWeight="semibold">
@@ -328,7 +328,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </HStack>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel ml={-3}  pb={4}>
+            <AccordionPanel pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
@@ -372,7 +372,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               </Box>
             </AccordionPanel>
           </AccordionItem>
-          <AccordionItem>
+          <AccordionItem ml={-3}>
             <AccordionButton>
                 <HStack my={3} justifyContent="space-between">
                   <Text fontSize="1.1em" fontWeight="semibold">
@@ -384,7 +384,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </HStack>
               <AccordionIcon />
             </AccordionButton>
-            <AccordionPanel ml={-3} pb={4}>
+            <AccordionPanel pb={4}>
               <Box>
                 <Flex>
                   <NumberInput
