@@ -410,7 +410,7 @@ export default function MovieDetailsSection({
                   Concept
                 </StatLabel>
                 <CircularProgress value={7} min={0} max={10} color="cyan.400" size="100px" thickness="16px" my={5}>
-                  <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="130">{7}</CircularProgressLabel>
+                  <CircularProgressLabel color={'gray.500'} fontWeight="semibold" fontSize="lg">{7}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
               <Stat>
