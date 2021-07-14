@@ -36,7 +36,7 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
   const allRatings = movies
     .map((movie: any) => {
       const rev = movie?.reviews?.find(
-        (review: any) => review.user.id === desiredUser._id
+        (review: any) => review.user === desiredUser.id
       );
       if (!rev) {
         return null;
@@ -58,7 +58,9 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
         
         {
         // eslint-disable-next-line no-console
-        console.log(desiredUser)
+        console.log('id' + desiredUser.id)}{
+        // eslint-disable-next-line no-console
+        console.log('_id' + desiredUser._id)
         }
 
 
