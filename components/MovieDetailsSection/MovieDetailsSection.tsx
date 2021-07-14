@@ -410,7 +410,7 @@ export default function MovieDetailsSection({
                   Concept
                 </StatLabel>
                 <CircularProgress value={7} min={0} max={10} color="cyan.400" size="100px" thickness="16px" my={5}>
-                  <CircularProgressLabel fontWeight="semibold" fontSize="35">{7.5}</CircularProgressLabel>
+                  <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-1,-1]}>{7.5}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
               <Stat>
@@ -418,7 +418,7 @@ export default function MovieDetailsSection({
                   Cinematography
                 </StatLabel>
                 <CircularProgress value={5} min={0} max={10} color="yellow.500" size="100px" thickness="16px" my={5}>
-                  <CircularProgressLabel fontWeight="semibold" fontSize="35">{5.5}</CircularProgressLabel>
+                  <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{5.5}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
               <Stat>
@@ -426,7 +426,7 @@ export default function MovieDetailsSection({
                   Performance
                 </StatLabel>
                 <CircularProgress value={3.5} min={0} max={10} color="red.400" size="100px" thickness="16px" my={5}>
-                  <CircularProgressLabel fontWeight="semibold" fontSize="35">{3.5}</CircularProgressLabel>
+                  <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.25,-0.25]}>{3.5}</CircularProgressLabel>
                 </CircularProgress>
               </Stat>
             </StatGroup>
