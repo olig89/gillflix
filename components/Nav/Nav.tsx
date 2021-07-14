@@ -25,6 +25,7 @@ import { signout } from 'next-auth/client';
 
 const links = [
   { link: `/`, name: `Home` },
+  { link: `https://discord.com/invite/T8SUMA2tgf`, name: `Discord Server` },
   { link: `/user/me`, name: `My Reviews`, adminOnly: true },
   { link: `/users`, name: `All Users`, adminOnly: true },
 ];
