@@ -217,6 +217,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 </HStack>
             </AccordionButton>
             <AccordionPanel ml={-3} pb={4}>
+              <FormLabel fontSize="1em">
+                Premise, plot, and structure
+              </FormLabel>
                 <Box>
                   <Flex>
                   <NumberInput
@@ -273,6 +276,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel ml={-3} pb={4}>
+            <FormLabel fontSize="1em">
+              Visuals, sound, direction, and design
+            </FormLabel>
               <Box>
                 <Flex>
                   <NumberInput
@@ -329,6 +335,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel ml={-3} pb={4}>
+              <FormLabel fontSize="1em">
+                Acting, narration, and technique
+              </FormLabel>
               <Box>
                 <Flex>
                   <NumberInput
