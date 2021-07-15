@@ -268,7 +268,7 @@ export default function MovieDetailsSection({
                         setModalMovie(movie);
                         return reviewOnOpen();
                       }}
-                      colorScheme="gray"
+                      colorScheme="purple"
                     >
                       Add one!
                     </Button>
