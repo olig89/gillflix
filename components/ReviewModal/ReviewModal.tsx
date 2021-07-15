@@ -216,7 +216,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     <AccordionIcon />
                 </HStack>
             </AccordionButton>
-            <AccordionPanel ml={-3} pb={4}>
+            <AccordionPanel ml={-3} pt={-4} pb={4}>
               <FormLabel fontSize="1em">
                 Premise, plot, and structure
               </FormLabel>
