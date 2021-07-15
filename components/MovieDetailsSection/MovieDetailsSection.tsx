@@ -262,7 +262,7 @@ export default function MovieDetailsSection({
                     </>
                   ) : (
                     <Button
-                      variant="ghost"
+                      variant="solid"
                       leftIcon={<AddIcon />}
                       onClick={() => {
                         setModalMovie(movie);
