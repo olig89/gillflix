@@ -66,7 +66,10 @@ export default function MovieDetailsSection({
   user,
 }: Props): ReactElement {
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
-  const userReview = movie.reviews.find((rating) => rating.user.id === user.id);
+
+  const userReview = movie.reviews.find(
+    (rating) => rating.user._id === user.sub
+  );
 
   const averageReview =
     movie.reviews.length > 0
@@ -262,13 +265,13 @@ export default function MovieDetailsSection({
                     </>
                   ) : (
                     <Button
-                      variant="ghost"
+                      variant="solid"
                       leftIcon={<AddIcon />}
                       onClick={() => {
                         setModalMovie(movie);
                         return reviewOnOpen();
                       }}
-                      colorScheme="gray"
+                      colorScheme="purple"
                     >
                       Add one!
                     </Button>
@@ -300,7 +303,7 @@ export default function MovieDetailsSection({
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
-                  TMDB Rating
+                TheMovieDb Rating
                 </StatLabel>
                 <StatNumber fontSize="5xl" fontWeight="bold">
                   {movie.voteAverage}

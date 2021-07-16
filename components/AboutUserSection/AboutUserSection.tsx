@@ -2,7 +2,6 @@ import React from 'react';
 import { Avatar, Flex, Heading, chakra, VStack, Text } from '@chakra-ui/react';
 import { UserType } from '../../models/user';
 import { ReviewType } from '../../models/movie';
-import { getUserAvatar } from '../../utils/utils';
 
 interface AboutUserSectionProps {
   user: UserType;
@@ -15,7 +14,7 @@ export const AboutUserSection: React.FC<AboutUserSectionProps> = ({
 }): React.ReactElement => {
   return (
     <Flex justifyContent="center">
-      <Avatar mr={10} size="2xl" src={getUserAvatar(user)} />
+      <Avatar mr={10} size="2xl" src={user.image} />
       <VStack textAlign="left" alignItems="flex-start">
         <Heading size="3xl">
           {user.username}
