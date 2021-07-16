@@ -303,7 +303,7 @@ export default function MovieDetailsSection({
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
-                  TMDB Rating
+                TheMovieDb Rating
                 </StatLabel>
                 <StatNumber fontSize="5xl" fontWeight="bold">
                   {movie.voteAverage}
