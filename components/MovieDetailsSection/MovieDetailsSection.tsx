@@ -567,7 +567,6 @@ const MovieAdminOptions = ({
           {isAdmin && (
             <>
               <MenuDivider />
-
               <MenuItem
                 color={colorMode === 'light' ? 'red.500' : 'red.300'}
                 icon={<EditIcon />}
