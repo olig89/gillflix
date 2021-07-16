@@ -80,10 +80,15 @@ export default function MovieDetailsSection({
 
   const { setMovie: setModalMovie } = useBetween(useMovie);
   const { onOpen: reviewOnOpen } = useContext(ReviewModalContext);
-  const shortSiteName =
-    process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
-    process.env.NEXT_PUBLIC_SITE_NAME ||
-    'SMDB';
+
+    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
+    const shortSiteName =
+      process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
+      process.env.NEXT_PUBLIC_SITE_NAME ||
+      'SMDB';
+  
+    const siteURI =
+      process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
 
   return (
     <Box maxWidth="7xl" mx={'auto'}>
@@ -412,7 +417,19 @@ export default function MovieDetailsSection({
           </Flex>
         </Box>
       </Flex>
-      <NextSeo title= {movie.name} />
+      <NextSeo  title= {movie.name}
+                description={'A review by the ' + siteName + ' Community'}
+                openGraph={{
+                title: movie.name + ' - ' + siteName,
+                type: `website`,
+                site_name: siteName,
+                images: [
+                  {
+                    url: movie.image,
+                    alt: movie.name,
+                  },
+                ],
+              }}/>
     </Box>
   );
 }

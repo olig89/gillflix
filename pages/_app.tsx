@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
     <>
       <DefaultSeo
         titleTemplate={`%s | ${shortSiteName}`}
-        description={'A private movie rating website'}
+        description={'Home of the ' + siteName + ' Community'}
         openGraph={{
           title: siteName,
           type: `website`,
