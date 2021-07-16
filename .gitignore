@@ -33,3 +33,4 @@ yarn-error.log*
 
 # vercel
 .vercel
+.github/workflows/trello.yml
