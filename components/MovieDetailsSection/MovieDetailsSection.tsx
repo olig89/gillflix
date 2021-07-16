@@ -86,9 +86,6 @@ export default function MovieDetailsSection({
       process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
       process.env.NEXT_PUBLIC_SITE_NAME ||
       'SMDB';
-  
-    const siteURI =
-      process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
 
   return (
     <Box maxWidth="7xl" mx={'auto'}>
