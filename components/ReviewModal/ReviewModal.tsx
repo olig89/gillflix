@@ -445,12 +445,12 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   e.preventDefault();
 
                   if (
-                    (e.target.value?.length > 300 ||
+                    (e.target.value?.length > 400 ||
                       e.target.value?.length < 10) &&
                     e.target.value.length !== 0
                   ) {
                     setCommentError(
-                      `Comment needs to be more than 10 characters and less than 300`
+                      `Comment needs to be more than 10 characters and less than 400`
                     );
                   } else {
                     setCommentError(``);
