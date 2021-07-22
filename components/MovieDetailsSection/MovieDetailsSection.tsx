@@ -48,6 +48,7 @@ import { PopulatedUserType } from '../../models/user';
 import { getColorSchemeCharCode } from '../../utils/utils';
 import { IoChevronDown } from 'react-icons/io5';
 
+import useScrollPosition from '../../hooks/useScrollPosition.hook';
 import { AddIcon } from '@chakra-ui/icons';
 import { ReviewModalContext } from '../../utils/ModalContext';
 import { ExternalLinkIcon, EditIcon } from '@chakra-ui/icons';
