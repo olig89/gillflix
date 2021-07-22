@@ -105,6 +105,7 @@ export default function MovieDetailsSection({
           movie.reviews.reduce((a, c) => a + c.rating, 0) / movie.reviews.length
         ).toFixed(1)
       : false;
+  const { scrollPosition } = useScrollPosition();
 
   const { onOpen: reviewOnOpen, setMovie: setModalMovie } = useContext(
     ReviewModalContext
