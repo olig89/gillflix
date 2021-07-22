@@ -468,12 +468,6 @@ export default function MovieDetailsSection({
                 title: movie.name + ' - ' + siteName,
                 type: `website`,
                 site_name: siteName,
-                images: [
-                  {
-                    url: movie.image,
-                    alt: movie.name,
-                  },
-                ],
               }}/>
     </Box>
   );
