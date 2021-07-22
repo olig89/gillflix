@@ -7,14 +7,15 @@ import {
   chakra,
   HStack,
   Tag,
-  // useTheme,
 } from '@chakra-ui/react';
 
-import { MovieType, ReviewType } from '../../models/movie';
+import { ReviewType, SerializedMovieType } from '../../models/movie';
 import Rating from '../Rating';
+import { PopulatedUserType } from '../../models/user';
+import { getColorSchemeCharCode } from '../../utils/utils';
 
 interface CardProps {
-  movie: MovieType<ReviewType[]>;
+  movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
 }
 
 export const Card: React.FC<CardProps> = ({ movie }): React.ReactElement => {
@@ -100,30 +101,44 @@ export const Card: React.FC<CardProps> = ({ movie }): React.ReactElement => {
         </Text>
       </Box>
       <Box mt={-6} mx={-6} mb={6} pos="relative">
-        <Image
-          src={image}
-          layout="responsive"
-          width="400px"
-          // sizes={imageSizesOnWidthAndBreakpoints(400, bpsAsObjectPx)}
-          sizes="(max-width: 2561px) 400px"
-          height="225px"
-          alt={`${movie?.name} poster`}
-        />
+        {image && (
+          <Image
+            src={image}
+            layout="responsive"
+            width="400px"
+            // sizes={imageSizesOnWidthAndBreakpoints(400, bpsAsObjectPx)}
+            sizes="(max-width: 2561px) 400px"
+            height="225px"
+            alt={`${movie?.name} poster`}
+          />
+        )}
       </Box>
 
-      <Flex isTruncated direction="column" justifyContent="space-between">
-        <Flex direction={'column'} isTruncated>
-          <Flex justifyContent="space-between" alignItems="center">
+      <Flex direction="column" justifyContent="space-between">
+        <Flex direction={'column'}>
+          <Flex justifyContent="space-between" alignItems="center" maxW="full">
             <Text
               as="h3"
               color={useColorModeValue(`gray.700`, `white`)}
               fontSize="2xl"
               fontWeight="bold"
+              maxW="full"
               isTruncated
             >
               {name}
             </Text>
-            <Tag colorScheme="purple" fontWeight="600">
+            <Tag
+              colorScheme={getColorSchemeCharCode(genres[0], [
+                'pink',
+                'purple',
+                'blue',
+                'cyan',
+                'teal',
+                'red',
+              ])}
+              fontWeight="600"
+              minW="auto"
+            >
               {genres[0]}
             </Tag>
           </Flex>

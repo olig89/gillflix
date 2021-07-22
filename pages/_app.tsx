@@ -1,30 +1,35 @@
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
-import { ChakraProvider, extendTheme, useDisclosure } from '@chakra-ui/react';
+import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider as NextAuthProvider } from 'next-auth/client';
 import { DefaultSeo } from 'next-seo';
 import { ReviewModalContext } from '../utils/ModalContext';
-import React from 'react';
-
-const theme = extendTheme({
-  colors: {
-    brand: {
-      300: `#84C9FB`,
-    },
-  },
-});
+import React, { useState, useEffect } from 'react';
+import theme from '../styles/theme';
+import { ReviewType, SerializedMovieType } from '../models/movie';
+import { PopulatedUserType } from '../models/user';
+import { useRouter } from 'next/router';
 
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
   const { onOpen, onClose, isOpen } = useDisclosure();
+  const [movie, setMovie] = useState<SerializedMovieType<
+    ReviewType<PopulatedUserType>[]
+  > | null>(null);
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
   const shortSiteName =
     process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
     process.env.NEXT_PUBLIC_SITE_NAME ||
     'SMDB';
 
+  const router = useRouter();
+  useEffect(() => {
+    if (document.getElementById('__next')) {
+      (document.getElementById('__next') as HTMLElement).scrollTop = 0;
+    }
+  }, [router.pathname]);
   const siteURI =
     process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
   return (
@@ -53,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
       >
         <QueryClientProvider client={queryClient}>
           <ChakraProvider theme={theme}>
-            <ReviewModalContext.Provider value={{ isOpen, onOpen, onClose }}>
+            <ReviewModalContext.Provider value={{ isOpen, onOpen, onClose, movie, setMovie}>
               <Component {...pageProps} />
             </ReviewModalContext.Provider>
           </ChakraProvider>

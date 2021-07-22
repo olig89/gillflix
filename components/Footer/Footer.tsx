@@ -9,8 +9,17 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
+import React from 'react';
 
-const SocialIcons = ({ children, href, label }) => {
+const SocialIcons = ({
+  children,
+  href,
+  label,
+}: {
+  children: React.ReactNode;
+  href: string;
+  label: string;
+}) => {
   return (
     <Tooltip label={label}>
       <chakra.button
