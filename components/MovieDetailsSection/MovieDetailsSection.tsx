@@ -295,7 +295,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Your Rating
                 </StatLabel>
-                <StatNumber fontSize="5xl" fontWeight="bold">
+                <StatNumber color={'purple.500'} fontSize="5xl" fontWeight="bold">
                   {userReview ? (
                     <>
                       {userReview.rating}
