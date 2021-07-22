@@ -49,21 +49,23 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
           ],
         }}
       />
-      <NextAuthProvider
-        session={pageProps.session}
-        options={{
-          clientMaxAge: 60, // Re-fetch session if cache is older than 60 seconds
-          keepAlive: 5 * 60, // Send keepAlive message every 5 minutes
-        }}
-      >
-        <QueryClientProvider client={queryClient}>
-          <ChakraProvider theme={theme}>
-            <ReviewModalContext.Provider value={{ isOpen, onOpen, onClose, movie, setMovie}>
-              <Component {...pageProps} />
-            </ReviewModalContext.Provider>
-          </ChakraProvider>
-        </QueryClientProvider>
-      </NextAuthProvider>
+<NextAuthProvider
+          session={pageProps.session}
+          options={{
+            clientMaxAge: 60, // Re-fetch session if cache is older than 60 seconds
+            keepAlive: 5 * 60, // Send keepAlive message every 5 minutes
+          }}
+        >
+          <QueryClientProvider client={queryClient}>
+            <ChakraProvider theme={theme}>
+              <ReviewModalContext.Provider
+                value={{ isOpen, onOpen, onClose, movie, setMovie }}
+              >
+                <Component {...pageProps} />
+              </ReviewModalContext.Provider>
+            </ChakraProvider>
+          </QueryClientProvider>
+        </NextAuthProvider>
     </>
   );
 }
