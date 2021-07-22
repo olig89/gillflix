@@ -67,6 +67,7 @@ export default function MovieDetailsSection({
   movie,
   user,
 }: Props): ReactElement {
+  const bp = useBreakpoint();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
   const userReview = movie.reviews.find(
@@ -376,7 +377,7 @@ export default function MovieDetailsSection({
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
-                  View on IMDB
+                  View on IMDb
                 </StatLabel>
                 <StatNumber
                   position="relative"
