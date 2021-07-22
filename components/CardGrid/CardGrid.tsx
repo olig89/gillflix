@@ -158,14 +158,14 @@ export const CardGrid: React.FC<CardGridProps> = ({
                     isDisabled={sort === 'recent'}
                     onClick={() => setSort('recent')}
                   >
-                    Recent
+                    Most Recent
                   </MenuItem>
                   <MenuItem
                     zIndex={999}
                     isDisabled={sort === 'old'}
                     onClick={() => setSort('old')}
                   >
-                    Old
+                    Oldest
                   </MenuItem>
                   <MenuItem
                     zIndex={999}
