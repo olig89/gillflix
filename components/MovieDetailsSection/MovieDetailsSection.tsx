@@ -551,7 +551,7 @@ const MovieAdminOptions = ({
         colorScheme={'purple'}
         onClick={() => router.push('/')}
       >
-        Back to home
+        Back
       </Button>
       <AlertDialog
         isOpen={isOpen}
