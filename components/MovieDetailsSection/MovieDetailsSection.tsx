@@ -304,8 +304,7 @@ export default function MovieDetailsSection({
                         fontWeight="normal"
                         color={'gray.500'}
                       >
-                        {' '}
-                        /10
+                        {' /10'}
                       </chakra.span>
                     </>
                   ) : (
