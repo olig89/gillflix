@@ -342,8 +342,7 @@ export default function MovieDetailsSection({
                         fontWeight="normal"
                         color={'gray.500'}
                       >
-                        {' '}
-                        /10
+                        {' /10'}
                       </chakra.span>
                     </>
                   ) : (
@@ -362,8 +361,7 @@ export default function MovieDetailsSection({
                     fontWeight="normal"
                     color={'gray.500'}
                   >
-                    {' '}
-                    /10
+                    {' /10'}
                   </chakra.span>{' '}
                   <chakra.span fontSize="xl">
                     {millify(movie.voteCount)}
@@ -373,8 +371,7 @@ export default function MovieDetailsSection({
                     fontWeight="normal"
                     color={'gray.500'}
                   >
-                    {' '}
-                    votes
+                    {' votes'}
                   </chakra.span>
                 </StatNumber>
               </Stat>
