@@ -4,6 +4,7 @@ import {
   chakra,
   Stack,
   Tooltip,
+  Text,
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
@@ -61,9 +62,11 @@ export const Footer: React.FC = (): React.ReactElement => {
             <h1>{siteName}</h1>
           </a>
         </Link>
-        {/*<Text marginStart={{ md: `auto` }} justifySelf="middle">
-          Made by Mikerophone 🤠
-        </Text>*/}
+        <Link href="https://discord.com/invite/T8SUMA2tgf">
+        <Text marginStart={{ md: `auto` }} justifySelf="middle">
+          Join the Gillflix Discord
+        </Text>
+        </Link>
         <Stack direction="row" spacing={6} ml="auto" mr={{ base: `auto`, md: 5 }}>
         <SocialIcons label="GitHub" href="https://github.com/olig89/">
           <FaGithub />

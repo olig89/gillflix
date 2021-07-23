@@ -188,7 +188,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                 icons={{ checked: <BsGrid3X3 />, unchecked: <BsGrid3X3 /> }}
               /> */}
               <Tooltip
-                label="Toggle between card and table view"
+                label="Toggle between grid and list view"
                 placement="top"
               >
                 <Stack
