@@ -62,7 +62,7 @@ export const Footer: React.FC = (): React.ReactElement => {
             <h1>{siteName}</h1>
           </a>
         </Link>
-        <Link href="https://discord.com/invite/T8SUMA2tgf">
+        <Link href="https://discord.com/invite/h2E8EzFqy5">
         <Text marginStart={{ md: `auto` }} justifySelf="middle">
           Join the Gillflix Discord
         </Text>
@@ -80,7 +80,7 @@ export const Footer: React.FC = (): React.ReactElement => {
 
         <SocialIcons
           label="Discord"
-          href="https://discord.com/invite/T8SUMA2tgf"
+          href="https://discord.com/invite/h2E8EzFqy5"
         >
           <FaDiscord />
         </SocialIcons>
