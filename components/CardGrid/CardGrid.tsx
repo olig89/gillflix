@@ -35,7 +35,7 @@ import Link from 'next/link';
 import { UserAuthType } from 'next-auth';
 
 import MovieGridView from '../MovieGridView';
-import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { BsGrid3X3Gap } from 'react-icons/bs';
 import { HiViewList } from 'react-icons/hi';
 
 interface CardGridProps {
@@ -205,7 +205,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                     onClick={() => setCardView(true)}
                     aria-label="Activate table mode"
                     colorScheme={cardView ? 'purple' : 'gray'}
-                    icon={<BsGrid3X3GapFill />}
+                    icon={<BsGrid3X3Gap />}
                   />
                   <IconButton
                     size="sm"
