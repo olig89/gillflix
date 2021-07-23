@@ -35,7 +35,7 @@ import Link from 'next/link';
 import { UserAuthType } from 'next-auth';
 
 import MovieGridView from '../MovieGridView';
-import { BsCardImage, BsGrid3X3 } from 'react-icons/bs';
+import { BsList, BsGrid3X3GapFill } from 'react-icons/bs';
 
 interface CardGridProps {
   movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];
@@ -204,7 +204,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                     onClick={() => setCardView(true)}
                     aria-label="Activate table mode"
                     colorScheme={cardView ? 'purple' : 'gray'}
-                    icon={<BsCardImage />}
+                    icon={<BsGrid3X3GapFill />}
                   />
                   <IconButton
                     size="sm"
@@ -212,7 +212,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                     onClick={() => setCardView(false)}
                     aria-label="Activate table mode"
                     colorScheme={!cardView ? 'purple' : 'gray'}
-                    icon={<BsGrid3X3 />}
+                    icon={<BsList />}
                   />
                 </Stack>
               </Tooltip>
