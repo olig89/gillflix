@@ -15,15 +15,12 @@ import {
   VStack,
   AvatarGroup,
   Avatar,
-  useToast,
   Skeleton,
   Box,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React, { ReactElement, useMemo } from 'react';
-import { useQueryClient } from 'react-query';
 import { useTable } from 'react-table';
 import { SerializedMovieType } from '../../models/movie';
 
