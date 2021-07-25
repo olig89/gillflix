@@ -15,7 +15,6 @@ import {
   IconButton,
   Tooltip,
   VStack,
-  Text,
   AvatarGroup,
   Avatar,
   useToast,
@@ -56,7 +55,7 @@ const COLUMNS = (
     Header: 'Movie',
     accessor: 'info',
     Cell: ({
-      value: { image, name, tagLine },
+      value: { image, name },
     }: {
       value: { name: string; image: string; tagLine: string };
     }) => {
