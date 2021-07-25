@@ -106,6 +106,7 @@ const COLUMNS = (
               {' '}
               /10
             </chakra.span>
+            <Box display={{base: 'none', md:'block'}}>
             <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
                 <Avatar
@@ -115,6 +116,7 @@ const COLUMNS = (
                 />
               ))}
             </AvatarGroup>
+            </Box>
           </StatNumber>
         </Stat>
       ) : (
