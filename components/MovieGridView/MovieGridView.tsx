@@ -284,6 +284,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
       name: movie.name,
       image: movie.image,
       tagLine: movie.tagLine,
+      movieID: movie._id
     },
     rating: {
       rating: movie.rating,
