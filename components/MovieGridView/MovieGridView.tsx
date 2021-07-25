@@ -62,7 +62,7 @@ const COLUMNS = (
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
-        <Stack href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`} spacing={6} isInline alignItems="center">
+        <Stack spacing={6} isInline alignItems="center">
           <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
             <Skeleton borderRadius="md" isLoaded={loaded}>
@@ -78,7 +78,7 @@ const COLUMNS = (
           </AspectRatio>
           </Box>
           <VStack alignItems="flex-start">
-            <Heading size="lg">{name}</Heading>
+            <Heading href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`} size="lg">{name}</Heading>
           </VStack>
         </Stack>
       );
