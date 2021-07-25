@@ -28,6 +28,7 @@ import {
   PopoverHeader,
   Skeleton,
   Box,
+  Link,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
@@ -62,6 +63,7 @@ const COLUMNS = (
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
+        <Link href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`} >
         <Stack spacing={6} isInline alignItems="center">
           <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
@@ -78,9 +80,10 @@ const COLUMNS = (
           </AspectRatio>
           </Box>
           <VStack alignItems="flex-start">
-            <Heading href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`} size="lg">{name}</Heading>
+            <Heading size="lg">{name}</Heading>
           </VStack>
         </Stack>
+        </Link>
       );
     },
   },
