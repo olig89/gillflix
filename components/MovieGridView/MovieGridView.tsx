@@ -112,58 +112,6 @@ const COLUMNS = (
 ];
 
 export default function MovieGridView({ movies, user }: Props): ReactElement {
-  const toast = useToast();
-  const queryClient = useQueryClient();
-  const router = useRouter();
-  const handleMovieDelete = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    movieID: string
-  ): Promise<void> => {
-    e.preventDefault();
-    try {
-      close();
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_URI}/api/movie`,
-        {
-          method: `delete`,
-          // eslint-disable-next-line no-underscore-dangle
-          body: JSON.stringify({ id: movieID }),
-        }
-      );
-      const data = await response.json();
-
-      if (response.status !== 200) {
-        toast({
-          variant: `subtle`,
-          title: `There was an error`,
-          description: data.message,
-          status: `error`,
-          duration: 5000,
-          isClosable: true,
-        });
-        return;
-      }
-      await queryClient.invalidateQueries(`movies`);
-      router.push('/');
-      toast({
-        variant: `subtle`,
-        title: `Movie Deleted`,
-        description: `${data.name} was deleted successfully :)`,
-        status: `success`,
-        duration: 5000,
-        isClosable: true,
-      });
-    } catch (err) {
-      toast({
-        variant: `subtle`,
-        title: `There was an error`,
-        description: err.message,
-        status: `error`,
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  };
 
   const moviesData = movies.map((movie) => ({
     info: {
@@ -181,7 +129,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
     actionInfo: { imdbID: movie.imdbID, movieID: movie._id, name: movie.name },
   }));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const columns = useMemo(() => COLUMNS(user, handleMovieDelete), [user]);
+  const columns = useMemo(() => COLUMNS(user), [user]);
   const data = useMemo(() => moviesData, [moviesData]);
   const {
     getTableBodyProps,
