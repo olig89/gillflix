@@ -16,7 +16,9 @@ import {
   StatNumber,
   StatHelpText,
   Button,
+  useBreakpoint,
   IconButton,
+  Icon,
   Menu,
   MenuButton,
   MenuItem,
@@ -42,21 +44,24 @@ import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import React, { ReactElement, useContext } from 'react';
 import { FaImdb } from 'react-icons/fa';
-import { MovieType, ReviewType } from '../../models/movie';
-import { UserType } from '../../models/user';
-import { getTotalCharCode } from '../../utils/utils';
+import { ReviewType, SerializedMovieType } from '../../models/movie';
+import { PopulatedUserType } from '../../models/user';
+import { getColorSchemeCharCode } from '../../utils/utils';
+import { IoChevronDown } from 'react-icons/io5';
 
+import useScrollPosition from '../../hooks/useScrollPosition.hook';
 import { AddIcon } from '@chakra-ui/icons';
-import { useBetween } from 'use-between';
-import { ReviewModalContext, useMovie } from '../../utils/ModalContext';
+import { ReviewModalContext } from '../../utils/ModalContext';
 import { ExternalLinkIcon, EditIcon } from '@chakra-ui/icons';
 import { useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { SettingsIcon } from '@chakra-ui/icons';
-import { UserAuthType } from '../../types/next-auth';
+import { UserAuthType } from 'next-auth';
+import { ArrowBackIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
 
 interface Props {
-  movie: MovieType<ReviewType<UserType>[]>;
+  movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
   user: UserAuthType;
 }
 
@@ -65,11 +70,35 @@ export default function MovieDetailsSection({
   movie,
   user,
 }: Props): ReactElement {
+  const bp = useBreakpoint();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
   const userReview = movie.reviews.find(
-    (rating) => rating.user._id === user.sub
+    (rating) => rating?.user?._id === user.sub
   );
+  const toast = useToast();
+  const router = useRouter();
+  const { review } = router.query;
+  useEffect(() => {
+    if (user && user.isReviewer) {
+      if (review) {
+        window.history.pushState({}, document.title, '/movie/' + movie._id); // removes ?review=true param from url so refresh does not open review modal.
+        setModalMovie(movie);
+        return reviewOnOpen();
+      }
+    } else {
+      toast({
+        title: 'Not authorized',
+        description: 'Review cannot be added as you are not a reviewer',
+        duration: 5000,
+        status: 'error',
+        isClosable: true,
+        variant: 'subtle',
+      });
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [review, movie]);
 
   const averageReview =
     movie.reviews.length > 0
@@ -77,9 +106,11 @@ export default function MovieDetailsSection({
           movie.reviews.reduce((a, c) => a + c.rating, 0) / movie.reviews.length
         ).toFixed(1)
       : false;
+  const { scrollPosition } = useScrollPosition();
 
-  const { setMovie: setModalMovie } = useBetween(useMovie);
-  const { onOpen: reviewOnOpen } = useContext(ReviewModalContext);
+  const { onOpen: reviewOnOpen, setMovie: setModalMovie } = useContext(
+    ReviewModalContext
+  );
 
     const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
     const shortSiteName =
@@ -95,6 +126,30 @@ export default function MovieDetailsSection({
         width="full"
         justifyContent="flex-start"
       >
+        {/* Scroll down section */}
+        {bp && !['base', 'sm', 'md'].includes(bp) && (
+          <Flex
+            direction="column"
+            alignItems="center"
+            position="absolute"
+            bottom={'60px'}
+            left={'50%'}
+            transform={'translateX(-50%)'}
+            color={'gray.500'}
+            visibility={scrollPosition ? 'hidden' : 'visible'}
+            opacity={scrollPosition ? 0 : 1}
+            transition={'all 0.25s'}
+          >
+            <Text fontWeight="semibold">Scroll to see reviews</Text>
+            <Icon
+              className="bouncing-arrow"
+              as={(props) => <IoChevronDown strokeWidth="20" {...props} />}
+              height={6}
+              mt={2}
+              width={6}
+            />
+          </Flex>
+        )}
         <Box
           mt={{
             base: '5',
@@ -119,7 +174,7 @@ export default function MovieDetailsSection({
               >
                 <Image
                   className={'borderRadius-xl'}
-                  src={movie.image}
+                  src={movie?.image || ''}
                   alt={`${movie.name} poster`}
                   sizes={'50vw'}
                   layout="fill"
@@ -138,19 +193,7 @@ export default function MovieDetailsSection({
                     <Tag
                       size={isLargerThan800 ? 'md' : 'sm'}
                       key={i.toString()}
-                      colorScheme={`${
-                        [
-                          'red',
-                          'orange',
-                          'yellow',
-                          'green',
-                          'teal',
-                          'blue',
-                          'cyan',
-                          'pink',
-                          'purple',
-                        ][getTotalCharCode(genre) % 9]
-                      }`}
+                      colorScheme={getColorSchemeCharCode(genre)}
                     >
                       <TagLabel fontWeight={'600'}> {genre}</TagLabel>
                     </Tag>
@@ -210,7 +253,7 @@ export default function MovieDetailsSection({
                     <chakra.span
                       fontSize="lg"
                       fontWeight="bold"
-                      color={'white'}
+                      color={useColorModeValue('gray.900', 'white')}
                     >
                       {millify(movie.budget)}
                     </chakra.span>
@@ -225,7 +268,7 @@ export default function MovieDetailsSection({
                     <chakra.span
                       fontSize="lg"
                       fontWeight="bold"
-                      color={'white'}
+                      color={useColorModeValue('gray.900', 'white')}
                     >
                       {millify(movie.revenue)}
                     </chakra.span>
@@ -252,7 +295,7 @@ export default function MovieDetailsSection({
                 <StatLabel color={'gray.500'} fontSize="lg">
                   Your Rating
                 </StatLabel>
-                <StatNumber fontSize="5xl" fontWeight="bold">
+                <StatNumber color={'purple.300'} fontSize="5xl" fontWeight="bold">
                   {userReview ? (
                     <>
                       {userReview.rating}
@@ -261,22 +304,27 @@ export default function MovieDetailsSection({
                         fontWeight="normal"
                         color={'gray.500'}
                       >
-                        {' '}
-                        /10
+                        {' /10'}
                       </chakra.span>
                     </>
                   ) : (
-                    <Button
-                      variant="solid"
-                      leftIcon={<AddIcon />}
-                      onClick={() => {
-                        setModalMovie(movie);
-                        return reviewOnOpen();
-                      }}
-                      colorScheme="purple"
-                    >
-                      Add one!
-                    </Button>
+                    <>
+                      {user?.isReviewer ? (
+                        <Button
+                          variant="solid"
+                          leftIcon={<AddIcon />}
+                          onClick={() => {
+                            setModalMovie(movie);
+                            return reviewOnOpen();
+                          }}
+                          colorScheme="purple"
+                        >
+                          Add one!
+                        </Button>
+                      ) : (
+                        <Text>N/A</Text>
+                      )}
+                    </>
                   )}
                 </StatNumber>
               </Stat>
@@ -294,8 +342,7 @@ export default function MovieDetailsSection({
                         fontWeight="normal"
                         color={'gray.500'}
                       >
-                        {' '}
-                        /10
+                        {' /10'}
                       </chakra.span>
                     </>
                   ) : (
@@ -314,8 +361,7 @@ export default function MovieDetailsSection({
                     fontWeight="normal"
                     color={'gray.500'}
                   >
-                    {' '}
-                    /10
+                    {' /10'}
                   </chakra.span>{' '}
                   <chakra.span fontSize="xl">
                     {millify(movie.voteCount)}
@@ -325,14 +371,13 @@ export default function MovieDetailsSection({
                     fontWeight="normal"
                     color={'gray.500'}
                   >
-                    {' '}
-                    votes
+                    {' votes'}
                   </chakra.span>
                 </StatNumber>
               </Stat>
               <Stat>
                 <StatLabel color={'gray.500'} fontSize="lg">
-                  View on IMDB
+                  View on IMDb
                 </StatLabel>
                 <StatNumber
                   position="relative"
@@ -360,8 +405,7 @@ export default function MovieDetailsSection({
                       target="_blank"
                       icon={<FaImdb size="1em" />}
                       alignSelf="flex-end"
-                      colorScheme="yellow"
-                      variant="ghost"
+                      variant="IMDB"
                     />
                   </Link>
                 </StatNumber>
@@ -420,12 +464,6 @@ export default function MovieDetailsSection({
                 title: movie.name + ' - ' + siteName,
                 type: `website`,
                 site_name: siteName,
-                images: [
-                  {
-                    url: movie.image,
-                    alt: movie.name,
-                  },
-                ],
               }}/>
     </Box>
   );
@@ -436,18 +474,21 @@ const MovieAdminOptions = ({
   movie,
 }: {
   isAdmin: boolean;
-  movie: MovieType<ReviewType<UserType>[]>;
+  movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
 }): JSX.Element => {
   const { colorMode } = useColorMode();
-  const { setMovie: setModalMovie } = useBetween(useMovie);
-  const { onOpen: reviewOnOpen } = useContext(ReviewModalContext);
+
+  const { onOpen: reviewOnOpen, setMovie: setModalMovie } = useContext(
+    ReviewModalContext
+  );
   const toast = useToast();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
-  const cancelRef = React.useRef();
+  const cancelRef = React.useRef(null);
   const router = useRouter();
   const queryClient = useQueryClient();
+
   const handleMovieDelete = async () => {
     try {
       close();
@@ -493,7 +534,21 @@ const MovieAdminOptions = ({
     }
   };
   return (
-    <Flex mb={3} maxWidth={{ base: '90%', lg: 'full' }} mx="auto">
+    <Stack
+      isInline
+      justifyContent="space-between"
+      mb={3}
+      maxWidth={{ base: '90%', lg: 'full' }}
+      mx="auto"
+    >
+      <Button
+        leftIcon={<ArrowBackIcon />}
+        variant="ghost"
+        colorScheme={'purple'}
+        onClick={() => router.push('/')}
+      >
+        Back
+      </Button>
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -578,6 +633,6 @@ const MovieAdminOptions = ({
           )}
         </MenuList>
       </Menu>
-    </Flex>
+    </Stack>
   );
 };

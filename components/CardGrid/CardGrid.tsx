@@ -17,29 +17,40 @@ import {
   useToast,
   useColorMode,
   Stack,
+  IconButton,
+  Tooltip,
+  useBreakpoint,
 } from '@chakra-ui/react';
+import 'react-toggle/style.css';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BiChevronDown } from 'react-icons/bi';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Card from '../Card';
-import { MovieType, ReviewType } from '../../models/movie';
-import { UserType } from '../../models/user';
+import { ReviewType, SerializedMovieType } from '../../models/movie';
+import { PopulatedUserType } from '../../models/user';
 import { NextSeo } from 'next-seo';
 import ReviewModal from '../ReviewModal';
 import Link from 'next/link';
+import { UserAuthType } from 'next-auth';
+
+import MovieGridView from '../MovieGridView';
+import { BsGrid3X3Gap } from 'react-icons/bs';
+import { HiViewList } from 'react-icons/hi';
+
 interface CardGridProps {
-  movies: { data: MovieType[] };
-  user: UserType;
-  movieID?: string | string[];
+  movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];
+  user: UserAuthType;
 }
 
 export const CardGrid: React.FC<CardGridProps> = ({
   movies: unSortedMovies,
   user,
 }): React.ReactElement => {
+  const bp = useBreakpoint();
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('recent');
+  const [cardView, setCardView] = useState(true);
 
   const toast = useToast();
   const { colorMode } = useColorMode();
@@ -56,9 +67,9 @@ export const CardGrid: React.FC<CardGridProps> = ({
   }, [colorMode, toast]);
 
   const movies = {
-    data: unSortedMovies.data
+    data: unSortedMovies
       ?.filter((mv) => {
-        if (mv.name.toLowerCase().includes(filter)) {
+        if (mv && mv.name.toLowerCase().includes(filter)) {
           return true;
         }
         return false;
@@ -73,6 +84,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
         } else if (sort === 'worst') {
           return a.rating - b.rating;
         }
+        return 0;
       }),
   };
 
@@ -108,7 +120,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
           We have reviewed{' '}
           {
             <chakra.span color={useColorModeValue('purple.500', 'purple.300')}>
-              {unSortedMovies?.data?.length}
+              {unSortedMovies?.length}
             </chakra.span>
           }{' '}films
         </Heading>
@@ -136,61 +148,115 @@ export const CardGrid: React.FC<CardGridProps> = ({
                 onChange={(e) => setFilter(e.target.value.toLowerCase())}
               />
             </InputGroup>
-
-            <Menu>
-              <MenuButton as={Button} rightIcon={<BiChevronDown />}>
-                Sort by...
-              </MenuButton>
-              <MenuList zIndex={998}>
-                <MenuItem
-                  zIndex={999}
-                  isDisabled={sort === 'recent'}
-                  onClick={() => setSort('recent')}
+            <Stack isInline alignItems="center">
+              <Menu>
+                <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                  Sort by...
+                </MenuButton>
+                <MenuList zIndex={998}>
+                  <MenuItem
+                    zIndex={999}
+                    isDisabled={sort === 'recent'}
+                    onClick={() => setSort('recent')}
+                  >
+                    Most Recent
+                  </MenuItem>
+                  <MenuItem
+                    zIndex={999}
+                    isDisabled={sort === 'old'}
+                    onClick={() => setSort('old')}
+                  >
+                    Oldest
+                  </MenuItem>
+                  <MenuItem
+                    zIndex={999}
+                    isDisabled={sort === 'best'}
+                    onClick={() => setSort('best')}
+                  >
+                    Best
+                  </MenuItem>
+                  <MenuItem
+                    zIndex={999}
+                    isDisabled={sort === 'worst'}
+                    onClick={() => setSort('worst')}
+                  >
+                    Worst
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+              {/* <Toggle
+                icons={{ checked: <BsGrid3X3 />, unchecked: <BsGrid3X3 /> }}
+              /> */}
+              <Tooltip
+                label="Toggle between grid and list view"
+                placement="top"
+              >
+                <Stack
+                  isInline
+                  bg={useColorModeValue('gray.100', 'whiteAlpha.200')}
+                  height="full"
+                  alignItems="center"
+                  px={1}
+                  borderRadius="md"
                 >
-                  Recent
-                </MenuItem>
-                <MenuItem
-                  zIndex={999}
-                  isDisabled={sort === 'old'}
-                  onClick={() => setSort('old')}
-                >
-                  Old
-                </MenuItem>
-                <MenuItem
-                  zIndex={999}
-                  isDisabled={sort === 'best'}
-                  onClick={() => setSort('best')}
-                >
-                  Best
-                </MenuItem>
-                <MenuItem
-                  zIndex={999}
-                  isDisabled={sort === 'worst'}
-                  onClick={() => setSort('worst')}
-                >
-                  Worst
-                </MenuItem>
-              </MenuList>
-            </Menu>
+                  <IconButton
+                    bg={cardView ? 'purple.300' : 'transparent'}
+                    size="sm"
+                    onClick={() => setCardView(true)}
+                    aria-label="Activate table mode"
+                    colorScheme={cardView ? 'purple' : 'gray'}
+                    icon={<BsGrid3X3Gap />}
+                  />
+                  <IconButton
+                    size="sm"
+                    bg={!cardView ? 'purple.300' : 'transparent'}
+                    onClick={() => setCardView(false)}
+                    aria-label="Activate table mode"
+                    colorScheme={!cardView ? 'purple' : 'gray'}
+                    icon={<HiViewList />}
+                  />
+                </Stack>
+              </Tooltip>
+            </Stack>
           </Stack>
         </Flex>
-        <SimpleGrid
-          columns={{ base: 1, md: 2, lg: 3 }}
-          spacing={10}
-          alignItems="stretch"
-        >
-          {movies?.data?.map((movie: MovieType<ReviewType[]>, i) => (
-            <Link
-              key={`${i.toString()}cardBox`}
-              href={`/movie/${movie._id}`}
-              passHref
-            >
-              <Box as={'a'} height="full">
-                <Card movie={movie} key={`${i.toString()}card`} />
-              </Box>
-            </Link>
-          ))}
-        </SimpleGrid>
+        {cardView ? (
+          <SimpleGrid
+            columns={{ base: 1, md: 2, lg: 3 }}
+            spacing={10}
+            alignItems="stretch"
+          >
+            {movies?.data?.map(
+              (
+                movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>,
+                i
+              ) => (
+                <Link
+                  key={`${i.toString()}cardBox`}
+                  href={`/movie/${movie._id}`}
+                  passHref
+                >
+                  <Box as={'a'} height="full">
+                    <Card movie={movie} key={`${i.toString()}card`} />
+                  </Box>
+                </Link>
+              )
+            )}
+          </SimpleGrid>
+        ) : (
+          <chakra.div
+            overflowX={
+              ['base', 'sm', 'md'].includes(bp || '') ? 'scroll' : 'hidden'
+            }
+            shadow="lg"
+            maxW="full"
+            borderRadius="xl"
+            border="1px solid"
+            borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
+          >
+            <MovieGridView user={user} movies={movies.data} />
+          </chakra.div>
+        )}
       </Container>
     </>
   );

@@ -38,8 +38,6 @@ import {
   AccordionIcon,
 } from '@chakra-ui/react';
 
-import { useBetween } from 'use-between';
-
 import { useQuery, useQueryClient } from 'react-query';
 
 import { AiFillHeart } from 'react-icons/ai';
@@ -48,18 +46,17 @@ import { BsFillCameraVideoFill } from 'react-icons/bs';
 import { FaTheaterMasks } from 'react-icons/fa';
 
 import { getMovies } from '../../utils/queries';
-import { MovieType, ReviewType } from '../../models/movie';
 import { ReviewEndpointBodyType } from '../../types/APITypes';
-import { ReviewModalContext, useMovie } from '../../utils/ModalContext';
-import { UserType } from '../../models/user';
+import { ReviewModalContext } from '../../utils/ModalContext';
 
 export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
   isAdmin,
   inNav = false,
 }): React.ReactElement => {
   const { colorMode } = useColorMode();
-  const { movie, setMovie } = useBetween(useMovie);
-  const { isOpen, onOpen, onClose } = useContext(ReviewModalContext);
+  const { isOpen, onOpen, onClose, movie, setMovie } = useContext(
+    ReviewModalContext
+  );
   const [rating, setRating] = useState(0);
   const [cinema, setCinema] = useState(0);
   const [concept, setConcept] = useState(0);
@@ -82,19 +79,20 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         description:
           success === `addition`
             ? `Your review was successfully added to ${movie?.name}`
-            : `Your review on ${movie.name} was successfully modified`,
+            : `Your review on ${movie?.name} was successfully modified`,
         status: `success`,
         duration: 5000,
         isClosable: true,
       });
-      setSuccess(null);
+      setSuccess('');
     }
-  }, [movie?.name, queryClient, success, toast]);
+  }, [movie, queryClient, success, toast]);
 
-  const initialRef = React.useRef();
   const { data: movies } = useQuery(`movies`, getMovies);
-
-  const handleSubmit = async (e, onClose) => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    onClose: () => void
+  ) => {
     e.preventDefault();
     if (!movie) {
       return setMovieError(`Please select a valid film.`);
@@ -123,20 +121,36 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
       setMovie(null);
       return onClose();
     }
+    if (res.status === 401) return setCommentError('You are not authorized');
     return setCommentError(`There was an error...`);
   };
 
-  const handleConceptChange = (x) => {
-    setConcept(x);
+  const handleRatingChange = (x: number): void => {
+    return setRating(x);
   };
-  const handleCinemaChange = (x) => {
-    setCinema(x);
+  const handleNumInputRatingChange = (x: string, y: number): void => {
+    return setRating(y);
   };
-  const handlePerformChange = (x) => {
-    setPerform(x);
+  
+  const handleConceptChange = (x: number): void => {
+    return setConcept(x);
   };
-  const handleRatingChange = (x) => {
-    setRating(x);
+  const handleNumInputConceptChange = (x: string, y: number): void => {
+    return setConcept(y);
+  };
+  
+  const handleCinemaChange = (x: number): void => {
+    return setCinema(x);
+  };
+  const handleNumInputCinemaChange = (x: string, y: number): void => {
+    return setCinema(y);
+  };
+  
+  const handlePerformChange = (x: number): void => {
+    return setPerform(x);
+  };
+  const handleNumInputPerformChange = (x: string, y: number): void => {
+    return setPerform(y);
   };
 
   return (
@@ -147,17 +161,15 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         colorScheme="purple"
         mr={isAdmin ? 0 : 3}
         leftIcon={<AddIcon />}
-        onClick={() => onOpen()}
+        onClick={() => {
+          setMovie(null);
+          onOpen();
+        }}
       >
         Add review
       </Button>
 
-      <Modal
-        initialFocusRef={initialRef}
-        isOpen={isOpen}
-        onClose={onClose}
-        id={'review-modal'}
-      >
+      <Modal isOpen={isOpen} onClose={onClose} id={'review-modal'}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -176,9 +188,9 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 placeholder={movie?.name || 'No Film Selected'}
                 onChange={(e) => {
                   e.preventDefault();
-                  const movieFound = movies.filter(
+                  const movieFound = movies?.find(
                     (mv) => mv?.name === e.target.value
-                  )[0];
+                  );
                   if (!movieFound) {
                     return setMovieError(`Please select a valid film!`);
                   }
@@ -187,7 +199,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                 }}
               >
                 {movies &&
-                  movies?.map((_: MovieType<ReviewType<UserType>[]>) =>
+                  movies?.map((_) =>
                     movie?.name !== _.name ? (
                       <option key={_.name}>{_.name}</option>
                     ) : (
@@ -230,7 +242,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     maxW="100px"
                     mr="2rem"
                     value={concept}
-                    onChange={handleConceptChange}
+                    onChange={handleNumInputConceptChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -289,7 +301,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     maxW="100px"
                     mr="2rem"
                     value={cinema}
-                    onChange={handleCinemaChange}
+                    onChange={handleNumInputCinemaChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -348,7 +360,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     maxW="100px"
                     mr="2rem"
                     value={perform}
-                    onChange={handlePerformChange}
+                    onChange={handleNumInputPerformChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -404,7 +416,7 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                     maxW="100px"
                     mr="2rem"
                     value={rating}
-                    onChange={handleRatingChange}
+                    onChange={handleNumInputRatingChange}
                   >
                     <NumberInputField />
                     <NumberInputStepper>
@@ -445,12 +457,12 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
                   e.preventDefault();
 
                   if (
-                    (e.target.value?.length > 400 ||
+                    (e.target.value?.length > 512 ||
                       e.target.value?.length < 10) &&
                     e.target.value.length !== 0
                   ) {
                     setCommentError(
-                      `Comment needs to be more than 10 characters and less than 400`
+                      `Comment needs to be more than 10 characters and less than 512`
                     );
                   } else {
                     setCommentError(``);

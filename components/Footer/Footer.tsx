@@ -4,13 +4,23 @@ import {
   chakra,
   Stack,
   Tooltip,
+  Text,
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FaGithub, FaTwitter, FaDiscord } from 'react-icons/fa';
+import React from 'react';
 
-const SocialIcons = ({ children, href, label }) => {
+const SocialIcons = ({
+  children,
+  href,
+  label,
+}: {
+  children: React.ReactNode;
+  href: string;
+  label: string;
+}) => {
   return (
     <Tooltip label={label}>
       <chakra.button
@@ -52,9 +62,11 @@ export const Footer: React.FC = (): React.ReactElement => {
             <h1>{siteName}</h1>
           </a>
         </Link>
-        {/*<Text marginStart={{ md: `auto` }} justifySelf="middle">
-          Made by Mikerophone 🤠
-        </Text>*/}
+        <Link href="https://discord.com/invite/h2E8EzFqy5">
+        <Text marginStart={{ md: `auto` }} justifySelf="middle">
+          Join the Gillflix Discord
+        </Text>
+        </Link>
         <Stack direction="row" spacing={6} ml="auto" mr={{ base: `auto`, md: 5 }}>
         <SocialIcons label="GitHub" href="https://github.com/olig89/">
           <FaGithub />
@@ -68,7 +80,7 @@ export const Footer: React.FC = (): React.ReactElement => {
 
         <SocialIcons
           label="Discord"
-          href="https://discord.com/invite/T8SUMA2tgf"
+          href="https://discord.com/invite/h2E8EzFqy5"
         >
           <FaDiscord />
         </SocialIcons>
