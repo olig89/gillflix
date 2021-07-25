@@ -56,13 +56,13 @@ const COLUMNS = (
     Header: 'Movie',
     accessor: 'info',
     Cell: ({
-      value: { image, name },
+      value: { image, name, movieID },
     }: {
-      value: { name: string; image: string; tagLine: string };
+      value: { name: string; image: string; tagLine: string; movieID: string };
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
-        <Stack spacing={6} isInline alignItems="center">
+        <Stack href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`} spacing={6} isInline alignItems="center">
           <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
             <Skeleton borderRadius="md" isLoaded={loaded}>
