@@ -27,6 +27,7 @@ import {
   Button,
   PopoverHeader,
   Skeleton,
+  Box,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
@@ -62,6 +63,7 @@ const COLUMNS = (
       const [loaded, setLoaded] = React.useState(false);
       return (
         <Stack spacing={6} isInline alignItems="center">
+          <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
             <Skeleton borderRadius="md" isLoaded={loaded}>
               <Image
@@ -74,6 +76,7 @@ const COLUMNS = (
               />
             </Skeleton>
           </AspectRatio>
+          </Box>
           <VStack alignItems="flex-start">
             <Heading size="lg">{name}</Heading>
           </VStack>
@@ -315,7 +318,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
               <Th
                 {...header.getHeaderProps()}
                 key={j.toString() + ' header'}
-                py={7}
+                py={5}
                 fontSize="md"
                 textAlign="center"
               >
