@@ -55,7 +55,7 @@ const COLUMNS = (
   ) => void
 ) => [
   {
-    Header: 'Movie',
+    Header: 'Film',
     accessor: 'info',
     Cell: ({
       value: { image, name, tagLine, _id },
