@@ -15,7 +15,6 @@ import {
   IconButton,
   Tooltip,
   VStack,
-  Text,
   AvatarGroup,
   Avatar,
   useToast,
@@ -28,9 +27,12 @@ import {
   Button,
   PopoverHeader,
   Skeleton,
+  Box,
+  Text,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useMemo } from 'react';
 import { CgDetailsMore } from 'react-icons/cg';
@@ -53,16 +55,17 @@ const COLUMNS = (
   ) => void
 ) => [
   {
-    Header: 'Movie',
+    Header: 'Film',
     accessor: 'info',
     Cell: ({
-      value: { image, name, tagLine },
+      value: { image, name, tagLine, _id },
     }: {
-      value: { name: string; image: string; tagLine: string };
+      value: { name: string; image: string; tagLine: string; _id: string };
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
         <Stack spacing={6} isInline alignItems="center">
+          <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
             <Skeleton borderRadius="md" isLoaded={loaded}>
               <Image
@@ -75,11 +78,18 @@ const COLUMNS = (
               />
             </Skeleton>
           </AspectRatio>
+          </Box>
           <VStack alignItems="flex-start">
-            <Heading size="lg">{name}</Heading>
-            <Text color="gray.500" fontWeight="semibold">
-              {tagLine || 'No tag line'}
-            </Text>
+            <Link href={`/movie/${_id}`} passHref>
+              <Heading as="a" size="lg">
+                {name}
+              </Heading>
+            </Link>
+            <Box display={{base: 'none', xl:'block'}}>
+              <Text color="gray.500" fontWeight="semibold">
+                {tagLine || 'No tag line'}
+              </Text>
+            </Box>
           </VStack>
         </Stack>
       );
@@ -107,6 +117,7 @@ const COLUMNS = (
               {' '}
               /10
             </chakra.span>
+            <Box display={{base: 'none', lg:'block'}}>
             <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
                 <Avatar
@@ -116,6 +127,7 @@ const COLUMNS = (
                 />
               ))}
             </AvatarGroup>
+            </Box>
           </StatNumber>
         </Stat>
       ) : (
@@ -135,23 +147,25 @@ const COLUMNS = (
     }) => {
       return (
         <Stack isInline width="full" justifyContent="center">
-          <Tooltip
-            label="View more info"
-            aria-label="View more info"
-            hasArrow
-            placement="top"
-          >
-            <IconButton
-              href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
+          <Box display={{base: 'none', xl:'block'}}>
+            <Tooltip
+              label="View more info"
               aria-label="View more info"
-              size="2xl"
-              p={2}
-              as={'a'}
-              icon={<CgDetailsMore size="3em" />}
-              colorScheme="purple"
-              variant="ghost"
-            />
-          </Tooltip>
+              hasArrow
+              placement="top"
+            >
+              <IconButton
+                href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
+                aria-label="View more info"
+                size="2xl"
+                p={2}
+                as={'a'}
+                icon={<CgDetailsMore size="3em" />}
+                colorScheme="purple"
+                variant="ghost"
+              />
+            </Tooltip>
+          </Box>
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
@@ -277,9 +291,11 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
 
   const moviesData = movies.map((movie) => ({
     info: {
+      _id: movie._id.toString(),
       name: movie.name,
       image: movie.image,
       tagLine: movie.tagLine,
+      movieID: movie._id
     },
     rating: {
       rating: movie.rating,
@@ -319,7 +335,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
               <Th
                 {...header.getHeaderProps()}
                 key={j.toString() + ' header'}
-                py={7}
+                py={5}
                 fontSize="md"
                 textAlign="center"
               >

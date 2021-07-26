@@ -32,6 +32,7 @@ import {
   FormHelperText,
   Link,
   useColorMode,
+  Box,
 } from '@chakra-ui/react';
 import { FaUserPlus, FaUserShield, FaUserSlash } from 'react-icons/fa';
 import { useQueryClient } from 'react-query';
@@ -261,7 +262,9 @@ export const UserTable: React.FC<{
             placement="top"
           >
             <Flex justifyContent="center">
-              <Avatar src={row?.original?.image} />
+              <Box display={{base: 'none', lg:'block'}}>
+                <Avatar src={row?.original?.image} />
+              </Box>
               <VStack ml={3} alignItems="flex-start">
                 <Link
                   href={`${process.env.NEXT_PUBLIC_APP_URI}/user/${row.original._id}`}
@@ -279,12 +282,14 @@ export const UserTable: React.FC<{
                     <ExternalLinkIcon mx="5px" my="auto" />
                   </Flex>
                 </Link>
-                <Text
-                  fontSize="sm"
-                  color={useColorModeValue(`gray.400`, `gray.600`)}
-                >
-                  {row?.original?.id}
-                </Text>
+                <Box display={{base: 'none', lg:'block'}}>
+                  <Text
+                    fontSize="sm"
+                    color={useColorModeValue(`gray.400`, `gray.600`)}
+                  >
+                    {row?.original?.id}
+                  </Text>
+                </Box>
               </VStack>
             </Flex>
           </Tooltip>

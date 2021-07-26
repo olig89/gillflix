@@ -48,15 +48,19 @@ import { FaTheaterMasks } from 'react-icons/fa';
 import { getMovies } from '../../utils/queries';
 import { ReviewEndpointBodyType } from '../../types/APITypes';
 import { ReviewModalContext } from '../../utils/ModalContext';
+import { User } from 'next-auth';
 
-export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
-  isAdmin,
+export const ReviewModal: React.FC<{ user: User; inNav?: boolean }> = ({
+  user,
   inNav = false,
 }): React.ReactElement => {
   const { colorMode } = useColorMode();
   const { isOpen, onOpen, onClose, movie, setMovie } = useContext(
     ReviewModalContext
   );
+  const [isEditingReview, setIsEditingReview] = useState(false);
+  const { isAdmin } = user;
+  const [isOpenedFromMovie, setIsOpenedFromMovie] = useState(false);
   const [rating, setRating] = useState(0);
   const [cinema, setCinema] = useState(0);
   const [concept, setConcept] = useState(0);
@@ -87,8 +91,47 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
       setSuccess('');
     }
   }, [movie, queryClient, success, toast]);
-
   const { data: movies } = useQuery(`movies`, getMovies);
+
+  useEffect(() => {
+    if (movie) {
+      const rvw = movie?.reviews.find((review) => {
+        return review?.user?._id === user.sub;
+      });
+      if (rvw) {
+        setIsEditingReview(true);
+        setConcept(rvw.concept);
+        setCinema(rvw.cinema);
+        setPerform(rvw.perform);
+        setRating(rvw.rating);
+        return setComment(rvw?.comment || '');
+      }
+    }
+    setIsEditingReview(false);
+    setConcept(0);
+    setCinema(0);
+    setPerform(0);
+    setRating(0);
+    setComment(``);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movie]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsEditingReview(false);
+      setConcept(0);
+      setCinema(0);
+      setPerform(0);
+      setRating(0);
+      setComment(``);
+      return setIsOpenedFromMovie(false);
+    }
+    if (movie) {
+      setIsOpenedFromMovie(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     onClose: () => void
@@ -173,40 +216,54 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Heading fontSize="2xl" fontWeight="semibold">
-              Add a review
+            <Heading
+              fontSize="2xl"
+              fontWeight="semibold"
+              maxWidth="85%"
+              mr="auto"
+            >
+              {isOpenedFromMovie && movie
+                ? `Add a review to ${movie?.name}`
+                : isEditingReview && movie
+                ? `Editing review for ${movie?.name}`
+                : 'Add a review'}
             </Heading>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel mb={3} fontSize="1.1em" fontWeight="semibold">
-                Select film
-              </FormLabel>
-              <Select
-                bg={useColorModeValue('white', 'gray.700')}
-                placeholder={movie?.name || 'No Film Selected'}
-                onChange={(e) => {
-                  e.preventDefault();
-                  const movieFound = movies?.find(
-                    (mv) => mv?.name === e.target.value
-                  );
-                  if (!movieFound) {
-                    return setMovieError(`Please select a valid film!`);
-                  }
-                  setMovieError(``);
-                  return setMovie(movieFound);
-                }}
-              >
-                {movies &&
-                  movies?.map((_) =>
-                    movie?.name !== _.name ? (
-                      <option key={_.name}>{_.name}</option>
-                    ) : (
-                      ''
-                    )
-                  )}
-              </Select>
+              {!isOpenedFromMovie && (
+                <>
+                  <FormLabel mb={3} fontSize="1.1em" fontWeight="semibold">
+                    Select Movie
+                  </FormLabel>
+
+                  <Select
+                    bg={colorMode === 'light' ? 'white' : 'gray.700'}
+                    placeholder={movie?.name || 'No Movie Selected'}
+                    onChange={(e) => {
+                      e.preventDefault();
+                      const movieFound = movies?.find(
+                        (mv) => mv?.name === e.target.value
+                      );
+                      if (!movieFound) {
+                        return setMovieError(`Please select a valid film!`);
+                      }
+                      setMovieError(``);
+                      return setMovie(movieFound);
+                    }}
+                  >
+                    {movies &&
+                      movies?.map((_) =>
+                        movie?.name !== _.name ? (
+                          <option key={_.name}>{_.name}</option>
+                        ) : (
+                          ''
+                        )
+                      )}
+                  </Select>
+                </>
+              )}
               {movieError && (
                 <Text color={colorMode === 'light' ? `red.600` : `red.300`}>
                   {movieError}
@@ -492,7 +549,15 @@ export const ReviewModal: React.FC<{ isAdmin: boolean; inNav?: boolean }> = ({
             >
               Submit Review
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button
+              onClick={() => {
+                onClose();
+                setMovie(null);
+                setIsOpenedFromMovie(false);
+              }}
+            >
+              Cancel
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
