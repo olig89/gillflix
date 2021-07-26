@@ -100,11 +100,17 @@ export const ReviewModal: React.FC<{ user: User; inNav?: boolean }> = ({
       });
       if (rvw) {
         setIsEditingReview(true);
+        setConcept(rvw.concept);
+        setCinema(rvw.cinema);
+        setPerform(rvw.perform);
         setRating(rvw.rating);
         return setComment(rvw?.comment || '');
       }
     }
     setIsEditingReview(false);
+    setConcept(0);
+    setCinema(0);
+    setPerform(0);
     setRating(0);
     setComment(``);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,6 +119,9 @@ export const ReviewModal: React.FC<{ user: User; inNav?: boolean }> = ({
   useEffect(() => {
     if (!isOpen) {
       setIsEditingReview(false);
+      setConcept(0);
+      setCinema(0);
+      setPerform(0);
       setRating(0);
       setComment(``);
       return setIsOpenedFromMovie(false);
