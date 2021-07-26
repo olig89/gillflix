@@ -63,7 +63,6 @@ const COLUMNS = (
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
-        <Link href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`} >
         <Stack spacing={6} isInline alignItems="center">
           <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
@@ -85,12 +84,13 @@ const COLUMNS = (
                 {name}
               </Heading>
             </Link>
-            <Text color="gray.500" fontWeight="semibold">
-              {tagLine || 'No tag line'}
-            </Text>
+            <Box display={{base: 'none', md:'block'}}>
+              <Text color="gray.500" fontWeight="semibold">
+                {tagLine || 'No tag line'}
+              </Text>
+            </Box>
           </VStack>
         </Stack>
-        </Link>
       );
     },
   },
