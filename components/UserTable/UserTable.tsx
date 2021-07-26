@@ -32,6 +32,7 @@ import {
   FormHelperText,
   Link,
   useColorMode,
+  Box,
 } from '@chakra-ui/react';
 import { FaUserPlus, FaUserShield, FaUserSlash } from 'react-icons/fa';
 import { useQueryClient } from 'react-query';
@@ -270,21 +271,25 @@ export const UserTable: React.FC<{
                   <Flex>
                     <Text fontSize="lg" fontWeight="semibold">
                       {row?.original?.username}
-                      <chakra.span
-                        color={useColorModeValue(`gray.400`, `gray.600`)}
-                      >
-                        #{row?.original?.discriminator}
+                      <Box display={{base: 'none', lg:'block'}}>
+                        <chakra.span
+                          color={useColorModeValue(`gray.400`, `gray.600`)}
+                        >
+                          #{row?.original?.discriminator}
                       </chakra.span>
+                      </Box>
                     </Text>
                     <ExternalLinkIcon mx="5px" my="auto" />
                   </Flex>
                 </Link>
-                <Text
-                  fontSize="sm"
-                  color={useColorModeValue(`gray.400`, `gray.600`)}
-                >
-                  {row?.original?.id}
-                </Text>
+                <Box display={{base: 'none', lg:'block'}}>
+                  <Text
+                    fontSize="sm"
+                    color={useColorModeValue(`gray.400`, `gray.600`)}
+                  >
+                    {row?.original?.id}
+                  </Text>
+                </Box>
               </VStack>
             </Flex>
           </Tooltip>
