@@ -32,6 +32,7 @@ import {
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useMemo } from 'react';
 import { CgDetailsMore } from 'react-icons/cg';
@@ -57,9 +58,9 @@ const COLUMNS = (
     Header: 'Movie',
     accessor: 'info',
     Cell: ({
-      value: { image, name, movieID },
+      value: { image, name, tagLine, _id },
     }: {
-      value: { name: string; image: string; tagLine: string; movieID: string };
+      value: { name: string; image: string; tagLine: string; _id: string };
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
@@ -80,7 +81,14 @@ const COLUMNS = (
           </AspectRatio>
           </Box>
           <VStack alignItems="flex-start">
-            <Heading size="lg">{name}</Heading>
+            <Link href={`/movie/${_id}`} passHref>
+              <Heading as="a" size="lg">
+                {name}
+              </Heading>
+            </Link>
+            <Text color="gray.500" fontWeight="semibold">
+              {tagLine || 'No tag line'}
+            </Text>
           </VStack>
         </Stack>
         </Link>
@@ -281,6 +289,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
 
   const moviesData = movies.map((movie) => ({
     info: {
+      _id: movie._id.toString(),
       name: movie.name,
       image: movie.image,
       tagLine: movie.tagLine,

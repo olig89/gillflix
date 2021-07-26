@@ -6,6 +6,7 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import React from 'react';
 import { ReviewType } from '../../models/movie';
 import { PopulatedUserType } from '../../models/user';
@@ -13,7 +14,7 @@ import { PopulatedUserType } from '../../models/user';
 export const UserReviewSection: React.FC<{
   reviews: (
     | (ReviewType<PopulatedUserType> & {
-        movie?: { name: string; image?: string };
+        movie?: { name: string; image?: string; _id: string };
       })
     | null
   )[];
@@ -36,12 +37,14 @@ export const UserReviewSection: React.FC<{
             overflowWrap="anywhere"
             overflow="hidden"
           >
-            <Heading>
-              {review?.movie?.name}{' '}
-              <chakra.span color="gray.500">
-                • {review?.rating.toFixed(1)}
-              </chakra.span>
-            </Heading>
+            <Link href={`/movie/${review?.movie?._id}`} passHref>
+              <Heading as="a">
+                {review?.movie?.name}{' '}
+                <chakra.span color="gray.500">
+                  • {review?.rating.toFixed(1)}
+                </chakra.span>
+              </Heading>
+            </Link>
             <Text fontSize="2xl">{review?.comment}</Text>
           </Flex>
         </Flex>
