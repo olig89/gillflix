@@ -147,23 +147,25 @@ const COLUMNS = (
     }) => {
       return (
         <Stack isInline width="full" justifyContent="center">
-          <Tooltip
-            label="View more info"
-            aria-label="View more info"
-            hasArrow
-            placement="top"
-          >
-            <IconButton
-              href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
+          <Box display={{base: 'none', md:'block'}}>
+            <Tooltip
+              label="View more info"
               aria-label="View more info"
-              size="2xl"
-              p={2}
-              as={'a'}
-              icon={<CgDetailsMore size="3em" />}
-              colorScheme="purple"
-              variant="ghost"
-            />
-          </Tooltip>
+              hasArrow
+              placement="top"
+            >
+              <IconButton
+                href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
+                aria-label="View more info"
+                size="2xl"
+                p={2}
+                as={'a'}
+                icon={<CgDetailsMore size="3em" />}
+                colorScheme="purple"
+                variant="ghost"
+              />
+            </Tooltip>
+          </Box>
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
