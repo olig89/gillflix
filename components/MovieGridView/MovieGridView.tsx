@@ -28,7 +28,6 @@ import {
   PopoverHeader,
   Skeleton,
   Box,
-  Link,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
