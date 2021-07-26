@@ -262,7 +262,9 @@ export const UserTable: React.FC<{
             placement="top"
           >
             <Flex justifyContent="center">
-              <Avatar src={row?.original?.image} />
+              <Box display={{base: 'none', lg:'block'}}>
+                <Avatar src={row?.original?.image} />
+              </Box>
               <VStack ml={3} alignItems="flex-start">
                 <Link
                   href={`${process.env.NEXT_PUBLIC_APP_URI}/user/${row.original._id}`}
@@ -271,13 +273,11 @@ export const UserTable: React.FC<{
                   <Flex>
                     <Text fontSize="lg" fontWeight="semibold">
                       {row?.original?.username}
-                      <Box display={{base: 'none', lg:'block'}}>
-                        <chakra.span
-                          color={useColorModeValue(`gray.400`, `gray.600`)}
-                        >
-                          #{row?.original?.discriminator}
+                      <chakra.span
+                        color={useColorModeValue(`gray.400`, `gray.600`)}
+                      >
+                        #{row?.original?.discriminator}
                       </chakra.span>
-                      </Box>
                     </Text>
                     <ExternalLinkIcon mx="5px" my="auto" />
                   </Flex>
