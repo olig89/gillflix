@@ -85,7 +85,7 @@ const COLUMNS = (
                 {name}
               </Heading>
             </Link>
-            <Box display={{base: 'none', md:'block'}}>
+            <Box display={{base: 'none', xl:'block'}}>
               <Text color="gray.500" fontWeight="semibold">
                 {tagLine || 'No tag line'}
               </Text>
@@ -117,7 +117,7 @@ const COLUMNS = (
               {' '}
               /10
             </chakra.span>
-            <Box display={{base: 'none', md:'block'}}>
+            <Box display={{base: 'none', lg:'block'}}>
             <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
                 <Avatar
@@ -147,7 +147,7 @@ const COLUMNS = (
     }) => {
       return (
         <Stack isInline width="full" justifyContent="center">
-          <Box display={{base: 'none', md:'block'}}>
+          <Box display={{base: 'none', xl:'block'}}>
             <Tooltip
               label="View more info"
               aria-label="View more info"
