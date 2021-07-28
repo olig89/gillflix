@@ -5,6 +5,7 @@ import {
   Heading,
   Image,
   Text,
+  Box,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
@@ -23,14 +24,16 @@ export const UserReviewSection: React.FC<{
     <Flex mt={5} maxW="6xl" width="full" direction="column">
       {reviews.map((review, i) => (
         <Flex mt={10} width="6xl" key={i.toString()}>
-          <AspectRatio ratio={16 / 9} minWidth="200px" mr={7}>
-            <Image
-              src={review?.movie?.image}
-              alt={review?.user?.username + "'s profile"}
-              objectFit="fill"
-              borderRadius="2xl"
-            />
-          </AspectRatio>
+          <Box display={{base: 'none', lg:'block'}}>
+            <AspectRatio ratio={16 / 9} minWidth="200px" mr={7}>
+              <Image
+                src={review?.movie?.image}
+                alt={review?.user?.username + "'s profile"}
+                objectFit="fill"
+                borderRadius="2xl"
+              />
+            </AspectRatio>
+          </Box>
           <Flex
             direction="column"
             maxWidth="full"
@@ -39,9 +42,21 @@ export const UserReviewSection: React.FC<{
           >
             <Link href={`/movie/${review?.movie?._id}`} passHref>
               <Heading as="a">
-                {review?.movie?.name}{' '}
+                {review?.movie?.name}{' • '}
                 <chakra.span color="gray.500">
-                  • {review?.rating.toFixed(1)}
+                {review?.rating.toFixed(1)}
+                </chakra.span>
+                {' • '}
+                <chakra.span color="cyan.500">
+                {review?.concept.toFixed(1)}
+                </chakra.span>
+                {' • '}
+                <chakra.span color="yellow.500">
+                {review?.cinema.toFixed(1)}
+                </chakra.span>
+                {' • '}
+                <chakra.span color="red.500">
+                {review?.perform.toFixed(1)}
                 </chakra.span>
               </Heading>
             </Link>
