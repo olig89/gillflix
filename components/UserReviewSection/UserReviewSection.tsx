@@ -21,7 +21,7 @@ export const UserReviewSection: React.FC<{
   )[];
 }> = ({ reviews }): React.ReactElement => {
   return (
-    <Flex mt={5} maxW="6xl" width="full" direction="column">
+    <Flex mt={5} px={4} maxW="6xl" width="full" direction="column">
       {reviews.map((review, i) => (
         <Flex mt={10} width="6xl" key={i.toString()}>
           <Box display={{base: 'none', lg:'block'}}>
@@ -37,8 +37,8 @@ export const UserReviewSection: React.FC<{
           <Flex
             direction="column"
             maxWidth="full"
-            overflowWrap="anywhere"
-            overflow="hidden"
+            //overflowWrap="anywhere"
+            //overflow="hidden"
           >
             <Link href={`/movie/${review?.movie?._id}`} passHref>
               <Heading as="a">
