@@ -15,6 +15,7 @@ import {
   Stack,
   Heading,
   useBreakpointValue,
+  Image,
 } from '@chakra-ui/react';
 import { IoMoon, IoSunny } from 'react-icons/io5';
 import Link from 'next/link';
@@ -36,14 +37,17 @@ export const Nav: React.FC<NavProps> = ({
 }): React.ReactElement => {
   const links = [
     { link: `/`, name: `Home` },
-    { link: `https://discord.com/invite/h2E8EzFqy5`, name: `Discord Community` },
     { link: `/user/${user?.sub}`, name: `My Reviews` },
+    { link: `https://discord.com/invite/h2E8EzFqy5`, name: `Discord Community` },
     { link: `https://docs.google.com/forms/d/e/1FAIpQLSc_6JjeF4lUt9dzzyIeiceZAGfdj03L-ZV4Qjut6Hyk6k4qzA/viewform?usp=pp_url&entry.1591633300=Other&entry.485428648=${user?.username}`, name: `Feedback` },
     { link: `/users`, name: `All Users`, adminOnly: true },
   ];
   const { colorMode, toggleColorMode } = useColorMode();
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
   const shortSiteName = process.env.NEXT_PUBLIC_SHORT_SITE_NAME;
+  const siteURI = process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
+  const siteLogo = process.env.NEXT_PUBLIC_SITE_LOGO;
+
   return (
     <>
       <Box
@@ -59,14 +63,17 @@ export const Nav: React.FC<NavProps> = ({
         >
           <HStack spacing={8} alignItems="center" ml={5}>
             <Link href="/">
-              <a>
-                <Heading fontSize="2xl">
-                  {useBreakpointValue({
+            <a>
+              <Heading fontSize="2xl">
+                {<Image src={"/" + siteLogo}
+                  alt={useBreakpointValue({
                     base: shortSiteName || 'SMDB',
                     md: siteName || 'ScuffedMDB',
-                  })}
-                </Heading>
+                  })} 
+                />}
+              </Heading>
               </a>
+            
             </Link>
           </HStack>
 
