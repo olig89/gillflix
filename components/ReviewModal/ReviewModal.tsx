@@ -223,9 +223,9 @@ export const ReviewModal: React.FC<{ user: User; inNav?: boolean }> = ({
               mr="auto"
             >
               {isOpenedFromMovie && movie
-                ? `Add a review to ${movie?.name}`
+                ? `Add a review for ${movie?.name}`
                 : isEditingReview && movie
-                ? `Editing review for ${movie?.name}`
+                ? `Edit review for ${movie?.name}`
                 : 'Add a review'}
             </Heading>
           </ModalHeader>
