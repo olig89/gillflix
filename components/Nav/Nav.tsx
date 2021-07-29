@@ -38,6 +38,7 @@ export const Nav: React.FC<NavProps> = ({
     { link: `/`, name: `Home` },
     { link: `https://discord.com/invite/h2E8EzFqy5`, name: `Discord Community` },
     { link: `/user/${user?.sub}`, name: `My Reviews` },
+    { link: `https://docs.google.com/forms/d/e/1FAIpQLSc_6JjeF4lUt9dzzyIeiceZAGfdj03L-ZV4Qjut6Hyk6k4qzA/viewform?usp=pp_url&entry.1591633300=Other&entry.485428648=${user?.username}`, name: `Feedback` },
     { link: `/users`, name: `All Users`, adminOnly: true },
   ];
   const { colorMode, toggleColorMode } = useColorMode();
