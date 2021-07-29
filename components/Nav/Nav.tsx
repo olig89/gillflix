@@ -64,7 +64,7 @@ export const Nav: React.FC<NavProps> = ({
             <Link href="/">
             <a>
               <Heading fontSize="2xl">
-                {<Image maxWidth="40px" src={"/" + siteLogo}
+                {<Image maxHeight="40px" src={"/" + siteLogo}
                   alt={useBreakpointValue({
                     base: shortSiteName || 'SMDB',
                     md: siteName || 'ScuffedMDB',
