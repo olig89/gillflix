@@ -45,7 +45,6 @@ export const Nav: React.FC<NavProps> = ({
   const { colorMode, toggleColorMode } = useColorMode();
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
   const shortSiteName = process.env.NEXT_PUBLIC_SHORT_SITE_NAME;
-  const siteURI = process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
   const siteLogo = process.env.NEXT_PUBLIC_SITE_LOGO;
 
   return (
