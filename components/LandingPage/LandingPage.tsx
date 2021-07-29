@@ -6,12 +6,14 @@ import {
   Button,
   Icon,
   Flex,
+  Image,
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 import { signIn } from 'next-auth/client';
 
 export const LandingPage: React.FC = (): React.ReactElement => {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
+  const siteLogo = process.env.NEXT_PUBLIC_SITE_LOGO;
   const seanQuotes = [
     "The premier user generated judgment service",
     "High quality reviews by low quality people",    
@@ -50,7 +52,9 @@ export const LandingPage: React.FC = (): React.ReactElement => {
             bgGradient="linear(to-r, green.400,purple.500)"
             fontWeight="extrabold"
           >
-            {siteName}
+            {<Image maxHeight="120px" src={"/" + siteLogo}
+                  alt={siteName} 
+                />}
           </Text>
           {` `}
         </chakra.h1>

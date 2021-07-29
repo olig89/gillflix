@@ -72,10 +72,8 @@ export const Nav: React.FC<NavProps> = ({
                 />}
               </Heading>
               </a>
-            
             </Link>
           </HStack>
-
           <Stack align="center" direction="row" spacing={3} mx={4}>
             <IconButton
               variant="ghost"
