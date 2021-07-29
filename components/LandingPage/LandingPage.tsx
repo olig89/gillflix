@@ -35,7 +35,7 @@ export const LandingPage: React.FC = (): React.ReactElement => {
       <Box
         w={{ base: `full`, md: 11 / 12, xl: 8 / 12 }}
         mx="auto"
-        textAlign={{ base: `left`, sm: `center` }}
+        textAlign="center"
       >
         <chakra.h1
           mb={6}
