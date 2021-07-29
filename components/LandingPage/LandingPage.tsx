@@ -35,7 +35,7 @@ export const LandingPage: React.FC = (): React.ReactElement => {
       <Box
         w={{ base: `full`, md: 11 / 12, xl: 8 / 12 }}
         mx="auto"
-        textAlign="center"
+        textAlign={{ base: `left`, sm: `center` }}
       >
         <chakra.h1
           mb={6}
@@ -46,12 +46,13 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           color={useColorModeValue(`gray.900`, `gray.100`)}
         >
           <Text
+            display={{ base: `block`, lg: `inline` }}
             w="full"
             bgClip="text"
             bgGradient="linear(to-r, green.400,purple.500)"
             fontWeight="extrabold"
           >
-            {<Image align="center" maxHeight="120px" src={"/" + siteLogo}
+            {<Image maxHeight="120px" src={"/" + siteLogo}
                   alt={siteName} 
                 />}
           </Text>
