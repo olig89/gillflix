@@ -27,9 +27,11 @@ export const AboutUserSection: React.FC<AboutUserSectionProps> = ({
             #{user.discriminator}
           </chakra.span>
         </Heading>
+        <Text fontSize="2xl" color="purple.500" fontWeight="semibold" alignSelf="flex-start">
+          {reviews.length === 0 ? 'No reviews' : reviews.length}
+        </Text>
         <Text fontSize="2xl" color="gray.500" alignSelf="flex-start">
-          {reviews.length === 0 ? 'No reviews' : reviews.length + ' Rating'}
-          {reviews.length > 1 ? 's' : ''}{' '}
+          {reviews.length > 1 ? ' Ratings' : ' Rating'}{' '}
           {reviews.length > 0 &&
             '·  ' +
               (
