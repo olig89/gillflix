@@ -46,13 +46,13 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           color={useColorModeValue(`gray.900`, `gray.100`)}
         >
           <Text
-            display="inline"
+            display={{ base: `block`, lg: `inline` }}
             w="full"
             bgClip="text"
             bgGradient="linear(to-r, green.400,purple.500)"
             fontWeight="extrabold"
           >
-            {<Image maxHeight="120px" src={"/" + siteLogo}
+            {<Image display="inline-block" maxHeight="120px" src={"/" + siteLogo}
                   alt={siteName} 
                 />}
           </Text>
