@@ -52,7 +52,7 @@ export const LandingPage: React.FC = (): React.ReactElement => {
             bgGradient="linear(to-r, green.400,purple.500)"
             fontWeight="extrabold"
           >
-            {<Image maxHeight="120px" src={"/" + siteLogo}
+            {<Image align="center" maxHeight="120px" src={"/" + siteLogo}
                   alt={siteName} 
                 />}
           </Text>
