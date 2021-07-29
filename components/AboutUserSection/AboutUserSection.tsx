@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Flex, Heading, chakra, VStack, Text } from '@chakra-ui/react';
+import { Avatar, Flex, Heading, chakra, VStack, Text, Box, } from '@chakra-ui/react';
 import { PopulatedUserType, SerializedUser } from '../../models/user';
 import { ReviewType } from '../../models/movie';
 
@@ -27,10 +27,9 @@ export const AboutUserSection: React.FC<AboutUserSectionProps> = ({
             #{user.discriminator}
           </chakra.span>
         </Heading>
+        <Box>
         <Text fontSize="2xl" color="purple.500" fontWeight="semibold" alignSelf="flex-start">
-          {reviews.length === 0 ? 'No reviews' : reviews.length}
-        </Text>
-        <Text fontSize="2xl" color="gray.500" alignSelf="flex-start">
+          {reviews.length === 0 ? 'No reviews' : reviews.length}</Text><Text fontSize="2xl" color="gray.500" alignSelf="flex-start">
           {reviews.length > 1 ? ' Ratings' : ' Rating'}{' '}
           {reviews.length > 0 &&
             '·  ' +
@@ -40,6 +39,7 @@ export const AboutUserSection: React.FC<AboutUserSectionProps> = ({
               ).toFixed(1) +
               '    Average Rating'}
         </Text>
+        </Box>
       </VStack>
     </Flex>
   );
