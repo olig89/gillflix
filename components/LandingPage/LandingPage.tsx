@@ -46,7 +46,6 @@ export const LandingPage: React.FC = (): React.ReactElement => {
           color={useColorModeValue(`gray.900`, `gray.100`)}
         >
           <Text
-            display="block"
             w="full"
             bgClip="text"
             bgGradient="linear(to-r, green.400,purple.500)"
