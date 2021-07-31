@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema<MongoUser, UserModel>(
     premium_type: { type: Number, default: 0 },
     last_updated: { type: Number, default: Date.now() },
     isAdmin: { type: Boolean, default: false },
-    isReviewer: { type: Boolean, default: true },
+    isReviewer: { type: Boolean, default: false },
     isBanned: { type: Boolean, default: false },
     banReason: { type: String },
   },
