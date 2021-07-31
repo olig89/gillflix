@@ -17,7 +17,6 @@ import type { Session } from 'next-auth';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { useQuery } from 'react-query';
-import { NextSeo } from 'next-seo';
 
 interface EditUserProps {
   desiredUser: SerializedUser | null;
