@@ -17,10 +17,6 @@ export const UserReviewSection: React.FC<{
   movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];
   user: UserAuthType;
 }> = ({ movies, user }): React.ReactElement => {
-  // eslint-disable-next-line no-console
-  console.log('movies', movies)
-  // eslint-disable-next-line no-console
-  console.log('user', user)
   return (
     <Flex mt={5} maxW="6xl" width="full" direction="column">
       {movies.map((movie, i) => {
