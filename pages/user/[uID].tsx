@@ -15,8 +15,8 @@ import dbConnect from '../../utils/dbConnect';
 import { getSession, useSession } from 'next-auth/client';
 import type { Session } from 'next-auth';
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
 import { useQuery } from 'react-query';
+import { NextSeo } from 'next-seo';
 
 interface EditUserProps {
   desiredUser: SerializedUser | null;
@@ -83,14 +83,13 @@ function EditUser({ desiredUser, ...props }: EditUserProps): React.ReactNode {
 
   return (
     <AppLayout user={user} showReview>
+      <NextSeo title={desiredUser.name} />
       <Flex direction="column" pt={16} maxW="6xl" mx="auto">
         <AboutUserSection user={desiredUser} reviews={allRatings} />
         <Divider mt={10} />
         <UserReviewSection movies={movies} user={user} />
         {/* <UserStatsSection /> */}
       </Flex>
-      
-      <NextSeo title= {desiredUser.username} />
     </AppLayout>
   );
 }
@@ -129,15 +128,15 @@ export async function getServerSideProps(
 
   assertsIsSerializedUser(desiredUser);
   const movies = await getMovies();
-  return {     
+  return {
     props: {
       session,
       desiredUser: desiredUser || null,
       movies: movies,
     },
   };
-  
 }
+
 export default EditUser;
 
 function assertsIsSerializedUser(
