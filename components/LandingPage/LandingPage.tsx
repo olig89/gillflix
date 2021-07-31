@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 import { signIn } from 'next-auth/client';
-import { NextSeo } from 'next-seo';
 
 export const LandingPage: React.FC = (): React.ReactElement => {
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
