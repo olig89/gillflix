@@ -17,6 +17,8 @@ export const UserReviewSection: React.FC<{
   movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];
   user: UserAuthType;
 }> = ({ movies, user }): React.ReactElement => {
+  console.log('movies', movies)
+  console.log('user', user)
   return (
     <Flex mt={5} maxW="6xl" width="full" direction="column">
       {movies.map((movie, i) => {
