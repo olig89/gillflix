@@ -22,6 +22,7 @@ import {
   PopoverBody,
   Button,
   Link as ChakraLink,
+  useColorMode,
 } from '@chakra-ui/react';
 import { PopulatedUserType } from '../../models/user';
 import React, { ReactElement } from 'react';
@@ -151,6 +152,7 @@ interface ReviewProps {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
 }
 const Review = ({ review, user, movie }: ReviewProps) => {
+  const { colorMode } = useColorMode();
   return (
     <VStack mt={8} alignItems="flex-start" spacing={3} px={4} mb={5}>
       <Flex
@@ -198,7 +200,16 @@ const Review = ({ review, user, movie }: ReviewProps) => {
             </Text>
           </chakra.div>
       </Flex>
-      <Text fontSize="lg" color={review?.comment ? 'white' : 'gray.500'}>
+      <Text
+        fontSize="lg"
+        color={
+          review?.comment
+            ? colorMode === 'light'
+              ? 'gray.900'
+              : 'white'
+            : 'gray.500'
+        }
+      >
         {review.comment || 'No comment'}
       </Text>
     </VStack>

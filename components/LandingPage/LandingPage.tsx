@@ -6,11 +6,15 @@ import {
   Button,
   Icon,
   Flex,
+  useColorMode,
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
-import { signIn } from 'next-auth/client';
+import { SerializedMovieType } from '../../models/movie';
 
-export const LandingPage: React.FC = (): React.ReactElement => {
+export const LandingPage: React.FC<{
+  movie?: SerializedMovieType;
+}> = ({ movie }): React.ReactElement => {
+  const { colorMode } = useColorMode();
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
   const seanQuotes = [
     "The premier user generated judgment service",
@@ -23,7 +27,25 @@ export const LandingPage: React.FC = (): React.ReactElement => {
 
   return (
     <>
-      <NextSeo title="Welcome" />
+      <NextSeo
+        title={movie ? movie.name : 'Welcome'}
+        openGraph={{
+          title: `${movie?.name} on ${siteName}`,
+          type: `website`,
+          site_name: siteName,
+          images: [
+            {
+              width: 3840,
+              height: 2160,
+              url:
+                movie?.image ||
+                `https://www.movie.michael-hall.me/sitePicture.png`,
+              alt: siteName + ' webpage',
+            },
+          ],
+        }}
+        description={'A private movie rating website'}
+      />
       <Flex
         minH="100vh"
         flex={1}
@@ -62,7 +84,19 @@ export const LandingPage: React.FC = (): React.ReactElement => {
             fontSize={{ base: `lg`, md: `xl` }}
             color={useColorModeValue(`gray.600`, `gray.300`)}
           >
-            {randomQuote}
+            {randomQuote}.
+            {movie && (
+              <>
+                <br />
+                Sign in to see details about{' '}
+                <chakra.span
+                  fontWeight="semibold"
+                  color={colorMode === 'light' ? 'purple.500' : 'purple.300'}
+                >
+                  {movie.name}
+                </chakra.span>
+              </>
+            )}
           </chakra.p>
           <Button
             variant="solid"
