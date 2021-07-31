@@ -5,7 +5,6 @@ import {
   Heading,
   Image,
   Text,
-  Box,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Link from 'next/link';
