@@ -9,6 +9,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
+import { signIn } from 'next-auth/client';
 import { SerializedMovieType } from '../../models/movie';
 
 export const LandingPage: React.FC<{
@@ -84,7 +85,7 @@ export const LandingPage: React.FC<{
             fontSize={{ base: `lg`, md: `xl` }}
             color={useColorModeValue(`gray.600`, `gray.300`)}
           >
-            {randomQuote}.
+            {randomQuote}
             {movie && (
               <>
                 <br />
