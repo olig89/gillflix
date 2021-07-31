@@ -16,13 +16,23 @@ import { getSession, useSession } from 'next-auth/client';
 import type { Session } from 'next-auth';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import { useQuery } from 'react-query';
 
 interface EditUserProps {
   desiredUser: SerializedUser | null;
   movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];
 }
 
-function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
+function EditUser({ desiredUser, ...props }: EditUserProps): React.ReactNode {
+  const { data } = useQuery(
+    'movies',
+    async () => {
+      return await getMovies();
+    },
+
+    { initialData: props.movies }
+  );
+  const movies = data;
   const [session, loading] = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -38,13 +48,17 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
     return <div>That user could not be found :(</div>;
   }
 
+  if (!movies) {
+    return <div>Loading movies :(</div>;
+  }
+
   const allRatings: (
     | (ReviewType<PopulatedUserType> & {
         movie?: { name: string; image?: string; _id: string };
       })
     | null
   )[] = movies
-    .map((movie) => {
+    ?.map((movie) => {
       const rev:
         | (ReviewType<PopulatedUserType> & {
             movie?: { name: string; image?: string; _id: string };
@@ -68,11 +82,11 @@ function EditUser({ desiredUser, movies }: EditUserProps): React.ReactNode {
     .reverse();
 
   return (
-    <AppLayout user={user}>
+    <AppLayout user={user} showReview>
       <Flex direction="column" pt={16} maxW="6xl" mx="auto">
         <AboutUserSection user={desiredUser} reviews={allRatings} />
         <Divider mt={10} />
-        <UserReviewSection reviews={allRatings} />
+        <UserReviewSection movies={movies} user={user} />
         {/* <UserStatsSection /> */}
       </Flex>
       

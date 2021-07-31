@@ -57,10 +57,15 @@ export const Footer: React.FC = (): React.ReactElement => {
         px={{ base: `6`, md: `0` }}
         align="center"
       >
-        <Link href="/">
-          <a aria-current="page" aria-label="Back to Home page" rel="home">
+        <Link href="/" passHref>
+          <chakra.a
+            ml={{ base: `auto`, md: 5 }}
+            aria-current="page"
+            aria-label="Back to Home page"
+            rel="home"
+          >
             <h1>{siteName}</h1>
-          </a>
+          </chakra.a>
         </Link>
         <Link href="https://discord.com/invite/h2E8EzFqy5">
         <Text marginStart={{ md: `auto` }} justifySelf="middle">

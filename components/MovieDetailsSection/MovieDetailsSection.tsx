@@ -157,7 +157,7 @@ export default function MovieDetailsSection({
             xl: 'calc(calc(100vh / 3) - 270px)',
           }}
         >
-          <MovieAdminOptions isAdmin={user.isAdmin} movie={movie} />
+          <MovieAdminOptions user={user} movie={movie} />
           <Flex direction={{ base: 'column', lg: 'row' }}>
             <Flex
               width={{ base: '90%', lg: '50%' }}
@@ -470,10 +470,10 @@ export default function MovieDetailsSection({
 }
 
 const MovieAdminOptions = ({
-  isAdmin,
+  user,
   movie,
 }: {
-  isAdmin: boolean;
+  user: UserAuthType;
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
 }): JSX.Element => {
   const { colorMode } = useColorMode();
@@ -597,9 +597,17 @@ const MovieAdminOptions = ({
               setModalMovie(movie);
               return reviewOnOpen();
             }}
-            icon={<AddIcon />}
+            icon={
+              !movie.reviews.find((rvw) => rvw.user?._id === user.sub) ? (
+                <AddIcon />
+              ) : (
+                <EditIcon />
+              )
+            }
           >
-            Add Review
+            {!movie.reviews.find((rvw) => rvw.user?._id === user.sub)
+              ? 'Add Review'
+              : 'Edit Review'}
           </MenuItem>
           <MenuItem
             onClick={() => {
@@ -619,7 +627,7 @@ const MovieAdminOptions = ({
           >
             Share
           </MenuItem>
-          {isAdmin && (
+          {user.isAdmin && (
             <>
               <MenuDivider />
               <MenuItem

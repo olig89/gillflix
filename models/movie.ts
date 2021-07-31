@@ -49,6 +49,7 @@ export default mongoose?.models?.Movie ||
   mongoose.model<MovieType>(`Movie`, movieSchema);
 
 export interface ReviewType<T = PopulatedUserType> {
+  _id: string;
   user: T extends string ? T : T | null;
   comment?: string;
   rating: number;
