@@ -63,6 +63,7 @@ export default function MoviePage({
   }
   if (!user) {
     const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
+    const siteURI = process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
 
     return (
       <>
@@ -78,7 +79,7 @@ export default function MoviePage({
                 height: 2160,
                 url:
                   data.image ||
-                  `https://www.movie.michael-hall.me/sitePicture.png`,
+                  `${siteURI}/sitePicture.png`,
                 alt: siteName + ' webpage',
               },
             ],
