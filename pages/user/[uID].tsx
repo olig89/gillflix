@@ -84,7 +84,7 @@ function EditUser({ desiredUser, ...props }: EditUserProps): React.ReactNode {
 
   return (
     <AppLayout user={user} showReview>
-      <NextSeo title={desiredUser.name + '#' + desiredUser.discriminator} />
+      <NextSeo title={desiredUser.name} />
       <Flex direction="column" pt={16} maxW="6xl" mx="auto">
         <AboutUserSection user={desiredUser} reviews={allRatings} />
         <Divider mt={10} />
