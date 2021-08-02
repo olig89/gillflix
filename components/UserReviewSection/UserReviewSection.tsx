@@ -57,6 +57,7 @@ export const UserReviewSection: React.FC<{
                       isTruncated
                       maxWidth={{ base: 'full', md: 'calc(100vw - 430px)' }}
                       size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
+                      mr={5}
                     >
                       {movie?.name}
                     </Heading>
@@ -66,14 +67,14 @@ export const UserReviewSection: React.FC<{
                       size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
                     >
                       {' '}
-                      <CircularProgress value={review?.concept} min={0} max={10} mr={5} mt={[0,0,1,1]} color="cyan.400" trackColor={`gray.300`} size="30px" thickness="14px">
-                        <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.concept.toFixed(1)}</CircularProgressLabel>
+                      <CircularProgress value={review?.concept} min={0} max={10} mr={5} color="cyan.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                        <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.concept.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
-                      <CircularProgress value={review?.cinema} min={0} max={10} mr={5} mt={[0,0,1,1]} color="yellow.400" trackColor={`gray.300`} size="30px" thickness="14px">
-                        <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.cinema.toFixed(1)}</CircularProgressLabel>
+                      <CircularProgress value={review?.cinema} min={0} max={10} mr={5} color="yellow.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                        <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.cinema.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
-                      <CircularProgress value={review?.perform} min={0} max={10} mr={5} mt={[0,0,1,1]} color="red.400" trackColor={`gray.300`} size="30px" thickness="14px">
-                        <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.perform.toFixed(1)}</CircularProgressLabel>
+                      <CircularProgress value={review?.perform} min={0} max={10} mr={5} color="red.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                        <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.perform.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
                       <chakra.span color="gray.500">
                       {review?.rating.toFixed(1)}
