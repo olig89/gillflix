@@ -26,7 +26,7 @@ export const UserReviewSection: React.FC<{
         if (!review) return null;
         return (
           <Flex mt={10} width="6xl" key={i.toString()}>
-            <AspectRatio ratio={16 / 9} minWidth="200px" mr={7}>
+            <AspectRatio ratio={16 / 9} minWidth="200px" mr={7} display={{base: 'none', md:'block'}}>
               <Image
                 src={movie?.image}
                 alt={review?.user?.username + "'s profile"}
