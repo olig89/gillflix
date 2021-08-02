@@ -4,6 +4,7 @@ import {
   Flex,
   Heading,
   Image,
+  Stack,
   Text,
   useBreakpoint,
 } from '@chakra-ui/react';
@@ -49,7 +50,7 @@ export const UserReviewSection: React.FC<{
             <Flex direction="column" maxWidth="full">
               <Flex direction={{ base: 'column', lg: 'row' }}>
                 <Link href={`/movie/${movie?._id}`} passHref>
-
+                  
                     <Heading
                       isTruncated
                       maxWidth={{ base: 'full', md: 'calc(100vw - 430px)' }}
@@ -57,6 +58,8 @@ export const UserReviewSection: React.FC<{
                     >
                       {movie?.name}
                     </Heading>
+                </Link>
+                <Stack as="a" isInline>
                     <Heading
                       size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
                     >
@@ -65,9 +68,6 @@ export const UserReviewSection: React.FC<{
                         • {review?.rating.toFixed(1)}
                       </chakra.span>
                     </Heading>
-
-                </Link>
-
                 {review && (
                   <ReviewActions
                     toInvalidate={'movies'}
@@ -76,6 +76,7 @@ export const UserReviewSection: React.FC<{
                     user={user}
                   />
                 )}
+                </Stack>
               </Flex>
 
               <Text fontSize={{ base: 'lg', md: '2xl' }}>
