@@ -67,13 +67,13 @@ export const UserReviewSection: React.FC<{
                       size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
                     >
                       {' '}
-                      <CircularProgress value={review?.concept} min={0} max={10} mr={5} color="cyan.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                      <CircularProgress value={review?.concept} min={0} max={10} mr={5} pb={[0,0,2,2]} color="cyan.400" trackColor={`gray.300`} size="30px" thickness="14px">
                         <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.concept.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
-                      <CircularProgress value={review?.cinema} min={0} max={10} mr={5} color="yellow.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                      <CircularProgress value={review?.cinema} min={0} max={10} mr={5} mb={[0,0,2,2]} color="yellow.400" trackColor={`gray.300`} size="30px" thickness="14px">
                         <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.cinema.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
-                      <CircularProgress value={review?.perform} min={0} max={10} mr={5} color="red.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                      <CircularProgress value={review?.perform} min={0} max={10} mr={5} pb={[2,2,0,0]} color="red.400" trackColor={`gray.300`} size="30px" thickness="14px">
                         <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.perform.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
                       <chakra.span color="gray.500">
