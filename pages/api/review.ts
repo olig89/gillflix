@@ -98,7 +98,9 @@ const handler = async (
     }
 
     const review = movie.reviews.find(
-      (rvw) => rvw.user.toString() === reviewID || session?.user?.id
+      (rvw) =>
+        rvw._id.toString() === reviewID ||
+        rvw.user.toString() === session?.user?.id
     );
     if (!review) {
       return res
