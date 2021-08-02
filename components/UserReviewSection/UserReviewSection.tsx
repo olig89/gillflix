@@ -25,7 +25,7 @@ export const UserReviewSection: React.FC<{
         );
         if (!review) return null;
         return (
-          <Flex mt={10} width="6xl" key={i.toString()}>
+          <Flex mt={10} mx={10} width="6xl" key={i.toString()}>
             <AspectRatio ratio={16 / 9} minWidth="200px" mr={7} display={{base: 'none', md:'block'}}>
               <Image
                 src={movie?.image}
@@ -34,7 +34,7 @@ export const UserReviewSection: React.FC<{
                 borderRadius="2xl"
               />
             </AspectRatio>
-            <Flex direction="column">
+            <Flex direction="column" maxWidth="full">
               <Flex direction={{ base: 'column', md: 'row' }}>
                 <Link href={`/movie/${movie?._id}`} passHref>
                   <Heading as="a">
