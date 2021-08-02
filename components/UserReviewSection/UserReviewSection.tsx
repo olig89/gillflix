@@ -54,7 +54,7 @@ export const UserReviewSection: React.FC<{
                 )}
               </Flex>
 
-              <Text fontSize="2xl">{review?.comment}</Text>
+              <Text ml={[5,5,0,0]} fontSize="2xl">{review?.comment}</Text>
             </Flex>
           </Flex>
         );
