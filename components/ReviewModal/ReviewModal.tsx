@@ -207,6 +207,7 @@ export const ReviewModal: React.FC<{ user: User; inNav?: boolean }> = ({
           setMovie(null);
           onOpen();
         }}
+        display={{base: 'none', md:'block'}}
       >
         Add review
       </Button>
