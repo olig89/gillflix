@@ -65,7 +65,7 @@ export const UserReviewSection: React.FC<{
                     >
                       {' '}
                       <chakra.span color="gray.500">
-                        • {review?.rating.toFixed(1)}
+                      {review?.rating.toFixed(1)}
                       </chakra.span>
                     </Heading>
                 {review && (
