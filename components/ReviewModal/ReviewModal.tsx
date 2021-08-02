@@ -513,7 +513,7 @@ export const ReviewModal: React.FC<{ user: User; inNav?: boolean }> = ({
                   e.preventDefault();
 
                   if (
-                    (e.target.value?.length > 512 ||
+                    (e.target.value?.length > 700 ||
                       e.target.value?.length < 10) &&
                     e.target.value.length !== 0
                   ) {
