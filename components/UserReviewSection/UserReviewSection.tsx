@@ -76,7 +76,7 @@ export const UserReviewSection: React.FC<{
                       <CircularProgress value={review?.perform} min={0} max={10} mr={5} mb={[0,0,2,2]} color="red.400" trackColor={`gray.300`} size="30px" thickness="14px">
                         <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.perform.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
-                      <chakra.span color="gray.500">
+                      <chakra.span color="gray.500" mt={[2,2,0,0]}>
                       {review?.rating.toFixed(1)}
                       </chakra.span>
                     </Heading>
