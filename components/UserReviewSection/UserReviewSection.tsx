@@ -34,7 +34,7 @@ export const UserReviewSection: React.FC<{
                 borderRadius="2xl"
               />
             </AspectRatio>
-            <Flex direction="column" maxWidth="full">
+            <Flex direction="column">
               <Flex direction={{ base: 'column', md: 'row' }}>
                 <Link href={`/movie/${movie?._id}`} passHref>
                   <Heading as="a">
