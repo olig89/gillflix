@@ -33,7 +33,7 @@ export const UserReviewSection: React.FC<{
             mx={{ base: 5, md: 0 }}
             maxWidth="6xl"
             key={i.toString()}
-            direction={{ base: 'column', md: 'row' }}
+            direction={{ base: 'column', lg: 'row' }}
           >
             <AspectRatio
               ratio={16 / 9}
@@ -48,7 +48,7 @@ export const UserReviewSection: React.FC<{
               />
             </AspectRatio>
             <Flex direction="column" maxWidth="full">
-              <Flex direction={{ base: 'column', md: 'row' }}>
+              <Flex direction={{ base: 'column', lg: 'row' }}>
                 <Link href={`/movie/${movie?._id}`} passHref>
                   <Stack as="a" isInline>
                     <Heading
