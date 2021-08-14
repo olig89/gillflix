@@ -25,7 +25,7 @@ const handler = async (
 
       const review = {
         // eslint-disable-next-line no-underscore-dangle
-        user: session.user.sub,
+        user: session.user._id || session.user.sub,
         comment,
         rating,
         concept,
@@ -41,7 +41,7 @@ const handler = async (
       }
       const existingReview = movie.reviews.filter(
         // eslint-disable-next-line no-underscore-dangle
-        (rv) => rv.user.toString() === session.user.id
+        (rv) => rv.user.toString() === session.user._id
       )[0];
       if (existingReview) {
         const index = movie.reviews.indexOf(existingReview);
@@ -75,13 +75,26 @@ const handler = async (
           10
       ) / 10;
       movie.markModified(`reviews`);
-      await movie.save();
+      const mrv = await movie.save();
+      const updatedMovie = mrv.toJSON();
+      const updatedReview =
+        updatedMovie.reviews.find((rvw) =>
+          [session.user._id, session.user.sub, session.user.id].includes(
+            rvw.user.toString()
+          )
+        ) || review;
       await postDataToWebhook({
-        review: review,
-        movie: movie,
+        //@ts-ignore
+        review: {
+          ...updatedReview,
+          _id: ((updatedReview as unknown) as ReviewType)._id?.toString?.(),
+          user: updatedReview.user.toString(),
+        },
+        //@ts-ignore
+        movie: updatedMovie,
         user: session.user,
         type: 'review',
-        action: 'added',
+        action: existingReview ? 'modified' : 'added',
       });
       return res
         .status(200)
@@ -98,24 +111,27 @@ const handler = async (
         .status(401)
         .json({ message: `You are not authorized to do that :(` });
     }
-    const movie: MovieType<ReviewType<string>[]> = await Movie.findOne({
+    const movie: MovieType = await Movie.findOne({
       _id: movieID,
-    });
+    }).populate('reviews.user', '_id discord_id image username discriminator');
     if (!movie) {
       return res.status(404).json({ message: 'movie not found' });
     }
 
     const review = movie.reviews.find(
       (rvw) =>
-        rvw._id.toString() === reviewID ||
-        rvw.user.toString() === session?.user?.id
+        rvw._id?.toString() === reviewID ||
+        rvw.user?._id?.toString() === session?.user?.id
     );
     if (!review) {
       return res
         .status(404)
         .json({ message: 'You have not posted a review on that movie' });
     }
-    if (!session.user.isAdmin && review.user.toString() !== session.user.id) {
+    if (
+      !session.user.isAdmin &&
+      review.user?._id.toString() !== session.user.id
+    ) {
       return res
         .status(401)
         .json({ message: 'You do not have permissions to delete that review' });
@@ -132,7 +148,9 @@ const handler = async (
     movie.markModified(`reviews`);
 
     await movie.save();
+
     await postDataToWebhook({
+      //@ts-ignore
       review: review,
       movie: movie,
       user: session.user,

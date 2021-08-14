@@ -40,10 +40,13 @@ export default function MoviePage({
   );
 
   useEffect(() => {
-    if (!session && !loading) router.push(`/?movie=${data?._id}`);
+    if (!session && !loading) router.push(`/`);
   }, [loading, router, session, data]);
 
   if (!id) return <Error statusCode={404}>No movie selected</Error>;
+  if (!session) {
+    router.push(`/`);
+  }
   if (!data) {
     if (isLoading) {
       return <div>Loading</div>;
@@ -51,9 +54,7 @@ export default function MoviePage({
     return <Error statusCode={404}>No movie found with provided ID.</Error>;
   }
   if ((typeof window !== 'undefined' && loading) || !session) return null;
-  if (!session) {
-    router.push(`/?movie=${data._id}`);
-  }
+
   const user = session.user;
   if (error) {
     return <p>There was an error</p>;
@@ -129,6 +130,9 @@ export async function getServerSideProps(
   const { id } = ctx.query;
   if (!id) return { props: { session: null, revalidate: 60, movie: null } };
   const session = await getSession();
+  if (!session)
+    return { props: { session: null, revalidate: 60, movie: null } };
+
   const movie = await getMovie(id, true);
 
   return {
