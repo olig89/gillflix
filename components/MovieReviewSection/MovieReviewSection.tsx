@@ -24,6 +24,8 @@ import {
   Link as ChakraLink,
   useColorMode,
 } from '@chakra-ui/react';
+//@ts-ignore
+import ReactMarkdown from 'react-markdown';
 import { PopulatedUserType } from '../../models/user';
 import React, { ReactElement } from 'react';
 import { ReviewType, SerializedMovieType } from '../../models/movie';
@@ -211,7 +213,9 @@ const Review = ({ review, user, movie }: ReviewProps) => {
             : 'gray.500'
         }
       >
-        {review.comment || 'No comment'}
+        <ReactMarkdown skipHtml disallowedElements={['img', 'a']}>
+          {review.comment || 'No comment'}
+        </ReactMarkdown>
       </Text>
     </VStack>
   );
@@ -222,7 +226,7 @@ export default function MovieReviewSection({
   user,
 }: Props): ReactElement {
   return (
-    <Box maxWidth="7xl" mx={'auto'} mb={40}>
+    <Box maxWidth="7xl" mt="9rem" mx={'auto'} mb={40}>
       <VStack alignItems="center" spacing={3} mt={{ base: 28, lg: 0 }}>
         <Wave mx="auto" width={{ base: '70%', md: '30%' }} />
         <Heading fontSize="6xl">

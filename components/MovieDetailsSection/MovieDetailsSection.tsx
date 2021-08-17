@@ -40,7 +40,6 @@ import {
 import { format } from 'date-fns';
 import millify from 'millify';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 
 import Image from 'next/image';
 import React, { ReactElement, useContext, useState } from 'react';
@@ -121,12 +120,13 @@ export default function MovieDetailsSection({
       'SMDB';
 
   return (
-    <Box maxWidth="7xl" mx={'auto'}>
+    <Flex maxWidth="7xl" mx={'auto'} mt="10px">
       <Flex
         direction="column"
         minHeight="calc(100vh - 80px)"
         width="full"
-        justifyContent="flex-start"
+        justifyContent="center"
+        mt={{ base: 'max(-80px,-1vh)', xl: '0' }}
       >
         {/* Scroll down section */}
         {bp && !['base', 'sm', 'md'].includes(bp) && (
@@ -152,19 +152,14 @@ export default function MovieDetailsSection({
             />
           </Flex>
         )}
-        <Box
-          mt={{
-            base: '5',
-            md: 'calc(100vh / 15)',
-            xl: 'calc(calc(100vh / 3) - 270px)',
-          }}
-        >
+        <Box>
           <MovieAdminOptions user={user} movie={movie} />
           <Flex direction={{ base: 'column', lg: 'row' }}>
             <Flex
               width={{ base: '90%', lg: '50%' }}
               mx="auto"
               maxWidth="full"
+              alignItems="center"
               pr={{ base: 0, lg: '20px' }}
             >
               <AspectRatio
@@ -172,7 +167,6 @@ export default function MovieDetailsSection({
                 shadow={'6px 8px 19px 4px rgba(0, 0, 0, 0.25)'}
                 ratio={16 / 9}
                 width="full"
-                height="full"
               >
                 <Skeleton borderRadius="xl" isLoaded={isImageLoaded}>
                   <Image
@@ -463,14 +457,7 @@ export default function MovieDetailsSection({
           </Flex>
         </Box>
       </Flex>
-      <NextSeo  title= {movie.name}
-                description={'A review by the ' + siteName + ' Community'}
-                openGraph={{
-                title: movie.name + ' - ' + siteName,
-                type: `website`,
-                site_name: siteName,
-              }}/>
-    </Box>
+    </Flex>
   );
 }
 

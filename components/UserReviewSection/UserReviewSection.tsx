@@ -3,16 +3,18 @@ import {
   chakra,
   Flex,
   Heading,
-  Image,
   Stack,
   Text,
+  Link as ChakraLink,
   useBreakpoint,
   CircularProgress,
   CircularProgressLabel,
 } from '@chakra-ui/react';
+import ReactMarkdown from 'react-markdown';
 import { UserAuthType } from 'next-auth';
 import Link from 'next/link';
 import React from 'react';
+import Image from 'next/image';
 import { ReviewType, SerializedMovieType } from '../../models/movie';
 import { PopulatedUserType } from '../../models/user';
 import { ReviewActions } from '../MovieReviewSection/MovieReviewSection';
@@ -43,17 +45,18 @@ export const UserReviewSection: React.FC<{
               mr={{ base: 0, md: 7 }}
             >
               <Image
-                src={movie?.image}
+                src={movie?.image || ''}
                 alt={review?.user?.username + "'s profile"}
-                objectFit="fill"
-                borderRadius="2xl"
+                layout="fill"
+                className={'borderRadius-xl'}
               />
             </AspectRatio>
             <Flex direction="column" maxWidth="full">
-              <Flex direction={{ base: 'column', lg: 'row' }}>
-                <Link href={`/movie/${movie?._id}`} passHref>
-                  
+              <Flex direction={{ base: 'column', md: 'row' }}>
+                <Stack isInline>
+                  <Link href={`/movie/${movie?._id}`} passHref>
                     <Heading
+                      as={ChakraLink}
                       isTruncated
                       maxWidth={{ base: 'full', md: 'calc(100vw - 430px)' }}
                       size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
@@ -61,13 +64,12 @@ export const UserReviewSection: React.FC<{
                     >
                       {movie?.name}
                     </Heading>
-                </Link>
-                <Stack as="a" isInline>
-                    <Heading
-                      size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
-                    >
-                      {' '}
-                      <CircularProgress value={review?.concept} min={0} max={10} mr={5} mb={[0,0,2,2]} color="cyan.400" trackColor={`gray.300`} size="30px" thickness="14px">
+                  </Link>
+                  <Heading
+                    size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
+                  >
+                    {' '}
+                    <CircularProgress value={review?.concept} min={0} max={10} mr={5} mb={[0,0,2,2]} color="cyan.400" trackColor={`gray.300`} size="30px" thickness="14px">
                         <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.concept.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
                       <CircularProgress value={review?.cinema} min={0} max={10} mr={5} mb={[0,0,2,2]} color="yellow.400" trackColor={`gray.300`} size="30px" thickness="14px">
@@ -76,10 +78,12 @@ export const UserReviewSection: React.FC<{
                       <CircularProgress value={review?.perform} min={0} max={10} mr={5} mb={[0,0,2,2]} color="red.400" trackColor={`gray.300`} size="30px" thickness="14px">
                         <CircularProgressLabel fontWeight="semibold" fontSize="xs">{review?.perform.toFixed(0)}</CircularProgressLabel>
                       </CircularProgress>
-                      <chakra.span color="gray.500" mt={[2,2,0,0]}>
-                      {review?.rating.toFixed(1)}
-                      </chakra.span>
-                    </Heading>
+                    <chakra.span color="gray.500">
+                      • {review?.rating.toFixed(1)}
+                    </chakra.span>
+                  </Heading>
+                </Stack>
+
                 {review && (
                   <ReviewActions
                     toInvalidate={'movies'}
@@ -92,7 +96,9 @@ export const UserReviewSection: React.FC<{
               </Flex>
 
               <Text fontSize={{ base: 'lg', md: '2xl' }}>
-                {review?.comment}
+                <ReactMarkdown skipHtml disallowedElements={['img', 'a']}>
+                  {review?.comment || ''}
+                </ReactMarkdown>
               </Text>
             </Flex>
           </Flex>

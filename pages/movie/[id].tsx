@@ -30,9 +30,7 @@ export default function MoviePage({
 
   const router = useRouter();
   const { id } = router.query;
-  if (!session) {
-    router.push(`/`);
-  }
+
   const { data, isLoading } = useQuery(
     'movie',
     async () => {
@@ -130,7 +128,7 @@ export async function getServerSideProps(
 ): Promise<SSRProps> {
   const { id } = ctx.query;
   if (!id) return { props: { session: null, revalidate: 60, movie: null } };
-  const session = await getSession(ctx);
+  const session = await getSession({ req: ctx.req });
   if (!session)
     return { props: { session: null, revalidate: 60, movie: null } };
 
