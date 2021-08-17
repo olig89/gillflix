@@ -10,7 +10,7 @@ interface Props {
 }
 
 const colors = {
-  error: { bg: { light: 'red.500', dark: 'red.200' } },
+  error: { bg: { light: 'blue.500', dark: 'blue.200' } },
   success: {
     bg: {
       light: 'green.400',
