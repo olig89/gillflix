@@ -10,12 +10,15 @@ import {
 } from '@chakra-ui/react';
 import { NextSeo } from 'next-seo';
 import { signIn } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import { SerializedMovieType } from '../../models/movie';
 
 export const LandingPage: React.FC<{
   movie?: SerializedMovieType;
 }> = ({ movie }): React.ReactElement => {
   const { colorMode } = useColorMode();
+  const router = useRouter();
+  const { user: userID, movie: movieID } = router.query;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
   const seanQuotes = [
     "The premier user generated judgment service",
@@ -26,6 +29,11 @@ export const LandingPage: React.FC<{
   ];  
   const randomQuote = seanQuotes[Math.floor(Math.random()*seanQuotes.length)];
 
+  const callbackUrl = `${process.env.NEXT_PUBLIC_APP_URI}/${
+    userID && movieID ? `?movie=${movieID}&user=${userID}` : ''
+  }${userID && !movieID ? `?user=${userID}` : ''}${
+    !userID && movieID ? `?movie=${movieID}` : ''
+  }`;
   return (
     <>
       <NextSeo
@@ -111,7 +119,9 @@ export const LandingPage: React.FC<{
             // href="/api/oauth"
             onClick={(e) => {
               e.preventDefault();
-              signIn('discord');
+              signIn('discord', {
+                callbackUrl,
+              });
             }}
             size="lg"
           >
