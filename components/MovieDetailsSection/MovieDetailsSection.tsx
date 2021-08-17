@@ -113,7 +113,6 @@ export default function MovieDetailsSection({
     ReviewModalContext
   );
 
-    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
     const shortSiteName =
       process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
       process.env.NEXT_PUBLIC_SITE_NAME ||
