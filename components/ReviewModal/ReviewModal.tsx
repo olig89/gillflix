@@ -252,7 +252,7 @@ export const ReviewModal: React.FC<{
               {!isOpenedFromMovie && (
                 <>
                   <FormLabel mb={3} fontSize="1.1em" fontWeight="semibold">
-                    Select Movie
+                    Select Film
                   </FormLabel>
 
                   <Select
