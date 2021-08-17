@@ -92,7 +92,6 @@ export const UserReviewSection: React.FC<{
                     user={user}
                   />
                 )}
-                </Stack>
               </Flex>
 
               <Text fontSize={{ base: 'lg', md: '2xl' }}>
