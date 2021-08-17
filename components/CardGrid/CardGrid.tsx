@@ -289,9 +289,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                   </MenuItem>
                 </MenuList>
               </Menu>
-              {/* <Toggle
-                icons={{ checked: <BsGrid3X3 />, unchecked: <BsGrid3X3 /> }}
-              /> */}
+
               <Tooltip
                 label="Toggle between grid and list view"
                 placement="top"
