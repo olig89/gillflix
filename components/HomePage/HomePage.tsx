@@ -24,7 +24,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           type="error"
           storageName="dismissReadOnlyAlert"
           title="Read only mode!"
-          message="Join our discord server and say hi to start reviewing"
+          message="Join our Discord server and say hi to enable reviewing"
         />
       )}
 
@@ -32,8 +32,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         <AlertBanner
           type="success"
           storageName="dismissReviewPromotion"
-          title="You have been promoted to reviewer!"
-          message="You can now add and remove reviews from movies"
+          title="You have been promoted!"
+          message="You can now submit film reviews"
         />
       )}
 
