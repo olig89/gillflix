@@ -21,7 +21,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {!user.isAdmin && !user.isReviewer && (
         <AlertBanner
-          type="info"
+          type="error"
           storageName="dismissReadOnlyAlert"
           title="Read only mode!"
           message="Join our discord server and say hi to start reviewing"
