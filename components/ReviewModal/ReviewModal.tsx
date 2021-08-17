@@ -229,7 +229,7 @@ export const ReviewModal: React.FC<{
         </Button>
       )}
 
-      <Modal isOpen={isOpen} onClose={onClose} id={'review-modal'} scrollBehavior={'outside'}>
+      <Modal isOpen={isOpen} onClose={onClose} id={'review-modal'} scrollBehavior={'inside'} >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
