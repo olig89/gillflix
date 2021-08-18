@@ -61,7 +61,7 @@ interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
   user: UserAuthType;
 }
-
+const shortSiteName = process.env.NEXT_PUBLIC_SHORT_SITE_NAME;
 
 export default function MovieDetailsSection({
   movie,
@@ -70,7 +70,6 @@ export default function MovieDetailsSection({
   const bp = useBreakpoint();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-
   const userReview = movie.reviews.find(
     (rating) => rating?.user?._id === user.sub
   );
@@ -366,7 +365,7 @@ const AdditionalMovieDetails = ({
 
       <Stat>
         <StatLabel color={'gray.500'} fontSize="lg">
-          Group Rating
+        {shortSiteName + ' Rating'}
         </StatLabel>
         <StatNumber fontSize={'5xl'} fontWeight="bold">
           {averageReview ? (
@@ -384,7 +383,7 @@ const AdditionalMovieDetails = ({
       </Stat>
       <Stat>
         <StatLabel color={'gray.500'} fontSize="lg">
-          World Wide Rating
+          TheMovieDb Rating
         </StatLabel>
         <StatNumber fontSize="5xl" fontWeight="bold">
           {movie.voteAverage}
