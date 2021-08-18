@@ -1,7 +1,6 @@
 import {
   Container,
   SimpleGrid,
-  Box,
   Flex,
   InputGroup,
   InputLeftElement,
@@ -34,7 +33,6 @@ import {
   useTheme,
 } from '@chakra-ui/react';
 import { transparentize } from '@chakra-ui/theme-tools';
-import 'react-toggle/style.css';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BiChevronDown } from 'react-icons/bi';
 import { useState } from 'react';
@@ -44,7 +42,6 @@ import { ReviewType, SerializedMovieType } from '../../models/movie';
 import { PopulatedUserType } from '../../models/user';
 import { NextSeo } from 'next-seo';
 import ReviewModal from '../ReviewModal';
-import Link from 'next/link';
 import { UserAuthType } from 'next-auth';
 
 import MovieGridView from '../MovieGridView';
@@ -334,15 +331,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                 movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>,
                 i
               ) => (
-                <Link
-                  key={`${i.toString()}cardBox`}
-                  href={`/movie/${movie._id}`}
-                  passHref
-                >
-                  <Box as={'a'} height="full">
-                    <Card movie={movie} key={`${i.toString()}card`} />
-                  </Box>
-                </Link>
+                <Card movie={movie} key={`${i.toString()}card`} />
               )
             )}
           </SimpleGrid>

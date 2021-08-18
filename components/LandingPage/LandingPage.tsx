@@ -15,7 +15,8 @@ import { SerializedMovieType } from '../../models/movie';
 
 export const LandingPage: React.FC<{
   movie?: SerializedMovieType;
-}> = ({ movie }): React.ReactElement => {
+  desiredUser?: { username: string; image: string; _id: string };
+}> = ({ movie, desiredUser }): React.ReactElement => {
   const { colorMode } = useColorMode();
   const router = useRouter();
   const { user: userID, movie: movieID } = router.query;
@@ -34,26 +35,29 @@ export const LandingPage: React.FC<{
   }${userID && !movieID ? `?user=${userID}` : ''}${
     !userID && movieID ? `?movie=${movieID}` : ''
   }`;
+
   return (
     <>
       <NextSeo
-        title={movie ? movie.name : 'Welcome'}
+        title={movie?.name || desiredUser?.username || 'Welcome'}
         openGraph={{
-          title: `${movie?.name} on ${siteName}`,
+          title: movie?.name
+            ? `${movie?.name} on ${siteName}`
+            : desiredUser?.username
+            ? `${desiredUser?.username} on ${siteName}`
+            : 'Welcome',
           type: `website`,
           site_name: siteName,
           images: [
             {
-              width: 3840,
-              height: 2160,
-              url:
-                movie?.image ||
-                `https://www.movie.michael-hall.me/sitePicture.png`,
+              width: 1920,
+              height: 1080,
+              url: movie?.image || desiredUser?.image || `/sitePicture.jpg`,
               alt: siteName + ' webpage',
             },
           ],
         }}
-        description={'A private movie rating website'}
+        description={movie?.description || 'A private movie rating website'}
       />
       <Flex
         minH="100vh"

@@ -14,7 +14,6 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  StatHelpText,
   Button,
   useBreakpoint,
   IconButton,
@@ -32,8 +31,6 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
-  CircularProgress,
-  CircularProgressLabel,
   useColorModeValue,
   Skeleton,
 } from '@chakra-ui/react';
@@ -59,12 +56,12 @@ import { SettingsIcon } from '@chakra-ui/icons';
 import { UserAuthType } from 'next-auth';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useEffect } from 'react';
-
+import Donut from '../Donut';
 interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
   user: UserAuthType;
 }
-
+const shortSiteName = process.env.NEXT_PUBLIC_SHORT_SITE_NAME;
 
 export default function MovieDetailsSection({
   movie,
@@ -73,7 +70,6 @@ export default function MovieDetailsSection({
   const bp = useBreakpoint();
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-
   const userReview = movie.reviews.find(
     (rating) => rating?.user?._id === user.sub
   );
@@ -101,6 +97,10 @@ export default function MovieDetailsSection({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [review, movie]);
 
+  useEffect(() => {
+    setIsImageLoaded(false);
+  }, []);
+
   const averageReview =
     movie.reviews.length > 0
       ? (
@@ -113,22 +113,16 @@ export default function MovieDetailsSection({
     ReviewModalContext
   );
 
-    const shortSiteName =
-      process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
-      process.env.NEXT_PUBLIC_SITE_NAME ||
-      'SMDB';
-
   return (
     <Flex maxWidth="7xl" mx={'auto'} mt="10px">
       <Flex
         direction="column"
-        minHeight="calc(100vh - 80px)"
         width="full"
         justifyContent="center"
-        mt={{ base: 'max(-80px,-1vh)', xl: '0' }}
+        mt={{ base: 'max(-80px,-1vh)', xl: '0', '2xl': '6em', '4xl': '12em' }}
       >
         {/* Scroll down section */}
-        {bp && !['base', 'sm', 'md'].includes(bp) && (
+        {bp && !['base', 'sm', 'md', 'lg'].includes(bp) && (
           <Flex
             direction="column"
             alignItems="center"
@@ -151,7 +145,7 @@ export default function MovieDetailsSection({
             />
           </Flex>
         )}
-        <Box>
+        <Box minHeight="calc(100vh - 80px)">
           <MovieAdminOptions user={user} movie={movie} />
           <Flex direction={{ base: 'column', lg: 'row' }}>
             <Flex
@@ -275,190 +269,169 @@ export default function MovieDetailsSection({
               </Flex>
             </VStack>
           </Flex>
-          <Flex
-            direction={{ base: 'column', lg: 'row' }}
-            justifyContent="space-between"
-            width="full"
-            mt={'28'}
-            textAlign={{ base: 'center', lg: 'left' }}
-          >
-            <StatGroup
-              flexDirection={{ base: 'column', lg: 'row' }}
-              alignItems="center"
-              justifyContent="space-between"
-              width="full"
-              textAlign="center"
-            >
-              <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                  Your Rating
-                </StatLabel>
-                <StatNumber color={'purple.300'} fontSize="5xl" fontWeight="bold">
-                  {userReview ? (
-                    <>
-                      {userReview.rating}
-                      <chakra.span
-                        fontSize="xl"
-                        fontWeight="normal"
-                        color={'gray.500'}
-                      >
-                        {' /10'}
-                      </chakra.span>
-                    </>
-                  ) : (
-                    <>
-                      {user?.isReviewer ? (
-                        <Button
-                          variant="solid"
-                          leftIcon={<AddIcon />}
-                          onClick={() => {
-                            setModalMovie(movie);
-                            return reviewOnOpen();
-                          }}
-                          colorScheme="purple"
-                        >
-                          Add one!
-                        </Button>
-                      ) : (
-                        <Text>N/A</Text>
-                      )}
-                    </>
-                  )}
-                </StatNumber>
-              </Stat>
-
-              <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                  {shortSiteName + ' '}Rating
-                </StatLabel>
-                <StatNumber fontSize={'5xl'} fontWeight="bold">
-                  {averageReview ? (
-                    <>
-                      {averageReview}
-                      <chakra.span
-                        fontSize="xl"
-                        fontWeight="normal"
-                        color={'gray.500'}
-                      >
-                        {' /10'}
-                      </chakra.span>
-                    </>
-                  ) : (
-                    'No reviews'
-                  )}
-                </StatNumber>
-              </Stat>
-              <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                TheMovieDb Rating
-                </StatLabel>
-                <StatNumber fontSize="5xl" fontWeight="bold">
-                  {movie.voteAverage}
-                  <chakra.span
-                    fontSize="xl"
-                    fontWeight="normal"
-                    color={'gray.500'}
-                  >
-                    {' /10'}
-                  </chakra.span>{' '}
-                  <chakra.span fontSize="xl">
-                    {millify(movie.voteCount)}
-                  </chakra.span>
-                  <chakra.span
-                    fontSize="xl"
-                    fontWeight="normal"
-                    color={'gray.500'}
-                  >
-                    {' votes'}
-                  </chakra.span>
-                </StatNumber>
-              </Stat>
-              <Stat>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                  View on IMDb
-                </StatLabel>
-                <StatNumber
-                  position="relative"
-                  fontSize="5xl"
-                  fontWeight="bold"
-                >
-                  <chakra.span visibility={'hidden'} aria-hidden="true">
-                    H
-                  </chakra.span>
-
-                  <Link
-                    href={`https://imdb.com/title/${movie.imdbID}`}
-                    passHref
-                  >
-                    <IconButton
-                      position={'absolute'}
-                      top={'50%'}
-                      left={'50%'}
-                      transform={'translate(-50%, -50%)'}
-                      mt={'auto'}
-                      aria-label="View on IMDB"
-                      size="xl"
-                      p={2}
-                      as={'a'}
-                      target="_blank"
-                      icon={<FaImdb size="1em" />}
-                      alignSelf="flex-end"
-                      variant="IMDB"
-                    />
-                  </Link>
-                </StatNumber>
-              </Stat>
-            </StatGroup>
-            </Flex>
-            <Flex
-            direction={{ base: 'column', lg: 'row' }}
-            justifyContent="space-between"
-            width="full"
-            mt={'28'}
-            textAlign={{ base: 'center', lg: 'left' }}
-          >
-            <StatGroup
-              flexDirection={{ base: 'column', lg: 'row' }}
-              alignItems="center"
-              justifyContent="space-between"
-              width="full"
-              textAlign="center"
-              mb={10}
-            >
-              <Stat mb={7}>
-                <CircularProgress value={movie.concept} min={0} max={10} color="cyan.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px" mb={3}>
-                  <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{movie.concept}</CircularProgressLabel>
-                </CircularProgress>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                  Concept
-                </StatLabel>
-                <StatHelpText>Premise, plot, and structure</StatHelpText>
-              </Stat>
-              <Stat mb={7}>
-                <CircularProgress value={movie.cinema} min={0} max={10} color="yellow.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px" mb={3}>
-                  <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{movie.cinema}</CircularProgressLabel>
-                </CircularProgress>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                  Cinematography
-                </StatLabel>
-                <StatHelpText>Visuals, sound, direction, and design</StatHelpText>
-              </Stat>
-              <Stat mb={7}>
-                <CircularProgress value={movie.perform} min={0} max={10} color="red.400" trackColor={useColorModeValue(`gray.200`, `gray.500`)} size="100px" thickness="16px" mb={3}>
-                  <CircularProgressLabel fontWeight="semibold" fontSize="35" mt={[0,0,-0.5,-0.5]}>{movie.perform}</CircularProgressLabel>
-                </CircularProgress>
-                <StatLabel color={'gray.500'} fontSize="lg">
-                  Performance
-                </StatLabel>
-                <StatHelpText>Acting, narration, and technique</StatHelpText>
-              </Stat>
-            </StatGroup>
-          </Flex>
+          {bp === '4xl' && (
+            <AdditionalMovieDetails
+              {...{
+                userReview,
+                user,
+                setModalMovie,
+                reviewOnOpen,
+                movie,
+                averageReview,
+              }}
+            />
+          )}
         </Box>
+        {bp !== '4xl' && (
+          <AdditionalMovieDetails
+            {...{
+              userReview,
+              user,
+              setModalMovie,
+              reviewOnOpen,
+              movie,
+              averageReview,
+            }}
+          />
+        )}
       </Flex>
     </Flex>
   );
 }
+
+const AdditionalMovieDetails = ({
+  userReview,
+  user,
+  setModalMovie,
+  reviewOnOpen,
+  movie,
+  averageReview,
+}: {
+  userReview?: ReviewType<PopulatedUserType>;
+  user?: UserAuthType;
+  setModalMovie: (x: any) => void;
+  reviewOnOpen: () => void;
+  movie: SerializedMovieType;
+  averageReview: string | boolean;
+}) => (
+  <Box>
+  <Flex
+    direction={{ base: 'column', lg: 'row' }}
+    justifyContent="space-between"
+    width="full"
+    mt={'28'}
+    textAlign={{ base: 'center', lg: 'left' }}
+  >
+    <StatGroup
+      flexDirection={{ base: 'column', lg: 'row' }}
+      alignItems="center"
+      justifyContent="space-between"
+      width="full"
+      textAlign="center"
+    >
+      <Stat>
+        <StatLabel color={'gray.500'} fontSize="lg">
+          Your Rating
+        </StatLabel>
+        <StatNumber fontSize="5xl" fontWeight="bold">
+          {userReview ? (
+            <>
+              {userReview.rating}
+              <chakra.span fontWeight="normal" fontSize="xl" color={'gray.500'}>
+                {' '}
+                /10
+              </chakra.span>
+            </>
+          ) : (
+            <>
+              {user?.isReviewer ? (
+                <Button
+                  variant="solid"
+                  leftIcon={<AddIcon />}
+                  onClick={() => {
+                    setModalMovie(movie);
+                    return reviewOnOpen();
+                  }}
+                  colorScheme="purple"
+                >
+                  Add one!
+                </Button>
+              ) : (
+                <Text>N/A</Text>
+              )}
+            </>
+          )}
+        </StatNumber>
+      </Stat>
+
+      <Stat>
+        <StatLabel color={'gray.500'} fontSize="lg">
+        {shortSiteName + ' Rating'}
+        </StatLabel>
+        <StatNumber fontSize={'5xl'} fontWeight="bold">
+          {averageReview ? (
+            <>
+              {averageReview}
+              <chakra.span fontSize="xl" fontWeight="normal" color={'gray.500'}>
+                {' '}
+                /10
+              </chakra.span>
+            </>
+          ) : (
+            'No reviews'
+          )}
+        </StatNumber>
+      </Stat>
+      <Stat>
+        <StatLabel color={'gray.500'} fontSize="lg">
+          TheMovieDb Rating
+        </StatLabel>
+        <StatNumber fontSize="5xl" fontWeight="bold">
+          {movie.voteAverage}
+          <chakra.span fontSize="xl" fontWeight="normal" color={'gray.500'}>
+            {' '}
+            /10
+          </chakra.span>{' '}
+          <chakra.span fontSize="xl">{millify(movie.voteCount)}</chakra.span>
+          <chakra.span fontSize="xl" fontWeight="normal" color={'gray.500'}>
+            {' '}
+            votes
+          </chakra.span>
+        </StatNumber>
+      </Stat>
+      <Stat>
+        <StatLabel color={'gray.500'} fontSize="lg">
+          View on IMDB
+        </StatLabel>
+        <StatNumber position="relative" fontSize="5xl" fontWeight="bold">
+          <chakra.span visibility={'hidden'} aria-hidden="true">
+            H
+          </chakra.span>
+
+          <Link href={`https://imdb.com/title/${movie.imdbID}`} passHref>
+            <IconButton
+              position={'absolute'}
+              top={'50%'}
+              left={'50%'}
+              transform={'translate(-50%, -50%)'}
+              mt={'auto'}
+              aria-label="View on IMDB"
+              size="xl"
+              p={2}
+              as={'a'}
+              target="_blank"
+              icon={<FaImdb size="1em" />}
+              alignSelf="flex-end"
+              variant="IMDB"
+            />
+          </Link>
+        </StatNumber>
+      </Stat>
+    </StatGroup>
+  </Flex>
+  <Donut concept={movie.concept} cinema={movie.cinema} perform={movie.perform}/>
+  </Box>
+);
 
 const MovieAdminOptions = ({
   user,
