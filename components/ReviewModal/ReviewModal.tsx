@@ -531,12 +531,11 @@ export const ReviewModal: React.FC<{
                   e.preventDefault();
 
                   if (
-                    (e.target.value?.length > 900 ||
-                      e.target.value?.length < 10) &&
+                    e.target.value?.length > 900 &&
                     e.target.value.length !== 0
                   ) {
                     setCommentError(
-                      `Comment needs to be more than 10 characters and less than 512`
+                      `Comment needs to be less than 900 characters`
                     );
                   } else {
                     setCommentError(``);
