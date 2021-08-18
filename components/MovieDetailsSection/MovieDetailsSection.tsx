@@ -56,7 +56,7 @@ import { SettingsIcon } from '@chakra-ui/icons';
 import { UserAuthType } from 'next-auth';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useEffect } from 'react';
-
+import Donut from '../Donut';
 interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
   user: UserAuthType;
