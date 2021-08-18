@@ -59,7 +59,6 @@ export default function MoviePage({
   if (!user) {
     return (
       <>
-        <NextSeo title={data.name} />
         <Flex
           height="full"
           width="full"
@@ -85,7 +84,9 @@ export default function MoviePage({
     <AppLayout user={user} showMovies showReview>
       <MovieDetailsSection movie={data} user={user} />
       <MovieReviewSection movie={data} user={user} />
+      <NextSeo title={data.name} />
     </AppLayout>
+    
   );
 }
 
