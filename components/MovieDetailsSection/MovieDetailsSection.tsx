@@ -114,11 +114,6 @@ export default function MovieDetailsSection({
     ReviewModalContext
   );
 
-    const shortSiteName =
-      process.env.NEXT_PUBLIC_SHORT_SITE_NAME ||
-      process.env.NEXT_PUBLIC_SITE_NAME ||
-      'SMDB';
-
   return (
     <Flex maxWidth="7xl" mx={'auto'} mt="10px">
       <Flex
