@@ -37,7 +37,8 @@ export const UserReviewSection: React.FC<{
             mx={{ base: 5, md: 0 }}
             maxWidth="6xl"
             key={i.toString()}
-            direction={{ base: 'column', lg: 'row' }}
+            direction={{ base: 'column', md: 'row' }}
+            alignItems="center"
           >
             <AspectRatio
               ratio={16 / 9}
