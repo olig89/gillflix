@@ -57,8 +57,6 @@ import { UserAuthType } from 'next-auth';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useEffect } from 'react';
 
-import Donut from '../Donut';
-
 interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
   user: UserAuthType;
@@ -316,7 +314,7 @@ const AdditionalMovieDetails = ({
   movie: SerializedMovieType;
   averageReview: string | boolean;
 }) => (
-  <Flex>
+  <Box>
   <Flex
     direction={{ base: 'column', lg: 'row' }}
     justifyContent="space-between"
@@ -432,7 +430,7 @@ const AdditionalMovieDetails = ({
     </StatGroup>
   </Flex>
   <Donut concept={movie.concept} cinema={movie.cinema} perform={movie.perform}/>
-  </Flex>
+  </Box>
 );
 
 const MovieAdminOptions = ({
