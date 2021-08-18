@@ -59,6 +59,7 @@ export default function MoviePage({
   if (!user) {
     return (
       <>
+        <NextSeo title={data.name} />
         <Flex
           height="full"
           width="full"
