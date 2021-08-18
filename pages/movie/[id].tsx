@@ -4,7 +4,6 @@ import { Session } from 'next-auth';
 import { getSession, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import AppLayout from '../../components/AppLayout';
 import BannedPage from '../../components/BannedPage';
@@ -22,7 +21,6 @@ interface MoviePageProps {
 
 export default function MoviePage({
   error,
-
   ...props
 }: MoviePageProps): JSX.Element | null {
   const { colorMode } = useColorMode();
@@ -32,17 +30,13 @@ export default function MoviePage({
   const { id } = router.query;
 
   const { data, isLoading } = useQuery(
-    'movie',
+    `movie-${props?.movie?.name}`,
     async () => {
       return await getMovie(id, true);
     },
 
-    { initialData: props.movie }
+    { initialData: props?.movie }
   );
-
-  useEffect(() => {
-    if (!session && !loading) router.push(`/?movie=${id}`);
-  }, [loading, router, session, id]);
 
   if ((typeof window !== 'undefined' && loading) || !session) return null;
   if (!id) return <ErrorPage statusCode={404} message="No movie selected" />;
@@ -63,30 +57,9 @@ export default function MoviePage({
     return <BannedPage user={user} />;
   }
   if (!user) {
-    const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
-    const siteURI = process.env.NEXT_PUBLIC_APP_URI || 'https://www.movie.michael-hall.me';
-
     return (
       <>
-        <NextSeo
-          title={data.name}
-          openGraph={{
-            title: `${data.name} on ${siteName}`,
-            type: `website`,
-            site_name: siteName,
-            images: [
-              {
-                width: 3840,
-                height: 2160,
-                url:
-                  data.image ||
-                  `${siteURI}/sitePicture.png`,
-                alt: siteName + ' webpage',
-              },
-            ],
-          }}
-          description={'A private movie rating website'}
-        />
+        <NextSeo title={data.name} />
         <Flex
           height="full"
           width="full"
@@ -117,10 +90,13 @@ export default function MoviePage({
 }
 
 interface SSRProps {
-  props: {
+  props?: {
     session: Session | null;
-    revalidate: number;
     movie: SerializedMovieType<ReviewType<PopulatedUserType>[]> | null;
+  };
+  redirect?: {
+    destination: string;
+    permanent: boolean;
   };
 }
 
@@ -128,16 +104,23 @@ export async function getServerSideProps(
   ctx: GetServerSidePropsContext
 ): Promise<SSRProps> {
   const { id } = ctx.query;
-  if (!id) return { props: { session: null, revalidate: 60, movie: null } };
+  if (!id)
+    return {
+      props: { session: null, movie: null },
+    };
   const session = await getSession({ req: ctx.req });
   if (!session)
-    return { props: { session: null, revalidate: 60, movie: null } };
+    return {
+      redirect: {
+        destination: `/?movie=${id}`,
+        permanent: false,
+      },
+    };
 
   const movie = await getMovie(id, true);
 
   return {
     props: {
-      revalidate: 60,
       movie,
       session,
     },
