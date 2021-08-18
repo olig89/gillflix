@@ -431,7 +431,7 @@ const AdditionalMovieDetails = ({
       </Stat>
     </StatGroup>
   </Flex>
-  <Donut {movie.concept, movie.cinema, movie.perform}/>
+  <Donut concept={movie.concept} cinema={movie.cinema} perform={movie.perform}/>
   </Flex>
 );
 
