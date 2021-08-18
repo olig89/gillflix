@@ -205,6 +205,7 @@ const Review = ({ review, user, movie }: ReviewProps) => {
       </Flex>
       <Text
         fontSize="lg"
+        listStylePosition="inside"
         color={
           review?.comment
             ? colorMode === 'light'
