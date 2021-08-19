@@ -15,6 +15,7 @@ import {
   IconButton,
   Tooltip,
   VStack,
+  Text,
   AvatarGroup,
   Avatar,
   useToast,
@@ -27,8 +28,6 @@ import {
   Button,
   PopoverHeader,
   Skeleton,
-  Box,
-  Text,
   Link as ChakraLink,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
@@ -66,7 +65,6 @@ const COLUMNS = (
       const [loaded, setLoaded] = React.useState(false);
       return (
         <Stack spacing={6} isInline alignItems="center">
-          <Box display={{base: 'none', md:'block'}}>
           <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
             <Skeleton borderRadius="md" isLoaded={loaded}>
               <Image
@@ -79,18 +77,15 @@ const COLUMNS = (
               />
             </Skeleton>
           </AspectRatio>
-          </Box>
           <VStack alignItems="flex-start">
             <Link href={`/movie/${_id}`} passHref>
               <Heading as={ChakraLink} size="lg">
                 {name}
               </Heading>
             </Link>
-            <Box display={{base: 'none', xl:'block'}}>
-              <Text color="gray.500" fontWeight="semibold">
-                {tagLine || 'No tag line'}
-              </Text>
-            </Box>
+            <Text color="gray.500" fontWeight="semibold">
+              {tagLine || 'No tag line'}
+            </Text>
           </VStack>
         </Stack>
       );
@@ -118,7 +113,6 @@ const COLUMNS = (
               {' '}
               /10
             </chakra.span>
-            <Box display={{base: 'none', lg:'block'}}>
             <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
                 <Avatar
@@ -128,7 +122,6 @@ const COLUMNS = (
                 />
               ))}
             </AvatarGroup>
-            </Box>
           </StatNumber>
         </Stat>
       ) : (
@@ -147,10 +140,15 @@ const COLUMNS = (
       value: { imdbID: string; movieID: string; name: string };
     }) => {
       return (
-        <Box display={{base: 'none', xl:'block'}}>
         <Stack isInline width="full" justifyContent="center">
-            <Tooltip
-              label="View more info"
+          <Tooltip
+            label="View more info"
+            aria-label="View more info"
+            hasArrow
+            placement="top"
+          >
+            <IconButton
+              href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
               aria-label="View more info"
               size="2xl"
               p={2}
@@ -159,7 +157,7 @@ const COLUMNS = (
               colorScheme={process.env.COLOR_THEME}
               variant="ghost"
             />
-            </Tooltip>
+          </Tooltip>
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
@@ -181,15 +179,15 @@ const COLUMNS = (
           {user.isAdmin && (
             <Popover closeOnBlur={true}>
               <Tooltip
-                label="Delete movie"
-                aria-label="Delete movie"
+                label="Delete film"
+                aria-label="Delete film"
                 hasArrow
                 placement="top"
               >
                 <span>
                   <PopoverTrigger>
                     <IconButton
-                      aria-label="Delete movie"
+                      aria-label="Delete film"
                       size="2xl"
                       p={2}
                       variant="ghost"
@@ -224,7 +222,6 @@ const COLUMNS = (
             </Popover>
           )}
         </Stack>
-        </Box>
       );
     },
   },
@@ -290,7 +287,6 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
       name: movie.name,
       image: movie.image,
       tagLine: movie.tagLine,
-      movieID: movie._id
     },
     rating: {
       rating: movie.rating,
@@ -330,7 +326,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
               <Th
                 {...header.getHeaderProps()}
                 key={j.toString() + ' header'}
-                py={5}
+                py={7}
                 fontSize="md"
                 textAlign="center"
               >
