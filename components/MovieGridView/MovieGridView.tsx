@@ -147,8 +147,8 @@ const COLUMNS = (
       value: { imdbID: string; movieID: string; name: string };
     }) => {
       return (
+        <Box display={{base: 'none', xl:'block'}}>
         <Stack isInline width="full" justifyContent="center">
-          <Box display={{base: 'none', xl:'block'}}>
             <Tooltip
               label="View more info"
               aria-label="View more info"
@@ -159,7 +159,7 @@ const COLUMNS = (
               colorScheme={process.env.COLOR_THEME}
               variant="ghost"
             />
-          </Tooltip>
+            </Tooltip>
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
@@ -224,6 +224,7 @@ const COLUMNS = (
             </Popover>
           )}
         </Stack>
+        </Box>
       );
     },
   },
