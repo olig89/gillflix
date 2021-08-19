@@ -161,6 +161,14 @@ export const CardGrid: React.FC<CardGridProps> = ({
         justifyContent="flex-start"
         alignItems="center"
       >
+        <Heading fontSize={{ base: '4xl', md: '6xl' }} textAlign="center">
+          We have reviewed{' '}
+          {
+            <chakra.span color={useColorModeValue('purple.500', 'purple.300')}>
+              {unSortedMovies?.length}
+            </chakra.span>
+          }{' '}films
+        </Heading>
         <ActiveHero
           movie={
             unSortedMovies
@@ -173,14 +181,6 @@ export const CardGrid: React.FC<CardGridProps> = ({
               .reverse()[0]
           }
         />
-        <Heading fontSize={{ base: '4xl', md: '6xl' }} textAlign="center">
-          We have reviewed{' '}
-          {
-            <chakra.span color={useColorModeValue('purple.500', 'purple.300')}>
-              {unSortedMovies?.length}
-            </chakra.span>
-          }{' '}films
-        </Heading>
         <Flex
           width="full"
           direction={{ base: 'column', md: 'row' }}
