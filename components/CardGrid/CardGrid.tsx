@@ -161,14 +161,6 @@ export const CardGrid: React.FC<CardGridProps> = ({
         justifyContent="flex-start"
         alignItems="center"
       >
-        <Heading fontSize={{ base: '4xl', md: '6xl' }} textAlign="center">
-          We have reviewed{' '}
-          {
-            <chakra.span color={useColorModeValue('purple.500', 'purple.300')}>
-              {unSortedMovies?.length}
-            </chakra.span>
-          }{' '}films
-        </Heading>
         <ActiveHero
           movie={
             unSortedMovies
@@ -181,6 +173,25 @@ export const CardGrid: React.FC<CardGridProps> = ({
               .reverse()[0]
           }
         />
+        <Heading
+          mb={10}
+          fontSize={{ base: '4xl', md: '6xl' }}
+          textAlign="center"
+        >
+          We have reviewed{' '}
+          {
+            <chakra.span
+              color={useColorModeValue(
+                `${process.env.COLOR_THEME}.500`,
+                `${process.env.COLOR_THEME}.300`
+              )}
+            >
+              {unSortedMovies?.length}
+            </chakra.span>
+          }{' '}
+          films
+        </Heading>
+
         <Flex
           width="full"
           direction={{ base: 'column', md: 'row' }}
@@ -320,19 +331,27 @@ export const CardGrid: React.FC<CardGridProps> = ({
                   borderRadius="md"
                 >
                   <IconButton
-                    bg={cardView ? 'purple.300' : 'transparent'}
+                    bg={
+                      cardView
+                        ? `${process.env.COLOR_THEME}.300`
+                        : 'transparent'
+                    }
                     size="sm"
                     onClick={() => setCardView(true)}
                     aria-label="Activate table mode"
-                    colorScheme={cardView ? 'purple' : 'gray'}
+                    colorScheme={cardView ? process.env.COLOR_THEME : 'gray'}
                     icon={<BsGrid3X3Gap size="1.1rem" />}
                   />
                   <IconButton
                     size="sm"
-                    bg={!cardView ? 'purple.300' : 'transparent'}
+                    bg={
+                      !cardView
+                        ? `${process.env.COLOR_THEME}.300`
+                        : 'transparent'
+                    }
                     onClick={() => setCardView(false)}
                     aria-label="Activate table mode"
-                    colorScheme={!cardView ? 'purple' : 'gray'}
+                    colorScheme={!cardView ? process.env.COLOR_THEME : 'gray'}
                     icon={<HiViewList size="1.1rem" />}
                   />
                 </Stack>

@@ -152,21 +152,14 @@ const COLUMNS = (
             <Tooltip
               label="View more info"
               aria-label="View more info"
-              hasArrow
-              placement="top"
-            >
-              <IconButton
-                href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
-                aria-label="View more info"
-                size="2xl"
-                p={2}
-                as={'a'}
-                icon={<CgDetailsMore size="3em" />}
-                colorScheme="purple"
-                variant="ghost"
-              />
-            </Tooltip>
-          </Box>
+              size="2xl"
+              p={2}
+              as={'a'}
+              icon={<CgDetailsMore size="3em" />}
+              colorScheme={process.env.COLOR_THEME}
+              variant="ghost"
+            />
+          </Tooltip>
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
