@@ -49,14 +49,10 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
         fontWeight="bold"
         fontSize="2xl"
         justifyContent="center"
-        color={
-          colorMode === 'light'
-            ? `${process.env.COLOR_THEME}.300`
-            : `${process.env.COLOR_THEME}.500`
-        }
-        bg={colorMode === 'light' ? 'gray.800' : 'white'}
+        color={`white`}
+        bg={`${process.env.COLOR_THEME}.500`}
       >
-        Active Movie
+        We are reviewing
       </Flex>
       {/* <Box
         opacity={0}
