@@ -1,21 +1,55 @@
 # Movie-Rating website 2.0 aka ScuffedMDB
 
-This is the movie rating website v2.0 (now with dark mode&trade;).
+# Table of Contents
+<details>
+<summary>Click to expand</summary>
+  
+- [Introduction](#introduction)
+  
+- [Host this yourself](#how-to-host-this-yourself)
+  
+  - [Setting up the local environment](#settting-up-the-local-environment)
+  
+  - [Setting up the production environment](#setting-up-the-production-environment)
+  
+- [Discord bot integration](#using-the-discord-bot-with-the-website)
+  
+- [TODO](#todo)
+  
+</details>
 
-Designed to be used by friends to rate movies watched together :).
 
-This repo is licensed under an [MIT license](https://github.com/mah51/ScuffedMDB/blob/main/LICENSE), and can therefore be modified and distributed as stated. However, if you do host this yourself, please include some creditation to my github somewhere on the page as a link to this repo / or my homepage. Not only will this help me out, but it allows others to host their own versions if they wish!
+## Introduction
 
-![Screen Shot 2021-07-09 at 06 08 38](https://user-images.githubusercontent.com/47287285/125026289-25392280-e07c-11eb-979a-67769c36c4ea.png)
-![Screen Shot 2021-07-09 at 06 09 20](https://user-images.githubusercontent.com/47287285/125026321-371ac580-e07c-11eb-9881-1ec8a70c0f23.png)
-![Screen Shot 2021-07-09 at 06 09 06](https://user-images.githubusercontent.com/47287285/125026308-2f5b2100-e07c-11eb-873e-2eabcf0906fb.png)
-![Screen Shot 2021-07-09 at 06 10 31](https://user-images.githubusercontent.com/47287285/125026394-616c8300-e07c-11eb-9678-a6e497119b7d.png)
+Welcome to [ScuffedMDB's&trade;](https://movie.michael-hall.me) code repository. This website is designed to be used by a friend group to rate movies watched together :).
+
+To follow any updates there is a [Changelog](/CHANGELOG.md)
+
+This repo is licensed under an [MIT license](https://github.com/mah51/ScuffedMDB/blob/main/LICENSE), and can therefore be modified and distributed as stated. However, if you do host this yourself, please include some creditation to my github somwhere on the page as a link to this repo / or my homepage. Not only will this help me out, but it allows others to host their own versions i'sf they wish!
+
+Thank you to [@oli89](https://github.com/oli89) for all of the ideas and user testing!
+
+<table>
+  <tr>
+    <td align="left">
+<img src="https://user-images.githubusercontent.com/47287285/125026289-25392280-e07c-11eb-979a-67769c36c4ea.png" align="left" /></td>
+    <td align="right"><img src="https://user-images.githubusercontent.com/47287285/125026321-371ac580-e07c-11eb-9881-1ec8a70c0f23.png"  align="right" /></td>
+  </tr>
+  <tr>
+    <td align="left" >
+<img src="https://user-images.githubusercontent.com/47287285/125026308-2f5b2100-e07c-11eb-873e-2eabcf0906fb.png" align="left" /></td>
+ 
+  <td align="left"><img src="https://user-images.githubusercontent.com/47287285/125026394-616c8300-e07c-11eb-9678-a6e497119b7d.png" align="right" /></td>
+     </tr>
+</table>
+
 
 
 ## How to host this yourself:
 
-### Setting up a local environment
-
+### Setting up the local environment
+<details>
+  <summary>Click to expand</summary>
 It is beneficial to set up a local environment to make quick changes without having to wait for the website to rebuild on vercel.
 
 1. Fork this repository at the top right of this page.
@@ -57,9 +91,12 @@ _and again_
 10. Run `npm run dev` in your terminal in the project directory.
   
 11. Stonks! ... if you are having trouble feel free to [submit an issue](https://github.com/mah51/ScuffedMDB/issues/new)
+  </details>
   
 ### Setting up the production environment
-
+  
+<details>
+  <summary>Click to expand</summary>
 1. Login to https://vercel.com/ with your github.
 
 2. Go to the homepage and create new project, select 'ScuffedMDB' and click import. 
@@ -83,14 +120,15 @@ _and again_
  9. Go back to the overview tab and click redeploy.
   
  10. Thats it! your very own live movie rating website. The world is yours ... and everytime you push a change to your repo, it automatically redeploys (<3 vercel).
-
+</details>
+  
 ## Using the discord bot with the website:
 
 Visit [the repo - ScuffedMDB-Bot](https://github.com/mah51/scuffedmdb-bot) containing the bots code and use the readme to integrate with the website. (Make sure the website is setup and working before trying this out).
   
 N.B _The bot does not run on vercel, you have to find your own host, self-hosting is a good option if you have a computer running 24/7, if not I would recommend a cheap VPS._
 
-TODO:
+## TODO:
 
 
 - Fix bunch of errors to do with incorrect hook usage & react-table. ;(

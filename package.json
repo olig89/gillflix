@@ -1,6 +1,6 @@
 {
   "name": "movie-web-typescript",
-  "version": "0.1.8",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -114,12 +114,12 @@
           "emoji": "♻️",
           "code": ":recycle:",
           "description": "Refactoring code.",
-          "name": "refactoring"
+          "name": "refactor"
         },
         {
           "emoji": "🎨",
           "code": ":art:",
-          "description": "Improving structure / format of the code.",
+          "description": "Styling changes on the website.",
           "name": "style"
         },
         {
@@ -139,6 +139,12 @@
           "code": ":rocket:",
           "description": "Deploying stuff.",
           "name": "deploy"
+        },
+        {
+          "emoji": "📈",
+          "code": ":chart-with-upwards-trend:",
+          "description": "A general improvement.",
+          "name": "improvement"
         },
         {
           "emoji": "💄",
