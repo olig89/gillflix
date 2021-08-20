@@ -1,0 +1,41 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "badgeTemplate": "<a href=\"#contributors\">\n<img alt=\"contributors\" src=\"https://img.shields.io/badge/contributors-<%= contributors.length %>-orange.svg?style=for-the-badge&color=%23F6E05E\" /></a>",
+  "commit": true,
+  "contributors": [
+    {
+      "login": "mah51",
+      "name": "Michael Hall",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47287285?v=4",
+      "profile": "https://www.michael-hall.me/",
+      "contributions": [
+        "code",
+        "content",
+        "doc",
+        "design",
+        "maintenance",
+        "review"
+      ]
+    },
+    {
+      "login": "olig89",
+      "name": "Oli Gill",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24813487?v=4",
+      "profile": "http://olivergill.com",
+      "contributions": [
+        "bug",
+        "ideas",
+        "test"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "ScuffedMDB",
+  "projectOwner": "mah51",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

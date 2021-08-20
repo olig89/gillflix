@@ -66,7 +66,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
   const [cardView, setCardView] = useState(true);
   const [genres, setGenres] = useState<string[]>([]);
   const [isGenreFilterActive, setIsGenreFilterActive] = useState(false);
-
+  const featuredMovie = unSortedMovies[0]?._id;
   const toast = useToast();
   const { colorMode } = useColorMode();
   // Fix for https://github.com/chakra-ui/chakra-ui/issues/3076
@@ -333,7 +333,9 @@ export const CardGrid: React.FC<CardGridProps> = ({
                   <IconButton
                     bg={
                       cardView
-                        ? `${process.env.COLOR_THEME}.300`
+                        ? `${process.env.COLOR_THEME}.${
+                            colorMode === 'light' ? 500 : 300
+                          }`
                         : 'transparent'
                     }
                     size="sm"
@@ -371,7 +373,11 @@ export const CardGrid: React.FC<CardGridProps> = ({
                 movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>,
                 i
               ) => (
-                <Card movie={movie} key={`${i.toString()}card`} />
+                <Card
+                  movie={movie}
+                  key={`${i.toString()}card`}
+                  featuredMovie={featuredMovie}
+                />
               )
             )}
           </SimpleGrid>
@@ -386,7 +392,11 @@ export const CardGrid: React.FC<CardGridProps> = ({
             border="1px solid"
             borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
           >
-            <MovieGridView user={user} movies={movies.data} />
+            <MovieGridView
+              user={user}
+              movies={movies.data}
+              featuredMovie={featuredMovie}
+            />
           </chakra.div>
         )}
       </Container>

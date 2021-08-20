@@ -1,16 +1,23 @@
 # ScuffedMDB
 
 <p align="center">
-   <img alt="Version" src="https://img.shields.io/github/v/tag/mah51/scuffedmdb?label=Version&style=for-the-badge&color=%23E53E3E" />
+  <img alt="Version"  src="https://img.shields.io/github/v/tag/mah51/scuffedmdb?label=Version&style=for-the-badge&color=%23E53E3E" />
+   </p>
+<p align="center">
+  
   <img alt='Issues' src="https://img.shields.io/github/issues/mah51/scuffedmdb?color=%23ED8936&style=for-the-badge">
-  <img src="https://img.shields.io/github/forks/mah51/scuffedmdb?style=for-the-badge&color=%23F6E05E"/>
+     <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<a href="#contributors">
+<img alt="contributors" src="https://img.shields.io/badge/contributors-2-orange.svg?style=for-the-badge&color=%23F6E05E" /></a>
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <img alt="Github Stars" src="https://img.shields.io/github/stars/mah51/scuffedmdb?style=for-the-badge&color=%2348BB78" />
     <img alt="Checks Passing" src="https://img.shields.io/github/checks-status/mah51/scuffedmdb/main?color=4299e1&style=for-the-badge" />
-     <img alt="Last updated" src="https://img.shields.io/github/last-commit/mah51/scuffedmdb?color=9F7AEA&label=updated&style=for-the-badge" />
-      <img  height='28px'
-src="https://forthebadge.com/images/badges/not-a-bug-a-feature.svg" />
-
+   <img alt="License" src="https://img.shields.io/github/license/mah51/Scuffedmdb?style=for-the-badge&color=%239F7AEA" />
 </p>
+
+<p align="center">
+   <img  height='28px'src="https://forthebadge.com/images/badges/not-a-bug-a-feature.svg" />
+  </p>
 
 # Table of Contents
 
@@ -72,12 +79,14 @@ Thank you to [@olig89](https://github.com/olig89) for all of the ideas and user 
 
 #### Not required
 
-| Name                  | Description                                                                                                                                 | Example                     |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| WEBHOOK_URL           | Endpoint for the discord_bot webhook                                                                                                        | `https://bot.michael-hall.me` |
-| WEBHOOK_TOKEN         | Random string used to authenticate movie websites request, required if using the webhook                                                    | `dsajoi234opiasdijofp`        |
-| COLOR_THEME           | Color theme for the website, options: [chakra docs](https://chakra-ui.com/docs/theming/theme#colors) | `purple`                      |
-| NEXT_PUBLIC_SITE_NAME | Name of the website, default is ScuffedMDB                                                                                                  | `ScuffedMDB`                  |
+| Name                        | Description                                                                                          | Example                       |
+| --------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------- |
+| ALLOWED_USERS               | A comma separated list of discord ids representing users that can log into the website. If left blank, all users can login.   | `234908230323,234908230324`   |
+| WEBHOOK_URL                 | Endpoint for the discord_bot webhook                                                                 | `https://bot.michael-hall.me` |
+| WEBHOOK_TOKEN               | Random string used to authenticate movie websites request, required if using the webhook             | `dsajoi234opiasdijofp`        |
+| COLOR_THEME                 | Color theme for the website, options: [chakra docs](https://chakra-ui.com/docs/theming/theme#colors) | `purple`                      |
+| NEXT_PUBLIC_SITE_NAME       | Name of the website, default is ScuffedMDB                                                           | `ScuffedMDB`                  |
+| NEXT_PUBLIC_SHORT_SITE_NAME | Short name of the website, default is SMDB                                                           | `SMDB`                        |
 
 ## How to host this yourself:
 
@@ -88,6 +97,7 @@ Thank you to [@olig89](https://github.com/olig89) for all of the ideas and user 
 It is beneficial to set up a local environment to make quick changes without having to wait for the website to rebuild on vercel.
 
 1. Fork this repository at the top right of this page.
+  
 2. Clone to your computer
 
 `git clone https://github.com/<YOUR GITHUB USERNAME>/scuffedmdb`
@@ -133,13 +143,16 @@ _and again_
 
 <details>
   <summary>Click to expand</summary>
+ 
+__Make sure you have a fork of the repository by clicking the fork button top right__  
+  
 1. Login to https://vercel.com/ with your github.
 
 2. Go to the homepage and create new project, select 'ScuffedMDB' and click import.
 
 3. All the default settings are as should be, just click deploy. (Be warned it wont work just yet, we still need to provide our environment variables!)
 
-4. Return to the homepage and find your project, click on it and follow the tabs at the top to 'settings', then click environment variables on the left hand menu. Here you can add all of the environment variables from your .env.local file, one at a time using the box at the top.
+4. Once deployed, click the big 'Go to dashboard' button, follow the tabs at the top to 'settings', then click environment variables on the left hand menu. Here you can add all of the environment variables from your .env.local file, one at a time using the box at the top.
 
 5. CLIENT_ID, CLIENT_SECRET, OWNER_ID, and MOVIE_API_KEY will be the same as your local environment.
 
@@ -169,3 +182,24 @@ N.B _The bot does not run on vercel, you have to find your own host, self-hostin
 - Fix bunch of errors to do with incorrect hook usage & react-table. ;(
 - Add pagination to the API & FrontEnd cards
 - Add tests if you wanna learn how to do em.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.michael-hall.me/"><img src="https://avatars.githubusercontent.com/u/47287285?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Hall</b></sub></a><br /><a href="https://github.com/mah51/ScuffedMDB/commits?author=mah51" title="Code">💻</a> <a href="#content-mah51" title="Content">🖋</a> <a href="https://github.com/mah51/ScuffedMDB/commits?author=mah51" title="Documentation">📖</a> <a href="#design-mah51" title="Design">🎨</a> <a href="#maintenance-mah51" title="Maintenance">🚧</a> <a href="https://github.com/mah51/ScuffedMDB/pulls?q=is%3Apr+reviewed-by%3Amah51" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="http://olivergill.com"><img src="https://avatars.githubusercontent.com/u/24813487?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Oli Gill</b></sub></a><br /><a href="https://github.com/mah51/ScuffedMDB/issues?q=author%3Aolig89" title="Bug reports">🐛</a> <a href="#ideas-olig89" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/mah51/ScuffedMDB/commits?author=olig89" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

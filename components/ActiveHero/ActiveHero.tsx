@@ -7,6 +7,7 @@ import {
   useColorMode,
   VStack,
 } from '@chakra-ui/react';
+import { transparentize } from '@chakra-ui/theme-tools';
 import { SerializedMovieType } from 'models/movie';
 import { useSession } from 'next-auth/client';
 import Image from 'next/image';
@@ -16,7 +17,7 @@ import { ReactElement } from 'react';
 import { ReviewModalContext } from 'utils/ModalContext';
 
 interface Props {
-  movie: SerializedMovieType;
+  movie: SerializedMovieType | undefined;
 }
 
 export default function ActiveHero({ movie }: Props): ReactElement | null {
@@ -25,8 +26,8 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
   const [session] = useSession();
 
   const { onOpen, setMovie } = useContext(ReviewModalContext);
-  const hasReviewed = movie.reviews.some(
-    (m) => m.user?._id === session?.user.sub
+  const hasReviewed = movie?.reviews?.some(
+    (m) => m?.user?._id === session?.user.sub
   );
   if (!movie) return null;
 
@@ -34,63 +35,37 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
     <Flex
       position="relative"
       direction="column"
+      boxShadow="xl"
       mb="8"
       mx="auto"
       border="1px solid"
       borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
       borderRadius="2xl"
       p={5}
+      px={7}
     >
       <Flex
-        mx={-5}
+        mx={-7}
         mt={-5}
+        py={1}
         mb={5}
         borderTopRadius="2xl"
         fontWeight="bold"
         fontSize="2xl"
         justifyContent="center"
-        color={`white`}
-        bg={`${process.env.COLOR_THEME}.500`}
+        bg={
+          colorMode === 'light'
+            ? `${process.env.COLOR_THEME}.200`
+            : `${process.env.COLOR_THEME}.600`
+        }
+        borderBottom="1px solid"
+        borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
       >
         We are reviewing
       </Flex>
-      {/* <Box
-        opacity={0}
-        top={0}
-        zIndex={10}
-        left={0}
-        right={0}
-        bottom={0}
-        borderRadius="2xl"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        position="absolute"
-        transition="all 0.25s"
-        bg={colorMode === 'light' ? `white` : `gray.800`}
-        transitionTimingFunction="spring(1 100 10 10)"
-        onClick={() => {
-          setMovie(movie);
-          onOpen();
-        }}
-        _hover={{
-          opacity: 0.955,
-          cursor: 'pointer',
-          shadow: `2xl`,
-        }}
-      >
-        <Text
-          fontSize="4xl"
-          fontWeight="semibold"
-          textAlign="center"
-          color={colorMode === 'light' ? `gray.800` : `white`}
-        >
-          {hasReviewed ? 'Edit your review' : 'Add a review'}
-        </Text>
-      </Box> */}
 
       <Flex direction={{ base: 'column', md: 'row' }}>
-        <AspectRatio mt={{ base: 7, md: 0 }} ratio={16 / 9} minWidth="200px">
+        <AspectRatio ratio={16 / 9} minWidth="200px">
           <Image
             className={'borderRadius-2xl'}
             src={movie.image || ''}
@@ -114,7 +89,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
       <Flex
         mt={5}
         mb={-5}
-        mx={-5}
+        mx={-7}
         borderBottomRadius="2xl"
         borderTop="1px solid"
         borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
@@ -127,6 +102,14 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
             width="50%"
             p={2}
             borderRight="1px solid"
+            _hover={{
+              bg: transparentize(
+                `gray.${colorMode === 'light' ? 500 : 200}`,
+                0.16
+              ),
+            }}
+            color={`${colorMode === 'light' ? 'gray.800' : 'white'}`}
+            borderBottomLeftRadius="2xl"
             borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
           >
             Details
@@ -138,6 +121,16 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
             setMovie(movie);
             onOpen();
           }}
+          color={`${process.env.COLOR_THEME}.${
+            colorMode === 'light' ? 500 : 300
+          }`}
+          _hover={{
+            bg: transparentize(
+              `${process.env.COLOR_THEME}.${colorMode === 'light' ? 500 : 200}`,
+              0.16
+            ),
+          }}
+          borderBottomRightRadius="2xl"
           width="50%"
           p={2}
         >

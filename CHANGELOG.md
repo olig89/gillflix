@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/mah51/scuffedmdb/compare/v0.3.2...v0.4.0) (2021-08-20)
+
+
+### Features
+
+* **404Page:** :sparkles: Added 404 ([5cba14a](https://github.com/mah51/scuffedmdb/commit/5cba14a2b32050e09e812536c1f93e0732f53e4c))
+* **HomePage:** :sparkles: abstract movie card when it is featured ([2f276d5](https://github.com/mah51/scuffedmdb/commit/2f276d547992180acddd85fb8ae10d5c914e3c5e))
+* **SECURITY:** :sparkles: New .env option to limit users that can sign in ([d8d84c3](https://github.com/mah51/scuffedmdb/commit/d8d84c38cfc00e26d11f6b837ea875e636f27acf))
+
+
+### Bug Fixes
+
+* **Footer:** :bug: fix footer alignment ([0c16f63](https://github.com/mah51/scuffedmdb/commit/0c16f63e963cb7cc0772965963fb4c99e32e79d6))
+* **MovieGrid:** :bug: fix images changing sizes ([4da43e1](https://github.com/mah51/scuffedmdb/commit/4da43e190c3ae4ebf5e846722ef0545566f11aa6))
+* **VersionRC:** :bug: ([e651064](https://github.com/mah51/scuffedmdb/commit/e651064b4b378df73b3524da12a0f685703bff80))
+
+
+### Styling
+
+* **Footer:** :art: spacing on mobile ([1661711](https://github.com/mah51/scuffedmdb/commit/1661711360c5747a1910976ead719aff366af358))
+
+
+### Code Refactoring
+
+* **Footer:** :recycle: position of social icon tooltip ([c91e6d4](https://github.com/mah51/scuffedmdb/commit/c91e6d4f29bd3e96cafe6dafbf2e4b282d11156e))
+
+### [0.3.2](https://github.com/mah51/scuffedmdb/compare/v0.3.1...v0.3.2) (2021-08-19)
+
+
+### Features
+
+* **SecondaryAccent:** :sparkles: implement secondary colors for primaries ([317436f](https://github.com/mah51/scuffedmdb/commit/317436fd46aaec9e89e933db53052155c358f12b))
+
+
+### Bug Fixes
+
+* **NextConfig:** :bug: Ensure NEXTAUTH_URL is in env ([1c795fd](https://github.com/mah51/scuffedmdb/commit/1c795fdbe12717101c4ede6a40d13fb84ef765c8))
+
+
+### Docs
+
+* **CONTRIBUTING:** :pencil: clear up how to contribute ([b5ea737](https://github.com/mah51/scuffedmdb/commit/b5ea737e0daae200e193312ac978886b6bf11cab))
+* create .all-contributorsrc [skip ci] ([c1e0f4c](https://github.com/mah51/scuffedmdb/commit/c1e0f4c4def936c9dc1482cdd6ba376cb1a2ae6a))
+* **README:** :pencil: aesthetic changes ([e6cbeb6](https://github.com/mah51/scuffedmdb/commit/e6cbeb6156fdce0e6fdc268fcbbd05f978d8682e))
+* **README:** :pencil: aesthetic changes ([ebdad70](https://github.com/mah51/scuffedmdb/commit/ebdad70b67894a05babbdab701cdadd178f45d39))
+* **Remembering short site name:** :pencil: ([a416deb](https://github.com/mah51/scuffedmdb/commit/a416deb8145c1667fa7c68020ec3afa435e95888))
+* update .all-contributorsrc [skip ci] ([e8aacb7](https://github.com/mah51/scuffedmdb/commit/e8aacb79a8935f58c2006959dd7982a11a15a132))
+* update README.md [skip ci] ([863f7c6](https://github.com/mah51/scuffedmdb/commit/863f7c64fd2e1dc66ed0ac66a52e804ff5605936))
+* update README.md [skip ci] ([0b4b764](https://github.com/mah51/scuffedmdb/commit/0b4b764557f7a17b9c24d633b30c2a39cc233ab5))
+
+
+### Styling
+
+* **ActiveHero:** :art: visual changes to buttons ([de2e26d](https://github.com/mah51/scuffedmdb/commit/de2e26dcfe06dcbb6f5f1ccd7a6c6eb8302f96dc))
+* **AlertBanner:** :art: promotion now uses secondary color ([44e96af](https://github.com/mah51/scuffedmdb/commit/44e96af4910aaa6c7cef87042289d088a9f5d842))
+* **SecondaryColor:** :art: adding secondary accent colour & footer banner ([ca56c90](https://github.com/mah51/scuffedmdb/commit/ca56c908b9be7f4e9947314d7e264f5e6148a00f))
+* **ToggleGrid:** :art: incosistent bg color ([638db56](https://github.com/mah51/scuffedmdb/commit/638db56391e90d428974972db366d9f59e48b96d))
+
 ### [0.3.1](https://github.com/mah51/scuffedmdb/compare/v0.3.0...v0.3.1) (2021-08-19)
 
 ## [0.3.0](https://github.com/mah51/scuffedmdb/compare/v0.2.1...v0.3.0) (2021-08-19)
