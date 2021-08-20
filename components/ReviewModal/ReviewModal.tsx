@@ -242,7 +242,7 @@ export const ReviewModal: React.FC<{
               {isEditingReview && movie
                 ? `Editing review for ${movie?.name}`
                 : isOpenedFromMovie && movie
-                ? `Add a review to ${movie?.name}`
+                ? `Add a review for ${movie?.name}`
                 : 'Add a review'}
             </Heading>
           </ModalHeader>
