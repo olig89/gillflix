@@ -15,6 +15,7 @@ import {
   IconButton,
   Tooltip,
   VStack,
+  Text,
   AvatarGroup,
   Avatar,
   useToast,
@@ -27,9 +28,8 @@ import {
   Button,
   PopoverHeader,
   Skeleton,
-  Box,
-  Text,
   Link as ChakraLink,
+  Flex,
 } from '@chakra-ui/react';
 import { UserAuthType } from 'next-auth';
 import Image from 'next/image';
@@ -46,6 +46,7 @@ import { SerializedMovieType } from '../../models/movie';
 interface Props {
   movies: SerializedMovieType[];
   user: UserAuthType;
+  featuredMovie: string;
 }
 
 const COLUMNS = (
@@ -59,15 +60,39 @@ const COLUMNS = (
     Header: 'Film',
     accessor: 'info',
     Cell: ({
-      value: { image, name, tagLine, _id },
+      value: { image, name, tagLine, _id, featuredMovie },
     }: {
-      value: { name: string; image: string; tagLine: string; _id: string };
+      value: {
+        name: string;
+        image: string;
+        tagLine: string;
+        _id: string;
+        featuredMovie: string;
+      };
     }) => {
       const [loaded, setLoaded] = React.useState(false);
       return (
-        <Stack spacing={6} isInline alignItems="center">
-          <Box display={{base: 'none', md:'block'}}>
-          <AspectRatio ratio={16 / 9} width="150px" borderRadius="xl">
+        <Stack position="relative" spacing={6} isInline alignItems="center">
+          <Flex
+            opacity={featuredMovie === _id ? 0.93 : 0}
+            position="absolute"
+            justifyContent="center"
+            alignItems="center"
+            width="full"
+            inset={0}
+            zIndex={1}
+            height="full"
+            bg={useColorModeValue('white', 'gray.800')}
+          >
+            <Text
+              fontSize="4xl"
+              fontWeight="semibold"
+              color={useColorModeValue(`gray.800`, `white`)}
+            >
+              Review in progress
+            </Text>
+          </Flex>
+          <AspectRatio ratio={16 / 9} minWidth="150px" borderRadius="xl">
             <Skeleton borderRadius="md" isLoaded={loaded}>
               <Image
                 src={image}
@@ -79,18 +104,15 @@ const COLUMNS = (
               />
             </Skeleton>
           </AspectRatio>
-          </Box>
-          <VStack alignItems="flex-start">
+          <VStack alignItems="flex-start" minWidth="250px">
             <Link href={`/movie/${_id}`} passHref>
               <Heading as={ChakraLink} size="lg">
                 {name}
               </Heading>
             </Link>
-            <Box display={{base: 'none', xl:'block'}}>
-              <Text color="gray.500" fontWeight="semibold">
-                {tagLine || 'No tag line'}
-              </Text>
-            </Box>
+            <Text color="gray.500" fontWeight="semibold">
+              {tagLine || 'No tag line'}
+            </Text>
           </VStack>
         </Stack>
       );
@@ -105,7 +127,7 @@ const COLUMNS = (
       value: { rating: string; reviews: { name: string; image: string }[] };
     }) => {
       return reviews.length > 0 ? (
-        <Stat textAlign="center">
+        <Stat textAlign="center" minWidth="200px">
           <StatNumber
             alignItems="center"
             display="flex"
@@ -118,7 +140,6 @@ const COLUMNS = (
               {' '}
               /10
             </chakra.span>
-            <Box display={{base: 'none', lg:'block'}}>
             <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
                 <Avatar
@@ -128,11 +149,10 @@ const COLUMNS = (
                 />
               ))}
             </AvatarGroup>
-            </Box>
           </StatNumber>
         </Stat>
       ) : (
-        <Heading width="full" textAlign="center" size="md">
+        <Heading width="full" textAlign="center" size="md" minWidth="200px">
           No reviews
         </Heading>
       );
@@ -148,25 +168,23 @@ const COLUMNS = (
     }) => {
       return (
         <Stack isInline width="full" justifyContent="center">
-          <Box display={{base: 'none', xl:'block'}}>
-            <Tooltip
-              label="View more info"
+          <Tooltip
+            label="View more info"
+            aria-label="View more info"
+            hasArrow
+            placement="top"
+          >
+            <IconButton
+              href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
               aria-label="View more info"
-              hasArrow
-              placement="top"
-            >
-              <IconButton
-                href={`${process.env.NEXT_PUBLIC_APP_URI}/movie/${movieID}`}
-                aria-label="View more info"
-                size="2xl"
-                p={2}
-                as={'a'}
-                icon={<CgDetailsMore size="3em" />}
-                colorScheme="purple"
-                variant="ghost"
-              />
-            </Tooltip>
-          </Box>
+              size="2xl"
+              p={2}
+              as={'a'}
+              icon={<CgDetailsMore size="3em" />}
+              colorScheme={process.env.COLOR_THEME}
+              variant="ghost"
+            />
+          </Tooltip>
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
@@ -188,15 +206,15 @@ const COLUMNS = (
           {user.isAdmin && (
             <Popover closeOnBlur={true}>
               <Tooltip
-                label="Delete movie"
-                aria-label="Delete movie"
+                label="Delete film"
+                aria-label="Delete film"
                 hasArrow
                 placement="top"
               >
                 <span>
                   <PopoverTrigger>
                     <IconButton
-                      aria-label="Delete movie"
+                      aria-label="Delete film"
                       size="2xl"
                       p={2}
                       variant="ghost"
@@ -236,7 +254,11 @@ const COLUMNS = (
   },
 ];
 
-export default function MovieGridView({ movies, user }: Props): ReactElement {
+export default function MovieGridView({
+  movies,
+  user,
+  featuredMovie,
+}: Props): ReactElement {
   const toast = useToast();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -292,11 +314,11 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
 
   const moviesData = movies.map((movie) => ({
     info: {
+      featuredMovie,
       _id: movie._id.toString(),
       name: movie.name,
       image: movie.image,
       tagLine: movie.tagLine,
-      movieID: movie._id
     },
     rating: {
       rating: movie.rating,
@@ -336,7 +358,7 @@ export default function MovieGridView({ movies, user }: Props): ReactElement {
               <Th
                 {...header.getHeaderProps()}
                 key={j.toString() + ' header'}
-                py={5}
+                py={7}
                 fontSize="md"
                 textAlign="center"
               >

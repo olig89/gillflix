@@ -94,7 +94,7 @@ export const ReviewActions = ({
           <IconButton
             icon={<EditIcon />}
             aria-label="Edit review"
-            colorScheme="purple"
+            colorScheme={process.env.COLOR_THEME}
             variant="ghost"
             onClick={() => {
               setMovie(movie);

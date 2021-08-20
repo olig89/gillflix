@@ -47,7 +47,17 @@ const securityHeaders = [
     value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
   },
 ];
-
+const colors = [
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'teal',
+  'blue',
+  'cyan',
+  'pink',
+  'purple',
+];
 module.exports = withPWA({
   
   pwa: {
@@ -58,13 +68,17 @@ module.exports = withPWA({
     domains: ['image.tmdb.org'],
   },
   env: {
-    JWT_CODE: process.env.JWT_CODE,
     NEXT_PUBLIC_APP_URI: process.env.NEXT_PUBLIC_APP_URI,
-    CLIENT_ID: process.env.CLIENT_ID,
-    CLIENT_SECRET: process.env.CLIENT_SECRET,
+    ALLOWED_USERS: process.env.ALLOWED_USERS,
+    NEXTAUTH_URL: process.env.NEXT_PUBLIC_APP_URI + '/api/auth',
     OWNER_ID: process.env.OWNER_ID,
-    MONGODB_URI: process.env.MONGODB_URI,
-    MOVIE_API_KEY: process.env.MOVIE_API_KEY,
+    COLOR_THEME:
+      process.env.COLOR_THEME &&
+      !colors.includes(process.env.COLOR_THEME.toLowerCase())
+        ? 'purple'
+        : process.env.COLOR_THEME
+        ? process.env.COLOR_THEME.toLowerCase()
+        : 'purple',
   },
   async headers() {
     return [

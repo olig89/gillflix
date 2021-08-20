@@ -49,6 +49,7 @@ import { BsGrid3X3Gap } from 'react-icons/bs';
 import { HiViewList } from 'react-icons/hi';
 import { getColorSchemeCharCode, getMovieGenres } from '../../utils/utils';
 import { ChevronDownIcon } from '@chakra-ui/icons';
+import ActiveHero from '@components/ActiveHero';
 
 interface CardGridProps {
   movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];
@@ -65,7 +66,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
   const [cardView, setCardView] = useState(true);
   const [genres, setGenres] = useState<string[]>([]);
   const [isGenreFilterActive, setIsGenreFilterActive] = useState(false);
-
+  const featuredMovie = unSortedMovies[0]?._id;
   const toast = useToast();
   const { colorMode } = useColorMode();
   // Fix for https://github.com/chakra-ui/chakra-ui/issues/3076
@@ -152,15 +153,45 @@ export const CardGrid: React.FC<CardGridProps> = ({
         description={'A private movie rating website'}
       />
 
-      <Container maxW="container.xl" mt={10}>
-        <Heading fontSize={{ base: '4xl', md: '6xl' }} textAlign="center">
+      <Container
+        maxW="container.xl"
+        mt={10}
+        display="flex"
+        flexDir="column"
+        justifyContent="flex-start"
+        alignItems="center"
+      >
+        <ActiveHero
+          movie={
+            unSortedMovies
+              ?.sort((a, b) => {
+                return (
+                  new Date(a.createdAt).getTime() -
+                  new Date(b.createdAt).getTime()
+                );
+              })
+              .reverse()[0]
+          }
+        />
+        <Heading
+          mb={10}
+          fontSize={{ base: '4xl', md: '6xl' }}
+          textAlign="center"
+        >
           We have reviewed{' '}
           {
-            <chakra.span color={useColorModeValue('purple.500', 'purple.300')}>
+            <chakra.span
+              color={useColorModeValue(
+                `${process.env.COLOR_THEME}.500`,
+                `${process.env.COLOR_THEME}.300`
+              )}
+            >
               {unSortedMovies?.length}
             </chakra.span>
-          }{' '}films
+          }{' '}
+          films
         </Heading>
+
         <Flex
           width="full"
           direction={{ base: 'column', md: 'row' }}
@@ -300,19 +331,29 @@ export const CardGrid: React.FC<CardGridProps> = ({
                   borderRadius="md"
                 >
                   <IconButton
-                    bg={cardView ? 'purple.300' : 'transparent'}
+                    bg={
+                      cardView
+                        ? `${process.env.COLOR_THEME}.${
+                            colorMode === 'light' ? 500 : 300
+                          }`
+                        : 'transparent'
+                    }
                     size="sm"
                     onClick={() => setCardView(true)}
                     aria-label="Activate table mode"
-                    colorScheme={cardView ? 'purple' : 'gray'}
+                    colorScheme={cardView ? process.env.COLOR_THEME : 'gray'}
                     icon={<BsGrid3X3Gap size="1.1rem" />}
                   />
                   <IconButton
                     size="sm"
-                    bg={!cardView ? 'purple.300' : 'transparent'}
+                    bg={
+                      !cardView
+                        ? `${process.env.COLOR_THEME}.300`
+                        : 'transparent'
+                    }
                     onClick={() => setCardView(false)}
                     aria-label="Activate table mode"
-                    colorScheme={!cardView ? 'purple' : 'gray'}
+                    colorScheme={!cardView ? process.env.COLOR_THEME : 'gray'}
                     icon={<HiViewList size="1.1rem" />}
                   />
                 </Stack>
@@ -320,6 +361,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
             </Stack>
           </Stack>
         </Flex>
+
         {cardView ? (
           <SimpleGrid
             columns={{ base: 1, md: 2, lg: 3 }}
@@ -331,7 +373,11 @@ export const CardGrid: React.FC<CardGridProps> = ({
                 movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>,
                 i
               ) => (
-                <Card movie={movie} key={`${i.toString()}card`} />
+                <Card
+                  movie={movie}
+                  key={`${i.toString()}card`}
+                  featuredMovie={featuredMovie}
+                />
               )
             )}
           </SimpleGrid>
@@ -346,7 +392,11 @@ export const CardGrid: React.FC<CardGridProps> = ({
             border="1px solid"
             borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
           >
-            <MovieGridView user={user} movies={movies.data} />
+            <MovieGridView
+              user={user}
+              movies={movies.data}
+              featuredMovie={featuredMovie}
+            />
           </chakra.div>
         )}
       </Container>

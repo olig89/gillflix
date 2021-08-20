@@ -1,6 +1,7 @@
 import { CloseButton, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
 import { useEffect } from 'react';
+import { getSecondaryAccentColor } from 'utils/utils';
 
 interface Props {
   message: string;
@@ -13,8 +14,8 @@ const colors = {
   error: { bg: { light: 'blue.500', dark: 'blue.200' } },
   success: {
     bg: {
-      light: 'green.400',
-      dark: 'green.200',
+      light: `${getSecondaryAccentColor()}.500`,
+      dark: `${getSecondaryAccentColor()}.300`,
     },
   },
 };
@@ -25,7 +26,7 @@ export default function AlertBanner({
   type,
   storageName,
 }: Props): ReactElement {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const color = useColorModeValue('white', 'gray.800');
   const bg = useColorModeValue(
     `${colors[type].bg.light}`,
@@ -34,8 +35,8 @@ export default function AlertBanner({
   useEffect(() => {
     const cookie = window.localStorage.getItem(storageName);
 
-    if (cookie) {
-      setIsOpen(false);
+    if (!cookie) {
+      setIsOpen(true);
     }
   }, [storageName]);
 
