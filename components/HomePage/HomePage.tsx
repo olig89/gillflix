@@ -21,16 +21,16 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {!user.isAdmin && !user.isReviewer && (
         <AlertBanner
-          type="error"
           storageName="dismissReadOnlyAlert"
           title="Read only mode!"
-          message="Join our Discord server and say hi to enable reviewing"
+          message="Say hi in Discord to enable reviewing"
+          color="blue"
         />
       )}
 
       {user.isReviewer && (
         <AlertBanner
-          type="success"
+          color="green"
           storageName="dismissReviewPromotion"
           title="You have been promoted!"
           message="You can now submit film reviews"
