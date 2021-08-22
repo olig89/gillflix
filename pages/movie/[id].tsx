@@ -105,7 +105,8 @@ interface SSRProps {
 export async function getServerSideProps(
   ctx: GetServerSidePropsContext
 ): Promise<SSRProps> {
-  const { id } = ctx.query;
+  const { id, review } = ctx.query;
+
   if (!id)
     return {
       props: { session: null, movie: null },
@@ -114,7 +115,7 @@ export async function getServerSideProps(
   if (!session)
     return {
       redirect: {
-        destination: `/?movie=${id}`,
+        destination: `/?movie=${id}&review=${review}`,
         permanent: false,
       },
     };

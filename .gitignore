@@ -10,6 +10,8 @@
 
 # next.js
 /.next/
+
+*.snap
 /out/
 
 # production
@@ -35,3 +37,5 @@ yarn-error.log*
 .github/workflows/trello.yml
 package-lock.json
 .husky/.gitignore
+dump
+cypress.env.json

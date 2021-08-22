@@ -21,8 +21,7 @@ export default function Home({
   singleMovieData,
   desiredUser,
 }: HomePageProps): React.ReactNode {
-  const [session, loading] = useSession();
-  if (typeof window !== 'undefined' && loading) return null;
+  const [session] = useSession();
 
   if (!session?.user) {
     return (
@@ -67,6 +66,7 @@ export const getServerSideProps = async (
       ReviewType<PopulatedUserType>[]
     > | null = null;
     let desiredUser = null;
+
     if (ctx.query.movie) {
       singleMovieData = await getMovie(ctx.query.movie, true);
     }
@@ -95,7 +95,9 @@ export const getServerSideProps = async (
   if (ctx.query.movie) {
     return {
       redirect: {
-        destination: `/movie/${ctx.query.movie}`,
+        destination: `/movie/${ctx.query.movie}${
+          ctx.query.review === 'true' ? '?review=true' : ''
+        }`,
         permanent: false,
       },
     };

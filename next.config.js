@@ -47,7 +47,8 @@ const securityHeaders = [
     value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
   },
 ];
-const colors = [
+
+const themeColors = [
   'red',
   'orange',
   'yellow',
@@ -56,6 +57,7 @@ const colors = [
   'blue',
   'cyan',
   'pink',
+  'gray',
   'purple',
 ];
 module.exports = withPWA({
@@ -74,7 +76,7 @@ module.exports = withPWA({
     OWNER_ID: process.env.OWNER_ID,
     COLOR_THEME:
       process.env.COLOR_THEME &&
-      !colors.includes(process.env.COLOR_THEME.toLowerCase())
+      !themeColors.includes(process.env.COLOR_THEME.toLowerCase())
         ? 'purple'
         : process.env.COLOR_THEME
         ? process.env.COLOR_THEME.toLowerCase()

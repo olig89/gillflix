@@ -86,6 +86,7 @@ Thank you to [@olig89](https://github.com/olig89) for all of the ideas and user 
 | WEBHOOK_URL                 | Endpoint for the discord_bot webhook                                                                                        | `https://bot.michael-hall.me` |
 | WEBHOOK_TOKEN               | Random string used to authenticate movie websites request, required if using the webhook                                    | `dsajoi234opiasdijofp`        |
 | COLOR_THEME                 | Color theme for the website, options: [chakra docs](https://chakra-ui.com/docs/theming/theme#colors)                        | `purple`                      |
+| SECONDARY_COLOR_THEME       | Secondary accent color of the website, same options as COLOR_THEME                                                          | `cyan`                        |
 | NEXT_PUBLIC_SITE_NAME       | Name of the website, default is ScuffedMDB                                                                                  | `ScuffedMDB`                  |
 | NEXT_PUBLIC_SHORT_SITE_NAME | Short name of the website, default is SMDB                                                                                  | `SMDB`                        |
 
@@ -127,7 +128,7 @@ _(these aren't mine before you try -\_-)_
 
 _and again_
 
-8. I recommend using [cloud atlas](https://www.mongodb.com/cloud/atlas) to host your mongo database, but just create an account and a m.0 db, then copy the connection uri and paste into the .env.local file and append the database name.
+8. I recommend using [cloud atlas](https://www.mongodb.com/cloud/atlas) to host your mongo database, but just create an account and a m.0 db, (Vercel does not allow you to set location on the free plan, and its normally in NA, I recommend setting the mongo server to NA as well, it is slightly snappier). Also ensure the the ip address in network access is set to 0.0.0.0, as this will allow any server to connect (also why you need to create a user with a strong password), this is because we dont know the IP of the vercel instance that our server will be booted up on. Next copy the connection uri and paste into the .env.local file and append the database name.
 
 `MONGODB_URI=<connection string>/local-movie-database`
 
@@ -155,7 +156,7 @@ __Make sure you have a fork of the repository by clicking the fork button top ri
 
 4. Once deployed, click the big 'Go to dashboard' button, follow the tabs at the top to 'settings', then click environment variables on the left hand menu. Here you can add all of the environment variables from your .env.local file, one at a time using the box at the top.
 
-5. CLIENT_ID, CLIENT_SECRET, OWNER_ID, and MOVIE_API_KEY will be the same as your local environment.
+5. CLIENT_ID, CLIENT_SECRET, OWNER_ID, NEXTAUTH_URL, and MOVIE_API_KEY will be the same as your local environment.
 
 6. MONGO_URI should use a production database that is not the same as your local environment so set the database to a different name.
 
@@ -173,7 +174,7 @@ __Make sure you have a fork of the repository by clicking the fork button top ri
 
 Copy the whole output and paste into the .env.local file under 'JWT_HS512'.
 
-9. Finally generate a random string for the JWT_CODE env variable for production and enter into the vercel settings panel.
+9. Finally generate a random string for the JWT_CODE env variable for production and enter into the Vercel settings panel.
 
 10. Go back to the overview tab and click redeploy.
 

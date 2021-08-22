@@ -37,6 +37,7 @@ import { useContext } from 'react';
 import Link from 'next/link';
 import { ReviewModalContext } from '../../utils/ModalContext';
 import { useQueryClient } from 'react-query';
+import { UserPageUser } from 'pages/user/[uID]';
 
 interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
@@ -150,7 +151,7 @@ export const ReviewActions = ({
 };
 
 interface ReviewProps {
-  user: UserAuthType;
+  user: UserAuthType | UserPageUser;
   review: ReviewType<PopulatedUserType>;
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
 }
@@ -206,6 +207,13 @@ const Review = ({ review, user, movie }: ReviewProps) => {
       <Text
         fontSize="lg"
         listStylePosition="inside"
+        className="test"
+        sx={{
+          //Select all children bar the first element and add margin to emulate paragraph  separation
+          'p:first-child ~ p': {
+            marginTop: '3',
+          },
+        }}
         color={
           review?.comment
             ? colorMode === 'light'

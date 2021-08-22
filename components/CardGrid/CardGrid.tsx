@@ -203,7 +203,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
             {(user.isReviewer || user.isAdmin) && <ReviewModal user={user} />}
           </Flex>
 
-          <Stack direction={{ base: 'column', md: 'row' }}>
+          <Stack alignItems="stretch" direction={{ base: 'column', md: 'row' }}>
             <InputGroup maxWidth={{ base: 'full', md: '200px' }}>
               <InputLeftElement pointerEvents="none">
                 <AiOutlineSearch color="gray.300" />
@@ -328,6 +328,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
                   bg={useColorModeValue('gray.100', 'whiteAlpha.200')}
                   height="full"
                   alignItems="center"
+                  alignSelf="stretch"
                   px={1}
                   borderRadius="md"
                 >
@@ -367,6 +368,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
             <SimpleGrid
               columns={{ base: 1, md: 2, lg: 3 }}
               spacing={10}
+              width="full"
               alignItems="stretch"
             >
               {movies?.data?.map(

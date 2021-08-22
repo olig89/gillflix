@@ -2,7 +2,6 @@ import {
   Box,
   chakra,
   useColorModeValue,
-  Text,
   Button,
   Icon,
   Flex,
@@ -19,7 +18,7 @@ export const LandingPage: React.FC<{
 }> = ({ movie, desiredUser }): React.ReactElement => {
   const { colorMode } = useColorMode();
   const router = useRouter();
-  const { user: userID, movie: movieID } = router.query;
+  const { user: userID, movie: movieID, review } = router.query;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'ScuffedMDB';
   const seanQuotes = [
     "The premier user generated judgment service",
@@ -34,7 +33,7 @@ export const LandingPage: React.FC<{
     userID && movieID ? `?movie=${movieID}&user=${userID}` : ''
   }${userID && !movieID ? `?user=${userID}` : ''}${
     !userID && movieID ? `?movie=${movieID}` : ''
-  }`;
+  }${review ? `&review=${review}` : ''}`;
 
   return (
     <>
@@ -75,21 +74,14 @@ export const LandingPage: React.FC<{
           <chakra.h1
             mb={6}
             fontSize={{ base: `4xl`, md: `6xl` }}
-            fontWeight="bold"
             lineHeight="none"
             letterSpacing={{ base: `normal`, md: `tight` }}
-            color={useColorModeValue(`gray.900`, `gray.100`)}
+            w="full"
+            bgClip="text"
+            bgGradient="linear(to-r, green.400,purple.500)"
+            fontWeight="extrabold"
           >
-            <Text
-              display={{ base: `block`, lg: `inline` }}
-              w="full"
-              bgClip="text"
-              bgGradient="linear(to-r, green.400,purple.500)"
-              fontWeight="extrabold"
-            >
-              {siteName}
-            </Text>
-            {` `}
+            {siteName}
           </chakra.h1>
           <chakra.p
             px={{ base: 0, lg: 24 }}
