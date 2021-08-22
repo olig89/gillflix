@@ -537,7 +537,7 @@ export const ReviewModal: React.FC<{
                   e.preventDefault();
 
                   if (
-                    e.target.value?.length > 900 &&
+                    e.target.value?.length > 1250 &&
                     e.target.value.length !== 0
                   ) {
                     setCommentError(
