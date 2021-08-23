@@ -85,6 +85,13 @@ export const Card: React.FC<CardProps> = ({
                 ))}
               </AvatarGroup>
             )}
+                        <Text
+              fontSize="4xl"
+              fontWeight="semibold"
+              color={useColorModeValue(`gray.800`, `white`)}
+            >
+              {' '}
+            </Text>
           </Box>
           <Box mt={-6} mx={-6} mb={6} pos="relative">
             {image && (
