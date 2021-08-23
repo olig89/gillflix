@@ -190,7 +190,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
               {unSortedMovies?.length}
             </chakra.span>
           }{' '}
-          films
+          movie{unSortedMovies.length !== 1 ? 's' : ''}
         </Heading>
 
         <Flex

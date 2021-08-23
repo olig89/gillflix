@@ -76,8 +76,10 @@ export const ReviewModal: React.FC<{
 
   useEffect(() => {
     if (success) {
+      queryClient
+        .invalidateQueries(`movie-${movie?.name}`)
+        .catch(console.error);
       queryClient.invalidateQueries(`movies`).catch(console.error);
-      queryClient.invalidateQueries('movie').catch(console.error);
       toast({
         variant: `solid`,
         title: success === `addition` ? `Review Added` : `Review Modified`,
