@@ -63,6 +63,7 @@ interface Props {
 }
 const shortSiteName = process.env.NEXT_PUBLIC_SHORT_SITE_NAME;
 
+//TODO: Add SEO here
 export default function MovieDetailsSection({
   movie,
   user,

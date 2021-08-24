@@ -84,12 +84,11 @@ export const Nav: React.FC<NavProps> = ({
             </Link>
           </HStack>
 
-          <Stack align="center" direction="row" spacing={'7px'} mx={4}>
+          <HStack align="center" spacing={'15px'} mx={4}>
             <IconButton
               variant="ghost"
               aria-label="Toggle Color Mode"
               onClick={toggleColorMode}
-              mr={3}
               icon={
                 colorMode === `light` ? (
                   <IoMoon size={18} />
@@ -106,7 +105,7 @@ export const Nav: React.FC<NavProps> = ({
             />
 
             {bp !== 'mobile' && (
-              <Stack isInline>
+              <Stack isInline spacing={'15px'} alignItems="center">
                 {user.isReviewer && showReview && (
                   <ReviewModal user={user} inNav />
                 )}
@@ -117,7 +116,7 @@ export const Nav: React.FC<NavProps> = ({
             {bp !== 'mobile' && (
               <Menu>
                 <MenuButton
-                  mr={5}
+                  mr={'20px!important'}
                   borderRadius="full"
                   variant="link"
                   display={{ base: 'none', md: 'inline-block' }}
@@ -147,7 +146,7 @@ export const Nav: React.FC<NavProps> = ({
                 </MenuList>
               </Menu>
             )}
-          </Stack>
+          </HStack>
         </Flex>
       </Box>
     </>
