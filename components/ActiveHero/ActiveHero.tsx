@@ -116,10 +116,9 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
             borderBottomLeftRadius="2xl"
             borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
           >
-            Details
+            View results
           </ChakraLink>
         </Link>
-
         <ChakraLink
           as={'p'}
           onClick={() => {
@@ -150,7 +149,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
           width="50%"
           p={2}
         >
-          {hasReviewed ? 'Edit review' : 'Add your review'}
+          {hasReviewed ? 'Edit your review' : 'Add your review'}
         </ChakraLink>
       </Flex>
      :

@@ -13,10 +13,11 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ReviewType, SerializedMovieType } from '../../models/movie';
+import { ReviewModalContext } from '../../utils/ModalContext';
 import Rating from '../Rating';
 import { PopulatedUserType } from '../../models/user';
 import { getColorSchemeCharCode } from '../../utils/utils';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 interface CardProps {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
@@ -30,7 +31,9 @@ export const Card: React.FC<CardProps> = ({
   const { image, name, genres, rating, numReviews, tagLine } = movie;
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (
-    <Link href={`/movie/${movie._id}`} passHref>
+    <Link href={featuredMovie === movie._id ? `/movie/${movie._id}` : '#'} passHref
+
+    >
       <Box as={'a'} height="full">
         <chakra.div
           position="relative"
