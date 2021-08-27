@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({
   const { onOpen, setMovie } = useContext(ReviewModalContext);
   const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id);
   return (
-    <Link href={(featuredMovie === movie._id) && hasReviewed ? `#`:`/movie/${movie._id}`} passHref>
+    <Link href={(featuredMovie === movie._id) && !hasReviewed ? `#`:`/movie/${movie._id}`} passHref>
       <Box as={'a'} height="full" onClick={() => {setMovie(movie); onOpen();}} >
         <chakra.div
           position="relative"
