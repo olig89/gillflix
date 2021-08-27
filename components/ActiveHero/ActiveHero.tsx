@@ -88,6 +88,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
           <Text>{movie.tagLine}</Text>
         </VStack>
       </Flex>
+      {hasReviewed ? 
       <Flex
         mt={5}
         mb={-5}
@@ -99,7 +100,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
         bg={colorMode === 'light' ? 'gray.50' : 'gray.900'}
         textAlign="center"
       >
-        {hasReviewed ? 
+        
         <Link href={`/movie/${movie._id}`} passHref>
           <ChakraLink
             width="50%"
@@ -117,7 +118,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
           >
             Details
           </ChakraLink>
-        </Link>:''}
+        </Link>
 
         <ChakraLink
           as={'p'}
@@ -152,6 +153,53 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
           {hasReviewed ? 'Edit review' : 'Add your review'}
         </ChakraLink>
       </Flex>
+     :
+     <Flex
+        mt={5}
+        mb={-5}
+        mx={-7}
+        borderBottomRadius="2xl"
+        borderTop="1px solid"
+        borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
+        fontWeight="semibold"
+        bg={colorMode === 'light' ? 'gray.50' : 'gray.900'}
+        textAlign="center"
+      >
+        <ChakraLink
+          as={'p'}
+          onClick={() => {
+            if (session?.user?.isAdmin || session?.user?.isReviewer) {
+              setMovie(movie);
+              onOpen();
+            } else {
+              return toast({
+                variant: `subtle`,
+                title: `You can't add or remove reviews.`,
+                description: `Contact the owner of the site to obtain the correct permissions.`,
+                status: `error`,
+                duration: 5000,
+                isClosable: true,
+              });
+            }
+          }}
+          color={`${process.env.COLOR_THEME}.${
+            colorMode === 'light' ? 500 : 300
+          }`}
+          _hover={{
+            bg: transparentize(
+              `${process.env.COLOR_THEME}.${colorMode === 'light' ? 500 : 200}`,
+              0.16
+            ),
+          }}
+          borderBottomLeftRadius="2xl"
+          borderBottomRightRadius="2xl"
+          width="100%"
+          p={2}
+        >
+          {'Add your review'}
+        </ChakraLink>
+      </Flex>
+     }
     </Flex>
   );
 }
