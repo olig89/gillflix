@@ -465,7 +465,7 @@ export const UserTable: React.FC<{
       border="1px solid"
       borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
     >
-      <Table {...getTableProps()} scrollBehavior={'inside'}>
+      <Table {...getTableProps()}>
         <Thead
           bg={useColorModeValue('gray.50', 'gray.900')}
           borderBottom="1px solid"
