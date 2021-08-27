@@ -34,7 +34,7 @@ export const Card: React.FC<CardProps> = ({
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [session] = useSession();
   const { onOpen, setMovie } = useContext(ReviewModalContext);
-  const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id);
+  const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?.sub);
   return (
     <Link href={(featuredMovie === movie._id) && !hasReviewed ? `#`:`/movie/${movie._id}`} passHref>
       <Box as={'a'} height="full" onClick={() => {
