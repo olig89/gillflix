@@ -34,10 +34,8 @@ export const Card: React.FC<CardProps> = ({
   const [session] = useSession();
   const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id);
   return (
-    <Link href={(featuredMovie === movie._id) && hasReviewed ? `#`:`/movie/${movie._id}`} passHref
-    onClick={() => console.log('I just got clicked')}
-    >
-      <Box as={'a'} height="full">
+    <Link href={(featuredMovie === movie._id) && hasReviewed ? `#`:`/movie/${movie._id}`} passHref>
+      <Box as={'a'} height="full" onClick={() => console.log('I just got clicked')}>
         <chakra.div
           position="relative"
           direction="column"
