@@ -30,7 +30,7 @@ export const Card: React.FC<CardProps> = ({
   const { image, name, genres, rating, numReviews, tagLine } = movie;
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (
-    <Link href={featuredMovie === movie._id ? `/movie/${movie._id}` : '#'} passHref
+    <Link href={featuredMovie === movie._id ? `#`:`/movie/${movie._id}`} passHref
 
     >
       <Box as={'a'} height="full">
