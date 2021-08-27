@@ -37,7 +37,11 @@ export const Card: React.FC<CardProps> = ({
   const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id);
   return (
     <Link href={(featuredMovie === movie._id) && !hasReviewed ? `#`:`/movie/${movie._id}`} passHref>
-      <Box as={'a'} height="full" onClick={() => {setMovie(movie); onOpen();}} >
+      <Box as={'a'} height="full" onClick={() => {
+            if ((featuredMovie === movie._id) && !hasReviewed) {
+              setMovie(movie);
+              onOpen();
+            }}} >
         <chakra.div
           position="relative"
           direction="column"
