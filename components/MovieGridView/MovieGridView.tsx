@@ -122,9 +122,11 @@ const COLUMNS = (
     Header: 'Rating',
     accessor: 'rating',
     Cell: ({
-      value: { rating, reviews },
+      value: { rating, reviews, _id, featuredMovie},
     }: {
-      value: { rating: string; reviews: { name: string; image: string }[] };
+      value: { rating: string; reviews: { name: string; image: string }[];
+      _id: string;
+      featuredMovie: string; };
     }) => {
       return reviews.length > 0 ? (
         <Stat textAlign="center" minWidth="200px">
@@ -135,7 +137,7 @@ const COLUMNS = (
             fontWeight="bold"
             justifyContent="center"
           >
-            {rating}
+            {featuredMovie === _id ? rating : 'TBC'}
             <chakra.span fontSize="md" fontWeight="normal" color={'gray.500'}>
               {' '}
               /10
