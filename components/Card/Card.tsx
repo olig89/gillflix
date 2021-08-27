@@ -17,11 +17,13 @@ import Rating from '../Rating';
 import { PopulatedUserType } from '../../models/user';
 import { getColorSchemeCharCode } from '../../utils/utils';
 import { useState } from 'react';
+import { useSession } from 'next-auth/client';
 
 interface CardProps {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
   featuredMovie: string;
 }
+
 
 export const Card: React.FC<CardProps> = ({
   movie,
@@ -29,9 +31,11 @@ export const Card: React.FC<CardProps> = ({
 }): React.ReactElement => {
   const { image, name, genres, rating, numReviews, tagLine } = movie;
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [session] = useSession()
+  const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id).length > 0
   return (
-    <Link href={featuredMovie === movie._id ? `#`:`/movie/${movie._id}`} passHref
-
+    <Link href={(featuredMovie === movie._id) && hasReviewed ? `#`:`/movie/${movie._id}`} passHref
+      
     >
       <Box as={'a'} height="full">
         <chakra.div
