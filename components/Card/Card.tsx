@@ -16,8 +16,9 @@ import { ReviewType, SerializedMovieType } from '../../models/movie';
 import Rating from '../Rating';
 import { PopulatedUserType } from '../../models/user';
 import { getColorSchemeCharCode } from '../../utils/utils';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { useSession } from 'next-auth/client';
+import { ReviewModalContext } from 'utils/ModalContext';
 
 interface CardProps {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
@@ -32,10 +33,11 @@ export const Card: React.FC<CardProps> = ({
   const { image, name, genres, rating, numReviews, tagLine } = movie;
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [session] = useSession();
+  const { onOpen, setMovie } = useContext(ReviewModalContext);
   const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id);
   return (
     <Link href={(featuredMovie === movie._id) && hasReviewed ? `#`:`/movie/${movie._id}`} passHref>
-      <Box as={'a'} height="full" onClick={() => console.log('I just got clicked')}>
+      <Box as={'a'} height="full" onClick={() => {setMovie(movie); onOpen();}} >
         <chakra.div
           position="relative"
           direction="column"
