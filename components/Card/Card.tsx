@@ -31,7 +31,7 @@ export const Card: React.FC<CardProps> = ({
 }): React.ReactElement => {
   const { image, name, genres, rating, numReviews, tagLine } = movie;
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [session] = useSession()
+  const [session] = useSession();
   const hasReviewed = movie.reviews.some(rvw => rvw._id === session?.user?._id).length > 0;
   return (
     <Link href={(featuredMovie === movie._id) && hasReviewed ? `#`:`/movie/${movie._id}`} passHref
