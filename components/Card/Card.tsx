@@ -13,11 +13,10 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ReviewType, SerializedMovieType } from '../../models/movie';
-import { ReviewModalContext } from '../../utils/ModalContext';
 import Rating from '../Rating';
 import { PopulatedUserType } from '../../models/user';
 import { getColorSchemeCharCode } from '../../utils/utils';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
 interface CardProps {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
