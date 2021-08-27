@@ -99,6 +99,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
         bg={colorMode === 'light' ? 'gray.50' : 'gray.900'}
         textAlign="center"
       >
+        {hasReviewed ? 
         <Link href={`/movie/${movie._id}`} passHref>
           <ChakraLink
             width="50%"
@@ -116,7 +117,8 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
           >
             Details
           </ChakraLink>
-        </Link>
+        </Link>:''}
+
         <ChakraLink
           as={'p'}
           onClick={() => {
@@ -147,7 +149,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
           width="50%"
           p={2}
         >
-          {hasReviewed ? 'Edit review' : 'Add review'}
+          {hasReviewed ? 'Edit review' : 'Add your review'}
         </ChakraLink>
       </Flex>
     </Flex>
