@@ -138,7 +138,7 @@ const COLUMNS = (
             {featuredMovie === _id ? 'TBC' : rating}
             <chakra.span fontSize="md" fontWeight="normal" color={'gray.500'}>
               {' '}
-              {featuredMovie === _id ? '/10' : ''}
+              {featuredMovie === _id ? '' : '/10'}
             </chakra.span>
             <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
