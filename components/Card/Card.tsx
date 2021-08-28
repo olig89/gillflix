@@ -82,6 +82,7 @@ export const Card: React.FC<CardProps> = ({
             }}
           >
             <Text
+              textAlign="center"
               fontSize="4xl"
               fontWeight="semibold"
               color={useColorModeValue(`gray.800`, `white`)}
@@ -130,6 +131,8 @@ export const Card: React.FC<CardProps> = ({
                   {name}
                 </Text>
                 <Tag
+                  whiteSpace="nowrap"
+                  ml="5px!important"
                   colorScheme={getColorSchemeCharCode(genres[0])}
                   fontWeight="600"
                   minW="auto"
