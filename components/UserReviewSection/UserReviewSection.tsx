@@ -101,7 +101,7 @@ export const UserReviewSection: React.FC<{
               >
                 <ReactMarkdown
                   skipHtml
-                  disallowedElements={['img', 'a', 'code', 'pre']}
+                  disallowedElements={['img', 'code', 'pre']}
                 >
                   {review?.comment || ''}
                 </ReactMarkdown>

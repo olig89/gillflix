@@ -225,7 +225,7 @@ const Review = ({ review, user, movie }: ReviewProps) => {
       >
         <ReactMarkdown
           skipHtml
-          disallowedElements={['img', 'a', 'code', 'pre']}
+          disallowedElements={['img', 'code', 'pre']}
         >
           {review.comment || 'No comment'}
         </ReactMarkdown>
