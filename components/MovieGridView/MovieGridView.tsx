@@ -135,7 +135,7 @@ const COLUMNS = (
             fontWeight="bold"
             justifyContent="center"
           >
-            {featuredMovie === _id ? rating : 'TBC'}
+            {featuredMovie === _id ? 'TBC' : rating}
             <chakra.span fontSize="md" fontWeight="normal" color={'gray.500'}>
               {' '}
               {featuredMovie === _id ? '/10' : ''}
@@ -169,7 +169,7 @@ const COLUMNS = (
       return (
         
         <Stack isInline width="full" justifyContent="center">
-          {featuredMovie === _id ?
+          {featuredMovie === _id ? '':
           <Tooltip
             label="View more info"
             aria-label="View more info"
@@ -187,7 +187,7 @@ const COLUMNS = (
               variant="ghost"
             />
           </Tooltip>
-          : ''}
+          }
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
@@ -332,7 +332,12 @@ export default function MovieGridView({
         image: review.user?.image,
       })),
     },
-    actionInfo: { imdbID: movie.imdbID, movieID: movie._id, name: movie.name },
+    actionInfo: {
+    imdbID: movie.imdbID,
+    movieID: movie._id,
+    name: movie.name,
+    featuredMovie,
+    _id: movie._id.toString(), },
   }));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const columns = useMemo(() => COLUMNS(user, handleMovieDelete), [user]);
