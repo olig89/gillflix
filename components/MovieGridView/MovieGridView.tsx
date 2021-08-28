@@ -324,6 +324,7 @@ export default function MovieGridView({
       tagLine: movie.tagLine,
     },
     rating: {
+      featuredMovie,
       rating: movie.rating,
       reviews: movie.reviews.map((review) => ({
         name: review.user?.username,
