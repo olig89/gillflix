@@ -135,7 +135,7 @@ const COLUMNS = (
             fontWeight="bold"
             justifyContent="center"
           >
-            {featuredMovie === _id ? 'TBC' : rating}
+            {featuredMovie === _id ? 'TBC ' : rating}
             <chakra.span fontSize="md" fontWeight="normal" color={'gray.500'}>
               {' '}
               {featuredMovie === _id ? '' : '/10'}

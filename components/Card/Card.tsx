@@ -146,7 +146,8 @@ export const Card: React.FC<CardProps> = ({
                   {tagLine || 'No tag line :(...'}
                 </Text>
 
-                <Rating rating={rating} numReviews={numReviews} />
+                {featuredMovie === movie._id ? '' : <Rating rating={rating} numReviews={numReviews} />}
+                
               </HStack>
             </Flex>
           </Flex>
