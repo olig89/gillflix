@@ -171,7 +171,25 @@ const COLUMNS = (
       return (
         
         <Stack isInline width="full" justifyContent="center">
-          {featuredMovie === _id ? '':
+          {featuredMovie === _id ? 
+          <Tooltip
+          label="Review in Progress"
+          aria-label="Review in Progress"
+          hasArrow
+          placement="top"
+        >
+          <IconButton
+            aria-label="Review in Progress"
+            size="2xl"
+            p={2}
+            as={'a'}
+            icon={<CgDetailsMore size="3em" />}
+            colorScheme={process.env.COLOR_THEME}
+            variant="ghost"
+            isDisabled
+          />
+        </Tooltip>
+        :
           <Tooltip
             label="View more info"
             aria-label="View more info"
