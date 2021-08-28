@@ -227,7 +227,7 @@ const Review = ({ review, user, movie }: ReviewProps) => {
           components={{
             a(props) {
               return (
-                <ChakraLink href={props.href}>{props.children}</ChakraLink>  
+                <ChakraLink textDecoration='underline' color={'cyan.500'} href={props.href}>{props.children}</ChakraLink>  
               )
             }
           }}
