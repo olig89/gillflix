@@ -83,6 +83,7 @@ export default function MoviePage({
 
   return (
     <AppLayout user={user} showMovies showReview>
+      <NextSeo title={data.name} />
       <MovieDetailsSection movie={data} user={user} />
       <MovieReviewSection movie={data} />
     </AppLayout>
