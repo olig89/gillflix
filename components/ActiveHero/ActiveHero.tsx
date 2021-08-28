@@ -115,8 +115,8 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
             color={`${colorMode === 'light' ? 'gray.800' : 'white'}`}
             borderBottomLeftRadius="2xl"
             borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
-          >
-            View results
+          ><Flex>
+            View Results</Flex>
           </ChakraLink>
         </Link>
         <ChakraLink
