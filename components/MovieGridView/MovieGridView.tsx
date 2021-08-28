@@ -124,9 +124,7 @@ const COLUMNS = (
     Cell: ({
       value: { rating, reviews, _id, featuredMovie},
     }: {
-      value: { rating: string; reviews: { name: string; image: string }[];
-      _id: string;
-      featuredMovie: string; };
+      value: { rating: string; reviews: { name: string; image: string }[]; _id: string; featuredMovie: string};
     }) => {
       return reviews.length > 0 ? (
         <Stat textAlign="center" minWidth="200px">
@@ -164,12 +162,14 @@ const COLUMNS = (
     Header: 'Actions',
     accessor: 'actionInfo',
     Cell: ({
-      value: { imdbID, movieID, name },
+      value: { imdbID, movieID, name, _id, featuredMovie },
     }: {
-      value: { imdbID: string; movieID: string; name: string };
+      value: { imdbID: string; movieID: string; name: string; _id: string; featuredMovie: string };
     }) => {
       return (
+        
         <Stack isInline width="full" justifyContent="center">
+          {featuredMovie === _id ?
           <Tooltip
             label="View more info"
             aria-label="View more info"
@@ -187,6 +187,7 @@ const COLUMNS = (
               variant="ghost"
             />
           </Tooltip>
+          : ''}
           <Tooltip
             label="View on IMDB"
             aria-label="View on IMDB"
