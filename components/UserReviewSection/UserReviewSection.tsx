@@ -103,7 +103,7 @@ export const UserReviewSection: React.FC<{
                   components={{
                     a(props) {
                       return (
-                        <ChakraLink textDecoration='underline' color={'cyan.500'} href={props.href}>{props.children}</ChakraLink>  
+                        <ChakraLink textDecoration='underline' color={'cyan.300'} href={props.href}>{props.children}</ChakraLink>  
                       )
                     }
                   }}
