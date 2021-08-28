@@ -30,31 +30,29 @@ import { PopulatedUserType } from '../../models/user';
 import React, { ReactElement } from 'react';
 import { ReviewType, SerializedMovieType } from '../../models/movie';
 import Wave from '../Wave';
-import { UserAuthType } from 'next-auth';
 import { EditIcon } from '@chakra-ui/icons';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { useContext } from 'react';
 import Link from 'next/link';
 import { ReviewModalContext } from '../../utils/ModalContext';
 import { useQueryClient } from 'react-query';
-import { UserPageUser } from 'pages/user/[uID]';
+import { useSession } from 'next-auth/client';
 
 interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
-  user: UserAuthType;
 }
 
-interface ReviewActionsProps extends ReviewProps {
+interface ReviewActionsProps extends Omit<ReviewProps, 'user'> {
   toInvalidate?: string;
 }
 
 export const ReviewActions = ({
   review,
-  user,
   toInvalidate,
   movie,
 }: ReviewActionsProps): JSX.Element | null => {
-  const userId = user.sub || user._id; // accomodate incase theya re UserAuthtype or MongoUserType
+  const [session] = useSession();
+  const userId = session?.user?._id || session?.user?.sub; // accomodate incase theya re UserAuthtype or MongoUserType
   const toast = useToast();
   const { setMovie, onOpen } = useContext(ReviewModalContext);
   const queryClient = useQueryClient();
@@ -90,22 +88,23 @@ export const ReviewActions = ({
       );
     }
   };
-  if (review?.user?._id === userId) {
+  if (review?.user?._id === userId || session?.user?.isAdmin) {
     return (
       <Stack isInline ml={{ base: 0, md: 3 }}>
-        <Tooltip placement="top" label="Edit your review">
-          <IconButton
-            icon={<EditIcon />}
-            aria-label="Edit review"
-            colorScheme={process.env.COLOR_THEME}
-            variant="ghost"
-            onClick={() => {
-              setMovie(movie);
-              onOpen();
-            }}
-          />
-        </Tooltip>
-
+        {review?.user?._id === userId && (
+          <Tooltip placement="top" label="Edit your review">
+            <IconButton
+              icon={<EditIcon />}
+              aria-label="Edit review"
+              colorScheme={process.env.COLOR_THEME}
+              variant="ghost"
+              onClick={() => {
+                setMovie(movie);
+                onOpen();
+              }}
+            />
+          </Tooltip>
+        )}
         <Popover>
           <Tooltip
             placement="top"
@@ -153,11 +152,10 @@ export const ReviewActions = ({
 };
 
 interface ReviewProps {
-  user: UserAuthType | UserPageUser;
   review: ReviewType<PopulatedUserType>;
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
 }
-const Review = ({ review, user, movie }: ReviewProps) => {
+const Review = ({ review, movie }: ReviewProps) => {
   const { colorMode } = useColorMode();
   return (
     <VStack mt={8} alignItems="flex-start" spacing={3} px={4} mb={5}>
@@ -181,7 +179,7 @@ const Review = ({ review, user, movie }: ReviewProps) => {
               </chakra.span>
             </Heading>
           </Link>
-          <ReviewActions review={review} movie={movie} user={user} />
+          <ReviewActions review={review} movie={movie} />
         </chakra.div>
         <chakra.div
             display="flex"
@@ -241,10 +239,7 @@ const Review = ({ review, user, movie }: ReviewProps) => {
   );
 };
 
-export default function MovieReviewSection({
-  movie,
-  user,
-}: Props): ReactElement {
+export default function MovieReviewSection({ movie }: Props): ReactElement {
   return (
     <Box maxWidth="7xl" mt="9rem" mx={'auto'} mb={40}>
       <VStack alignItems="center" spacing={3} mt={{ base: 28, lg: 0 }}>
@@ -260,12 +255,7 @@ export default function MovieReviewSection({
       </VStack>
       <Flex mt={10} direction="column">
         {movie.reviews.map((review: ReviewType<PopulatedUserType>, i) => (
-          <Review
-            movie={movie}
-            review={review}
-            user={user}
-            key={i.toString()}
-          />
+          <Review movie={movie} review={review} key={i.toString()} />
         ))}
       </Flex>
     </Box>

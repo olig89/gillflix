@@ -90,7 +90,6 @@ export const UserReviewSection: React.FC<{
                     toInvalidate={'movies'}
                     movie={movie}
                     review={review}
-                    user={user}
                   />
                 )}
               </Flex>

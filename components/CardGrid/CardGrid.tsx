@@ -218,7 +218,7 @@ export const CardGrid: React.FC<CardGridProps> = ({
             <Stack isInline alignItems="center">
               <Popover>
                 <PopoverTrigger>
-                  <Button rightIcon={<ChevronDownIcon />}>
+                  <Button rightIcon={<ChevronDownIcon />} isTruncated>
                     Filter by genre
                   </Button>
                 </PopoverTrigger>
@@ -284,7 +284,11 @@ export const CardGrid: React.FC<CardGridProps> = ({
                 </Portal>
               </Popover>
               <Menu>
-                <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                <MenuButton
+                  as={Button}
+                  rightIcon={<BiChevronDown />}
+                  isTruncated
+                >
                   Sort by...
                 </MenuButton>
                 <MenuList zIndex={998}>
