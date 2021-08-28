@@ -116,7 +116,7 @@ export default function ActiveHero({ movie }: Props): ReactElement | null {
             borderBottomLeftRadius="2xl"
             borderColor={colorMode === 'light' ? 'gray.300' : 'gray.700'}
           >
-            {'View results'}
+            View results
           </ChakraLink>
         </Link>
         <ChakraLink
