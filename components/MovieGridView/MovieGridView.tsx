@@ -141,7 +141,7 @@ const COLUMNS = (
               {featuredMovie === _id ? '' : '/10'}
             </chakra.span>
 
-            <AvatarGroup ml={3} max={3} size="md" fontSize="1xl">
+            <AvatarGroup ml={3} max={3} size="md">
               {reviews.map((review, i) => (
                 <Avatar
                   src={review.image}
