@@ -145,7 +145,7 @@ const COLUMNS = (
               {reviews.map((review, i) => (
                 <Avatar
                   src={review.image}
-                  fontSize="1xl"
+                  fontSize="md"
                   key={i.toString() + 'avatar'}
                   name={review.name}
                 />
