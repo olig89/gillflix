@@ -18,7 +18,6 @@ import { ReviewType, SerializedMovieType } from '../../models/movie';
 import { PopulatedUserType } from '../../models/user';
 import { ReviewActions } from '../MovieReviewSection/MovieReviewSection';
 import { UserPageUser } from 'pages/user/[uID]';
-import {Link as ChakraLink} from '@chakra-ui/react'
 
 export const UserReviewSection: React.FC<{
   movies: SerializedMovieType<ReviewType<PopulatedUserType>[]>[];

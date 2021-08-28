@@ -38,7 +38,6 @@ import Link from 'next/link';
 import { ReviewModalContext } from '../../utils/ModalContext';
 import { useQueryClient } from 'react-query';
 import { UserPageUser } from 'pages/user/[uID]';
-import {Link as ChakraLink} from '@chakra-ui/react'
 
 interface Props {
   movie: SerializedMovieType<ReviewType<PopulatedUserType>[]>;
