@@ -52,6 +52,8 @@ export const Nav: React.FC<NavProps> = ({
   const bp = useBreakpointValue({ base: 'mobile', md: 'big' });
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME;
   const shortSiteName = process.env.NEXT_PUBLIC_SHORT_SITE_NAME;
+  const siteLogo = process.env.NEXT_PUBLIC_SITE_LOGO;
+
   const [isTransparent, setIsTransparent] = useState(false);
 
   useEffect(() => {
