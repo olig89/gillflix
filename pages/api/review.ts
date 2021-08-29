@@ -47,7 +47,7 @@ const handler = async (
       )[0];
       if (existingReview) {
         if (
-          [session?.user?._id, session?.user?.sub].includes(
+          ![session?.user?._id, session?.user?.sub].includes(
             existingReview.user.toString()
           )
         ) {
