@@ -146,7 +146,7 @@ export const Card: React.FC<CardProps> = ({
                 mt={3}
               >
                 <Text color="gray.500" isTruncated>
-                  {tagLine || 'No tag line :(...'}
+                  {tagLine || ''}
                 </Text>
 
                 {featuredMovie === movie._id ? '' : <Rating rating={rating} numReviews={numReviews} />}
