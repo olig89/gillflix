@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Provider as NextAuthProvider } from 'next-auth/client';
+import { getSession, Provider as NextAuthProvider } from 'next-auth/client';
 import { DefaultSeo } from 'next-seo';
 import { ReviewModalContext } from '../utils/ModalContext';
 import React, { useState, useEffect } from 'react';
@@ -11,6 +11,8 @@ import { ReviewType, SerializedMovieType } from '../models/movie';
 import { PopulatedUserType } from '../models/user';
 import Router, { useRouter } from 'next/router';
 import nProgress from 'nprogress';
+import { GetServerSidePropsContext } from 'next';
+import { Session } from 'next-auth';
 
 const queryClient = new QueryClient();
 
@@ -84,3 +86,13 @@ function MyApp({ Component, pageProps }: AppProps): React.ReactChild {
 }
 
 export default MyApp;
+
+export async function getServerSideProps(
+  ctx: GetServerSidePropsContext
+): Promise<{ props: { session: Session | null } }> {
+  return {
+    props: {
+      session: await getSession(ctx),
+    },
+  };
+}
