@@ -253,7 +253,7 @@ export default function MovieDetailsSection({
                       fontWeight="bold"
                       color={useColorModeValue('gray.900', 'white')}
                     >
-                      {movie.budget > 0 ? `${millify(movie.budget)}` : 'N/A'}
+                      {movie.budget > 0 ? `${millify(movie.budget)}` : 'TBC'}
                     </chakra.span>
                   </Text>
                 </VStack>
@@ -268,7 +268,7 @@ export default function MovieDetailsSection({
                       fontWeight="bold"
                       color={useColorModeValue('gray.900', 'white')}
                     >
-                      {movie.revenue > 0 ? `${millify(movie.revenue)}` : 'N/A'}
+                      {movie.revenue > 0 ? `${millify(movie.revenue)}` : 'TBC'}
                     </chakra.span>
                   </Text>
                 </VStack>
