@@ -34,7 +34,8 @@ export const UserReviewSection: React.FC<{
         return (
           <Flex
             mt={10}
-            mx={{ base: 5, md: 0 }}
+            width="92%"
+            mx="auto"
             maxWidth="6xl"
             key={i.toString()}
             direction={{ base: 'column', md: 'row' }}
@@ -47,19 +48,19 @@ export const UserReviewSection: React.FC<{
             >
               <Image
                 src={movie?.image || ''}
-                alt={review?.user?.username + "'s profile"}
+                alt={movie.name + ' movie poster'}
                 layout="fill"
+                sizes="200px"
                 className={'borderRadius-xl'}
               />
             </AspectRatio>
             <Flex direction="column" maxWidth="full">
               <Flex direction={{ base: 'column', md: 'row' }}>
-                <Stack isInline>
+                <Stack isInline justifyContent="center">
                   <Link href={`/movie/${movie?._id}`} passHref>
                     <Heading
                       as={ChakraLink}
                       isTruncated
-                      maxWidth={{ base: 'full', md: 'calc(100vw - 430px)' }}
                       size={['base', 'sm'].includes(bp || '') ? 'lg' : 'xl'}
                       mr={5}
                     >
@@ -84,9 +85,22 @@ export const UserReviewSection: React.FC<{
                     </chakra.span>
                   </Heading>
                 </Stack>
-
+                {bp === 'base' && (
+                  <Text
+                    fontSize={{ base: 'lg', md: '2xl' }}
+                    listStylePosition="inside"
+                  >
+                    <ReactMarkdown
+                      skipHtml
+                      disallowedElements={['img', 'a', 'code', 'pre']}
+                    >
+                      {review?.comment || ''}
+                    </ReactMarkdown>
+                  </Text>
+                )}
                 {review && (
                   <ReviewActions
+                    centred
                     toInvalidate={'movies'}
                     movie={movie}
                     review={review}
@@ -94,24 +108,19 @@ export const UserReviewSection: React.FC<{
                 )}
               </Flex>
 
-              <Text
-                fontSize={{ base: 'lg', md: '2xl' }}
-                listStylePosition="inside"
-              >
-                <ReactMarkdown
-                  components={{
-                    a(props) {
-                      return (
-                        <ChakraLink color={'cyan.300'} href={props.href}>{props.children}</ChakraLink>  
-                      )
-                    }
-                  }}
-                  skipHtml
-                  disallowedElements={['img', 'code', 'pre']}
+              {bp !== 'base' && (
+                <Text
+                  fontSize={{ base: 'lg', md: '2xl' }}
+                  listStylePosition="inside"
                 >
-                  {review?.comment || ''}
-                </ReactMarkdown>
-              </Text>
+                  <ReactMarkdown
+                    skipHtml
+                    disallowedElements={['img', 'a', 'code', 'pre']}
+                  >
+                    {review?.comment || ''}
+                  </ReactMarkdown>
+                </Text>
+              )}
             </Flex>
           </Flex>
         );
